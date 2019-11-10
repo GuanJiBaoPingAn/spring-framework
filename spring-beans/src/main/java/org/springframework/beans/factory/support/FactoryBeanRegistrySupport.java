@@ -32,6 +32,7 @@ import org.springframework.beans.factory.FactoryBeanNotInitializedException;
 import org.springframework.lang.Nullable;
 
 /**
+ * 增加FactoryBean支持
  * Support base class for singleton registries which need to handle
  * {@link org.springframework.beans.factory.FactoryBean} instances,
  * integrated with {@link DefaultSingletonBeanRegistry}'s singleton management.
@@ -43,7 +44,9 @@ import org.springframework.lang.Nullable;
  */
 public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry {
 
-	/** Cache of singleton objects created by FactoryBeans: FactoryBean name to object. */
+	/** Cache of singleton objects created by FactoryBeans: FactoryBean name to object.
+	 * FactoryBean创建的单例对象的缓存：FactoryBean名 -> 对象
+	 */
 	private final Map<String, Object> factoryBeanObjectCache = new ConcurrentHashMap<>(16);
 
 
@@ -73,6 +76,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	}
 
 	/**
+	 * 获取FactoryBean所创建的缓存
 	 * Obtain an object to expose from the given FactoryBean, if available
 	 * in cached form. Quick check for minimal synchronization.
 	 * @param beanName the name of the bean
@@ -85,6 +89,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	}
 
 	/**
+	 * 获取FactoryBean创建的Bean，优先取缓存
 	 * Obtain an object to expose from the given FactoryBean.
 	 * @param factory the FactoryBean instance
 	 * @param beanName the name of the bean
@@ -94,6 +99,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	 * @see org.springframework.beans.factory.FactoryBean#getObject()
 	 */
 	protected Object getObjectFromFactoryBean(FactoryBean<?> factory, String beanName, boolean shouldPostProcess) {
+		// 当为单例的FactoryBean且它创建的bean已完成初始化
 		if (factory.isSingleton() && containsSingleton(beanName)) {
 			synchronized (getSingletonMutex()) {
 				Object object = this.factoryBeanObjectCache.get(beanName);
@@ -101,11 +107,16 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 					object = doGetObjectFromFactoryBean(factory, beanName);
 					// Only post-process and store if not put there already during getObject() call above
 					// (e.g. because of circular reference processing triggered by custom getBean calls)
+					/**
+					 * 没有锁factoryBeanObjectCache，此处再次确认
+					 */
 					Object alreadyThere = this.factoryBeanObjectCache.get(beanName);
 					if (alreadyThere != null) {
+						// 缓存中有则用缓存中的
 						object = alreadyThere;
 					}
 					else {
+						// 需要后处理，在放入缓存前进行处理
 						if (shouldPostProcess) {
 							if (isSingletonCurrentlyInCreation(beanName)) {
 								// Temporarily return non-post-processed object, not storing it yet..
@@ -132,6 +143,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 			}
 		}
 		else {
+			// FactoryBean不为单例，或FactoryBean创建的对象未完成初始化
 			Object object = doGetObjectFromFactoryBean(factory, beanName);
 			if (shouldPostProcess) {
 				try {
@@ -146,10 +158,11 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	}
 
 	/**
+	 * 获取FactoryBean创建的bean，当正在创建时抛出异常
 	 * Obtain an object to expose from the given FactoryBean.
 	 * @param factory the FactoryBean instance
 	 * @param beanName the name of the bean
-	 * @return the object obtained from the FactoryBean
+	 * @return the object obtained from the FactoryBean 不存在时返回{@link NullBean}
 	 * @throws BeanCreationException if FactoryBean object creation failed
 	 * @see org.springframework.beans.factory.FactoryBean#getObject()
 	 */
@@ -191,6 +204,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	}
 
 	/**
+	 * FactoryBean创建的Bean在放入缓存前进行处理，此处直接返回，子类可重写
 	 * Post-process the given object that has been obtained from the FactoryBean.
 	 * The resulting object will get exposed for bean references.
 	 * <p>The default implementation simply returns the given object as-is.
