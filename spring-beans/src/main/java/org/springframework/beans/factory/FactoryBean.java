@@ -23,6 +23,7 @@ import org.springframework.lang.Nullable;
  * are themselves factories for individual objects. If a bean implements this
  * interface, it is used as a factory for an object to expose, not directly as a
  * bean instance that will be exposed itself.
+ * BeanFactory 本身的Bean，若有Bean实现该接口，用于获取该工厂创建的bean
  *
  * <p><b>NB: A bean that implements this interface cannot be used as a normal bean.</b>
  * A FactoryBean is defined in a bean style, but the object exposed for bean
@@ -72,11 +73,13 @@ public interface FactoryBean<T> {
 	/**
 	 * Return an instance (possibly shared or independent) of the object
 	 * managed by this factory.
+	 * 获取该工厂创建的对象
 	 * <p>As with a {@link BeanFactory}, this allows support for both the
 	 * Singleton and Prototype design pattern.
 	 * <p>If this FactoryBean is not fully initialized yet at the time of
 	 * the call (for example because it is involved in a circular reference),
 	 * throw a corresponding {@link FactoryBeanNotInitializedException}.
+	 * 在该FactoryBean尚未初始化完成前调用该方法，抛出异常
 	 * <p>As of Spring 2.0, FactoryBeans are allowed to return {@code null}
 	 * objects. The factory will consider this as normal value to be used; it
 	 * will not throw a FactoryBeanNotInitializedException in this case anymore.
@@ -94,6 +97,7 @@ public interface FactoryBean<T> {
 	 * or {@code null} if not known in advance.
 	 * <p>This allows one to check for specific types of beans without
 	 * instantiating objects, for example on autowiring.
+	 * 获取该工厂创建的bean类型，用于不需要实例化对象的场景，如自动装配
 	 * <p>In the case of implementations that are creating a singleton object,
 	 * this method should try to avoid singleton creation as far as possible;
 	 * it should rather estimate the type in advance.
@@ -101,6 +105,7 @@ public interface FactoryBean<T> {
 	 * <p>This method can be called <i>before</i> this FactoryBean has
 	 * been fully initialized. It must not rely on state created during
 	 * initialization; of course, it can still use such state if available.
+	 * 该方法可在FactoryBean初始化完成前调用
 	 * <p><b>NOTE:</b> Autowiring will simply ignore FactoryBeans that return
 	 * {@code null} here. Therefore it is highly recommended to implement
 	 * this method properly, using the current state of the FactoryBean.

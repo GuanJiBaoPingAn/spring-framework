@@ -44,6 +44,7 @@ public interface DestructionAwareBeanPostProcessor extends BeanPostProcessor {
 	void postProcessBeforeDestruction(Object bean, String beanName) throws BeansException;
 
 	/**
+	 * 判断bean实例是否需要当前后处理器进行销毁
 	 * Determine whether the given bean instance requires destruction by this
 	 * post-processor.
 	 * <p>The default implementation returns {@code true}. If a pre-5 implementation

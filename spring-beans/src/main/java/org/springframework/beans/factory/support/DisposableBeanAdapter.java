@@ -376,6 +376,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 
 	/**
+	 * 是否有各种类型的销毁方法，包括DisposableBean、AutoCloseable，或用户自定义销毁方法
 	 * Check whether the given bean has any kind of destroy method to call.
 	 * @param bean the bean instance
 	 * @param beanDefinition the corresponding bean definition
@@ -393,6 +394,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 	}
 
 	/**
+	 * 检查后处理器列表中是否有DestructionAwareBeanPostProcessor，且是否需要该DestructionAwareBeanPostProcessor进行销毁
 	 * Check whether the given bean has destruction-aware post-processors applying to it.
 	 * @param bean the bean instance
 	 * @param postProcessors the post-processor candidates

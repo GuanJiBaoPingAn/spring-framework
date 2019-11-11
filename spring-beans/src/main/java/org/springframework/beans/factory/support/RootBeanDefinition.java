@@ -34,6 +34,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * RootBeanDefinition代表，多个互相继承的原始BeanDefinition的合并BeanDefinition
  * A root bean definition represents the merged bean definition that backs
  * a specific bean in a Spring BeanFactory at runtime. It might have been created
  * from multiple original bean definitions that inherit from each other,
@@ -104,19 +105,26 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	@Nullable
 	Object[] preparedConstructorArguments;
 
-	/** Common lock for the two post-processing fields below. */
+	/** Common lock for the two post-processing fields below.
+	 *	用于对{@link #postProcessed} 和 {@link #beforeInstantiationResolved} 进行上锁
+	 */
 	final Object postProcessingLock = new Object();
 
-	/** Package-visible field that indicates MergedBeanDefinitionPostProcessor having been applied. */
+	/** Package-visible field that indicates MergedBeanDefinitionPostProcessor having been applied.
+	 * 表明MergedBeanDefinitionPostProcessor是否应用过
+	 */
 	boolean postProcessed = false;
 
-	/** Package-visible field that indicates a before-instantiation post-processor having kicked in. */
+	/** Package-visible field that indicates a before-instantiation post-processor having kicked in.
+	 *	实例化前的后处理器是否使用了
+	 */
 	@Nullable
 	volatile Boolean beforeInstantiationResolved;
 
 	@Nullable
 	private Set<Member> externallyManagedConfigMembers;
 
+	// 外部管理的初始化函数，方法名的集合
 	@Nullable
 	private Set<String> externallyManagedInitMethods;
 

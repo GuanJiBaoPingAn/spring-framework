@@ -116,6 +116,7 @@ import org.springframework.lang.Nullable;
 public interface BeanFactory {
 
 	/**
+	 * {@link FactoryBean} 的特殊标志，
 	 * Used to dereference a {@link FactoryBean} instance and distinguish it from
 	 * beans <i>created</i> by the FactoryBean. For example, if the bean named
 	 * {@code myJndiObject} is a FactoryBean, getting {@code &myJndiObject}

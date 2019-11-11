@@ -42,6 +42,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 依赖描述符，对构造函数参数、方法参数、或域作为注入点进行包装
  * Descriptor for a specific dependency that is about to be injected.
  * Wraps a constructor parameter, a method parameter or a field,
  * allowing unified access to their metadata.
