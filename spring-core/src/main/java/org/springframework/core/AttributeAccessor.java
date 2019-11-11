@@ -19,6 +19,7 @@ package org.springframework.core;
 import org.springframework.lang.Nullable;
 
 /**
+ * 操作元数据通用接口
  * Interface defining a generic contract for attaching and accessing metadata
  * to/from arbitrary objects.
  *

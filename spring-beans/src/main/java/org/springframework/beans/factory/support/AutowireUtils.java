@@ -80,6 +80,9 @@ abstract class AutowireUtils {
 	}
 
 	/**
+	 * 确定给定的bean属性是否不需要依赖检查，
+	 * 1、将CGLIB的属性进行排除
+	 * 2、没有setter方法的
 	 * Determine whether the given bean property is excluded from dependency checks.
 	 * <p>This implementation excludes properties defined by CGLIB.
 	 * @param pd the PropertyDescriptor of the bean property
@@ -101,6 +104,7 @@ abstract class AutowireUtils {
 	}
 
 	/**
+	 * 给定属性描述符的setter方法是否定义在需要忽略的接口里
 	 * Return whether the setter method of the given bean property is defined
 	 * in any of the given interfaces.
 	 * @param pd the PropertyDescriptor of the bean property

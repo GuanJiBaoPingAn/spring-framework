@@ -84,6 +84,7 @@ final class SerializableTypeWrapper {
 	}
 
 	/**
+	 * 将type解包，返回不可序列化的类型
 	 * Unwrap the given type, effectively returning the original non-serializable type.
 	 * @param type the type to unwrap
 	 * @return the original non-serializable type

@@ -84,6 +84,7 @@ import org.springframework.util.StringUtils;
 public class ResolvableType implements Serializable {
 
 	/**
+	 * 当无值返回时返回NONE，同null
 	 * {@code ResolvableType} returned when no value is available. {@code NONE} is used
 	 * in preference to {@code null} so that multiple method calls can be safely chained.
 	 */
@@ -96,17 +97,20 @@ public class ResolvableType implements Serializable {
 
 
 	/**
+	 * 所包装的Java Type
 	 * The underlying Java type being managed.
 	 */
 	private final Type type;
 
 	/**
+	 * 该Type 的提供者
 	 * Optional provider for the type.
 	 */
 	@Nullable
 	private final TypeProvider typeProvider;
 
 	/**
+	 * 类型解析器
 	 * The {@code VariableResolver} to use or {@code null} if no resolver is available.
 	 */
 	@Nullable
@@ -196,6 +200,7 @@ public class ResolvableType implements Serializable {
 
 
 	/**
+	 * 获取被包装的Java Type
 	 * Return the underling Java {@link Type} being managed.
 	 */
 	public Type getType() {
@@ -203,6 +208,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
+	 * 返回被管理的Java Class
 	 * Return the underlying Java {@link Class} being managed, if available;
 	 * otherwise {@code null}.
 	 */
@@ -1434,6 +1440,7 @@ public class ResolvableType implements Serializable {
 
 
 	/**
+	 * 变量解析器策略，用于解析{@link TypeVariable}
 	 * Strategy interface used to resolve {@link TypeVariable TypeVariables}.
 	 */
 	interface VariableResolver extends Serializable {

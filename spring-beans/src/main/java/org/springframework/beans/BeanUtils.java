@@ -583,6 +583,8 @@ public abstract class BeanUtils {
 	}
 
 	/**
+	 * 检查给定的class是否为简单属性：简单值类型或简单值类型的数组，简单值类型
+	 * @see #isSimpleValueType(Class)
 	 * Check if the given type represents a "simple" property: a simple value
 	 * type or an array of simple value types.
 	 * <p>See {@link #isSimpleValueType(Class)} for the definition of <em>simple
@@ -600,6 +602,8 @@ public abstract class BeanUtils {
 	}
 
 	/**
+	 * 为简单值类型的：原始类型、原始类型的包装类、枚举、String、CharSequence、Number、
+	 * Date、Temporal、URI、URL、Locale、Class
 	 * Check if the given type represents a "simple" value type: a primitive or
 	 * primitive wrapper, an enum, a String or other CharSequence, a Number, a
 	 * Date, a Temporal, a URI, a URL, a Locale, or a Class.
