@@ -19,6 +19,7 @@ package org.springframework.beans;
 import java.beans.PropertyDescriptor;
 
 /**
+ * JavaBean的中心接口
  * The central interface of Spring's low-level JavaBeans infrastructure.
  *
  * <p>Typically not used directly but rather implicitly via a
@@ -49,6 +50,7 @@ import java.beans.PropertyDescriptor;
 public interface BeanWrapper extends ConfigurablePropertyAccessor {
 
 	/**
+	 * array和collection自动扩容上限
 	 * Specify a limit for array and collection auto-growing.
 	 * <p>Default is unlimited on a plain BeanWrapper.
 	 * @since 4.1

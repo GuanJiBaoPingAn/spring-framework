@@ -284,6 +284,11 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	AccessControlContext getAccessControlContext();
 
 	/**
+	 * 从给定的ConfigurableBeanFactory，拷贝所有相关的配置属性，包括，
+	 * 1、標準的配置
+	 * 2、BeanPostProcessor
+	 * 3、Scope
+	 * 不包括，BeanDefinition 的元信息，如BeanDefinition對象和beanName別名
 	 * Copy all relevant configuration from the given other factory.
 	 * <p>Should include all standard configuration settings as well as
 	 * BeanPostProcessors, Scopes, and factory-specific internal settings.

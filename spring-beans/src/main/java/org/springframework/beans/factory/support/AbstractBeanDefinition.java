@@ -734,6 +734,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 创建bean实例时设置回调
 	 * Specify a callback for creating an instance of the bean,
 	 * as an alternative to a declaratively specified factory method.
 	 * <p>If such a callback is set, it will override any other constructor
@@ -757,6 +758,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 是否允许使用非public的构造函数和方法，默认为true
 	 * Specify whether to allow access to non-public constructors and methods,
 	 * for the case of externalized metadata pointing to those. The default is
 	 * {@code true}; switch this to {@code false} for public access only.
@@ -779,6 +781,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 宽松解析构造函数，默认为true
 	 * Specify whether to resolve constructors in lenient mode ({@code true},
 	 * which is the default) or to switch to strict resolution (throwing an exception
 	 * in case of ambiguous constructors that all match when converting the arguments,
@@ -993,6 +996,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 该BeanDefinition是否为合成的，即非应用本身定义的
 	 * Return whether this bean definition is 'synthetic', that is,
 	 * not defined by the application itself.
 	 */

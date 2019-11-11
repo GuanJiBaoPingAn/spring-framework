@@ -159,10 +159,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 */
 	private final List<BeanPostProcessor> beanPostProcessors = new CopyOnWriteArrayList<>();
 
-	/** Indicates whether any InstantiationAwareBeanPostProcessors have been registered. */
+	/** Indicates whether any InstantiationAwareBeanPostProcessors have been registered.
+	 * 	表明是否有InstantiationAwareBeanPostProcessors Bean实例化的后处理器
+	 */
 	private volatile boolean hasInstantiationAwareBeanPostProcessors;
 
-	/** Indicates whether any DestructionAwareBeanPostProcessors have been registered. */
+	/** Indicates whether any DestructionAwareBeanPostProcessors have been registered.
+	 *	表明是否有DestructionAwareBeanPostProcessors Bean销毁的后处理器
+	 */
 	private volatile boolean hasDestructionAwareBeanPostProcessors;
 
 	/** Map from scope identifier String to corresponding Scope. */
@@ -247,7 +251,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @param args arguments to use when creating a bean instance using explicit arguments
 	 * (only applied when creating a new instance as opposed to retrieving an existing one)
 	 * @param typeCheckOnly whether the instance is obtained for a type check,
-	 * not for actual use
+	 * not for actual use 实例是否是用于类型检查的
 	 * @return an instance of the bean
 	 * @throws BeansException if the bean could not be created
 	 */
@@ -285,6 +289,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			// Check if bean definition exists in this factory.
 			BeanFactory parentBeanFactory = getParentBeanFactory();
 			if (parentBeanFactory != null && !containsBeanDefinition(beanName)) {
+				// 当前BeanFactory没有该BeanDefinition -> 从父BeanFactory中找
 				// Not found -> check parent.
 				String nameToLookup = originalBeanName(name);
 				if (parentBeanFactory instanceof AbstractBeanFactory) {
@@ -313,15 +318,21 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				checkMergedBeanDefinition(mbd, beanName, args);
 
 				// Guarantee initialization of beans that the current bean depends on.
+				// 确保初始化该Bean所依赖的所有Bean
 				String[] dependsOn = mbd.getDependsOn();
 				if (dependsOn != null) {
 					for (String dep : dependsOn) {
+						/**
+						 * 该Bean依赖dep，dep是否依赖该Bean（是否有循环依赖）
+						 */
 						if (isDependent(beanName, dep)) {
 							throw new BeanCreationException(mbd.getResourceDescription(), beanName,
 									"Circular depends-on relationship between '" + beanName + "' and '" + dep + "'");
 						}
+						// 不存在循环依赖时，注册依赖关系（进行缓存）
 						registerDependentBean(dep, beanName);
 						try {
+							// 递归调用初始化，保证该Bean所依赖的所有Bean都初始化完成
 							getBean(dep);
 						}
 						catch (NoSuchBeanDefinitionException ex) {
@@ -335,6 +346,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				if (mbd.isSingleton()) {
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
+							// 此处返回的是ObjectFactory
 							return createBean(beanName, mbd, args);
 						}
 						catch (BeansException ex) {
@@ -394,6 +406,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 
 		// Check if required type matches the type of the actual bean instance.
+		// 检查所创建的bean实例是否为所需要的类型，若不是则进行转换，成功返回，失败抛异常
 		if (requiredType != null && !requiredType.isInstance(bean)) {
 			try {
 				T convertedBean = getTypeConverter().convertIfNecessary(bean, requiredType);
@@ -1059,6 +1072,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
+	 * 根据beanName获取RootBeanDefinition，如果存在父BeanDefinition则merge
 	 * Return a 'merged' BeanDefinition for the given bean name,
 	 * merging a child bean definition with its parent if necessary.
 	 * <p>This {@code getMergedBeanDefinition} considers bean definition
@@ -1112,6 +1126,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
+	 * 创建原型前调用，将beanName加入，存在多个则存为set集合
+	 * @see #prototypesCurrentlyInCreation
 	 * Callback before prototype creation.
 	 * <p>The default implementation register the prototype as currently in creation.
 	 * @param beanName the name of the prototype about to be created
@@ -1136,6 +1152,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
+	 * 原型创建完成后调用，从正在创建的TreadLocal内删除，若果是Set集合则删除其中一项
 	 * Callback after prototype creation.
 	 * <p>The default implementation marks the prototype as not in creation anymore.
 	 * @param beanName the name of the prototype that has been created
@@ -1222,6 +1239,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
+	 * 初始化BeanWrapper的PropertyEditorRegistry
 	 * Initialize the given BeanWrapper with the custom editors registered
 	 * with this factory. To be called for BeanWrappers that will create
 	 * and populate bean instances.
@@ -1280,7 +1298,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 
 	/**
-	 * 根据beanName获取RootBeanDefinition，优先取缓存，次根据依赖情况生成
+	 * 根据beanName获取RootBeanDefinition，优先取缓存，次根据依赖情况生成，并进行缓存
 	 * Return a merged RootBeanDefinition, traversing the parent bean definition
 	 * if the specified bean corresponds to a child bean definition.
 	 * @param beanName the name of the bean to retrieve the merged definition for
@@ -1343,6 +1361,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 			if (mbd == null || mbd.stale) {
 				previous = mbd;
+				// bd为RootBeanDefinition
 				if (bd.getParentName() == null) {
 					// Use copy of given root bean definition.
 					if (bd instanceof RootBeanDefinition) {
@@ -1353,6 +1372,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					}
 				}
 				else {
+					// bd为子BeanDefinition：需要和父BeanDefinition进行合并
 					// Child bean definition: needs to be merged with parent.
 					BeanDefinition pbd;
 					try {
@@ -1424,6 +1444,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
+	 * 检查该bean是否是抽象的（无法被实例化），若是，则抛出异常
 	 * Check the given merged bean definition,
 	 * potentially throwing validation exceptions.
 	 * @param mbd the merged bean definition to check
@@ -1727,6 +1748,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
+	 * 将beanName标记为以创建完成，对多次创建同一个bean进行缓存
 	 * Mark the specified bean as already created (or about to be created).
 	 * <p>This allows the bean factory to optimize its caching for repeated
 	 * creation of the specified bean.
@@ -1767,12 +1789,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
+	 * 若创建完成了则清除该单例实例缓存，当只被用于类型检查时不会清除（类型检查不会将bean设置为创建完成）
 	 * Remove the singleton instance (if any) for the given bean name,
 	 * but only if it hasn't been used for other purposes than type checking.
 	 * @param beanName the name of the bean
 	 * @return {@code true} if actually removed, {@code false} otherwise
 	 */
 	protected boolean removeSingletonIfCreatedForTypeCheckOnly(String beanName) {
+		// 未完成创建的bean移除缓存
 		if (!this.alreadyCreated.contains(beanName)) {
 			removeSingleton(beanName);
 			return true;
@@ -1844,6 +1868,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				mbd = getMergedLocalBeanDefinition(beanName);
 			}
 			boolean synthetic = (mbd != null && mbd.isSynthetic());
+			// 非合成的（非应用定义的）需要进行后处理（需要具体实现）
 			object = getObjectFromFactoryBean(factory, beanName, !synthetic);
 		}
 		return object;
@@ -1860,6 +1885,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
+	 * 是否需要销毁
+	 * 1、是否有销毁方法
+	 * 2、是否有DestructionAwareBeanPostProcessors，且是否需要该DestructionAwareBeanPostProcessor进行销毁
 	 * Determine whether the given bean requires destruction on shutdown.
 	 * <p>The default implementation checks the DisposableBean interface as well as
 	 * a specified destroy method and registered DestructionAwareBeanPostProcessors.
@@ -1876,6 +1904,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
+	 * 对于实现了DisposableBean的类或自定义销毁方法的Bean进行注册（只对单例有效）
 	 * Add the given bean to the list of disposable beans in this factory,
 	 * registering its DisposableBean interface and/or the given destroy method
 	 * to be called on factory shutdown (if applicable). Only applies to singletons.
@@ -1956,6 +1985,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	protected abstract BeanDefinition getBeanDefinition(String beanName) throws BeansException;
 
 	/**
+	 * 对合并的BeanDefinition创建bean实例
 	 * Create a bean instance for the given merged bean definition (and arguments).
 	 * The bean definition will already have been merged with the parent definition
 	 * in case of a child definition.

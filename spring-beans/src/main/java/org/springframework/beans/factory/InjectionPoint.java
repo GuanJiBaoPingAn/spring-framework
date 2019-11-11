@@ -27,6 +27,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 注入点的描述符，可注入到method/constructor parameter or a field
  * A simple descriptor for an injection point, pointing to a method/constructor
  * parameter or a field. Exposed by {@link UnsatisfiedDependencyException}.
  * Also available as an argument for factory methods, reacting to the

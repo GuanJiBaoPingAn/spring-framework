@@ -421,6 +421,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
+	 * 注册dependentBeanName 依赖 beanName
 	 * Register a dependent bean for the given bean,
 	 * to be destroyed before the given bean is destroyed.
 	 * @param beanName the name of the bean
@@ -445,6 +446,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
+	 * 返回dependentBeanName 是否依赖 beanName
 	 * Determine whether the specified dependent bean has been registered as
 	 * dependent on the given bean or on any of its transitive dependencies.
 	 * @param beanName the name of the bean to check
@@ -482,6 +484,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
+	 * 是否有依赖该bean的bean
 	 * Determine whether a dependent bean has been registered for the given name.
 	 * @param beanName the name of the bean to check
 	 */
@@ -490,6 +493,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
+	 * 返回依赖该bean的beanName数组
 	 * Return the names of all beans which depend on the specified bean, if any.
 	 * @param beanName the name of the bean
 	 * @return the array of dependent bean names, or an empty array if none
