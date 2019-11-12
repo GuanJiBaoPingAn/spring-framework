@@ -19,6 +19,7 @@ package org.springframework.core.env;
 import java.util.Map;
 
 /**
+ * 提供配置激活和默认profile，操作管理的属性的功能。允许客户对需要的属性进行设置和校验，自定义转换服务
  * Configuration interface to be implemented by most if not all {@link Environment} types.
  * Provides facilities for setting active and default profiles and manipulating underlying
  * property sources. Allows clients to set and validate required properties, customize the
@@ -55,6 +56,9 @@ import java.util.Map;
  * propertySources.replace(StandardEnvironment.SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME, mockEnvVars);
  * </pre>
  *
+ * 挡在{@code ApplicationContext}中使用{@link Environment}时，需要注意的是，任何对{@code PropertySource}的操作
+ * 都需要在{@link org.springframework.context.support.AbstractApplicationContext#refresh() refresh()}之前，
+ * 这样保证了在容器启动过程中所有属性都是可用的
  * When an {@link Environment} is being used by an {@code ApplicationContext}, it is
  * important that any such {@code PropertySource} manipulations be performed
  * <em>before</em> the context's {@link
@@ -119,6 +123,8 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	MutablePropertySources getPropertySources();
 
 	/**
+	 * 返回{@link System#getProperties()}的数据，如果{@link SecurityManager}允许的话，否则
+	 * 尝试逐个获取
 	 * Return the value of {@link System#getProperties()} if allowed by the current
 	 * {@link SecurityManager}, otherwise return a map implementation that will attempt
 	 * to access individual keys using calls to {@link System#getProperty(String)}.
@@ -134,6 +140,7 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	Map<String, Object> getSystemProperties();
 
 	/**
+	 * 返回{@link System#getenv()}的数据，如果{@link SecurityManager}允许的话，否则尝试逐个获取
 	 * Return the value of {@link System#getenv()} if allowed by the current
 	 * {@link SecurityManager}, otherwise return a map implementation that will attempt
 	 * to access individual keys using calls to {@link System#getenv(String)}.
@@ -149,6 +156,8 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	Map<String, Object> getSystemEnvironment();
 
 	/**
+	 * 将给定的父环境中已激活profile、默认profile、属性，合并到当前（子）环境，
+	 * 当同名的{@code PropertySource}出现时，以当前的环境为准，profile同样
 	 * Append the given parent environment's active profiles, default profiles and
 	 * property sources to this (child) environment's respective collections of each.
 	 * <p>For any identically-named {@code PropertySource} instance existing in both

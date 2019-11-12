@@ -17,11 +17,17 @@
 package org.springframework.core.env;
 
 /**
+ * 用来表明当前应用所运行的环境，提供两个主要功能
+ * 1、profiles
+ * 2、properties 属性相关操作由{@link PropertyResolver}暴露
  * Interface representing the environment in which the current application is running.
  * Models two key aspects of the application environment: <em>profiles</em> and
  * <em>properties</em>. Methods related to property access are exposed via the
  * {@link PropertyResolver} superinterface.
  *
+ * profile 是容器内注册的一组BeanDefinition，当激活时它们才会被注册。可通过xml或注解
+ * {@link org.springframework.context.annotation.Profile} 配置，{@code Environment}的作用为
+ * 管理profile
  * <p>A <em>profile</em> is a named, logical group of bean definitions to be registered
  * with the container only if the given profile is <em>active</em>. Beans may be assigned
  * to a profile whether defined in XML or via annotations; see the spring-beans 3.1 schema
@@ -38,6 +44,9 @@ package org.springframework.core.env;
  * provide the user with a convenient service interface for configuring property sources
  * and resolving properties from them.
  *
+ * 通过{@code ApplicationContext}管理的bean可以实现
+ * {@link org.springframework.context.EnvironmentAware EnvironmentAware} or {@code @Inject}
+ * 来获取environment
  * <p>Beans managed within an {@code ApplicationContext} may register to be {@link
  * org.springframework.context.EnvironmentAware EnvironmentAware} or {@code @Inject} the
  * {@code Environment} in order to query profile state or resolve properties directly.
@@ -50,6 +59,7 @@ package org.springframework.core.env;
  * as of Spring 3.1 is registered by default when using
  * {@code <context:property-placeholder/>}.
  *
+ * 配置环境对象必须通过{@code ConfigurableEnvironment}接口
  * <p>Configuration of the environment object must be done through the
  * {@code ConfigurableEnvironment} interface, returned from all
  * {@code AbstractApplicationContext} subclass {@code getEnvironment()} methods. See
@@ -71,6 +81,7 @@ package org.springframework.core.env;
 public interface Environment extends PropertyResolver {
 
 	/**
+	 * 获取当前激活的profile
 	 * Return the set of profiles explicitly made active for this environment. Profiles
 	 * are used for creating logical groupings of bean definitions to be registered
 	 * conditionally, for example based on deployment environment. Profiles can be
@@ -86,6 +97,7 @@ public interface Environment extends PropertyResolver {
 	String[] getActiveProfiles();
 
 	/**
+	 * 获取没有激活profile时使用的默认profile
 	 * Return the set of profiles to be active by default when no active profiles have
 	 * been set explicitly.
 	 * @see #getActiveProfiles
@@ -112,6 +124,7 @@ public interface Environment extends PropertyResolver {
 	boolean acceptsProfiles(String... profiles);
 
 	/**
+	 * 返回当前激活的profile和传入对象是否相同
 	 * Return whether the {@linkplain #getActiveProfiles() active profiles}
 	 * match the given {@link Profiles} predicate.
 	 */
