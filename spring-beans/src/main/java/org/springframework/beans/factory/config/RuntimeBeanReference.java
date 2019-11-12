@@ -20,6 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 不可变占位符类，用于属性值对象在工厂中引用其他bean，运行期解析
  * Immutable placeholder class used for a property value object when it's
  * a reference to another bean in the factory, to be resolved at runtime.
  *
@@ -43,6 +44,7 @@ public class RuntimeBeanReference implements BeanReference {
 
 
 	/**
+	 * 对给定beanName 创建一个RuntimeBeanReference 运行期Bean引用
 	 * Create a new RuntimeBeanReference to the given bean name.
 	 * @param beanName name of the target bean
 	 */
@@ -51,6 +53,7 @@ public class RuntimeBeanReference implements BeanReference {
 	}
 
 	/**
+	 * 对给定beanName 创建一个RuntimeBeanReference 运行期Bean引用，并表明是否是父工厂的bean引用
 	 * Create a new RuntimeBeanReference to the given bean name,
 	 * with the option to mark it as reference to a bean in the parent factory.
 	 * @param beanName name of the target bean
@@ -65,6 +68,7 @@ public class RuntimeBeanReference implements BeanReference {
 	}
 
 	/**
+	 * 对给定类 创建一个RuntimeBeanReference 运行期Bean引用
 	 * Create a new RuntimeBeanReference to a bean of the given type.
 	 * @param beanType type of the target bean
 	 * @since 5.2
@@ -74,6 +78,7 @@ public class RuntimeBeanReference implements BeanReference {
 	}
 
 	/**
+	 * 对给定类 创建一个RuntimeBeanReference 运行期Bean引用，并表明是否是父工厂的bean引用
 	 * Create a new RuntimeBeanReference to a bean of the given type,
 	 * with the option to mark it as reference to a bean in the parent factory.
 	 * @param beanType type of the target bean
@@ -90,6 +95,7 @@ public class RuntimeBeanReference implements BeanReference {
 
 
 	/**
+	 * 获取引用的beanName
 	 * Return the requested bean name, or the fully-qualified type name
 	 * in case of by-type resolution.
 	 * @see #getBeanType()
@@ -100,6 +106,7 @@ public class RuntimeBeanReference implements BeanReference {
 	}
 
 	/**
+	 * 获取引用的beanType
 	 * Return the requested bean type if resolution by type is demanded.
 	 * @since 5.2
 	 */
@@ -109,6 +116,7 @@ public class RuntimeBeanReference implements BeanReference {
 	}
 
 	/**
+	 * 返回，该引用的bean是否是父工厂的bean
 	 * Return whether this is an explicit reference to a bean in the parent factory.
 	 */
 	public boolean isToParent() {

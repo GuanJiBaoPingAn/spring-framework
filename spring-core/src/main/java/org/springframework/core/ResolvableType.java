@@ -117,6 +117,7 @@ public class ResolvableType implements Serializable {
 	private final VariableResolver variableResolver;
 
 	/**
+	 * 组成数组的类型
 	 * The component type for an array or {@code null} if the type should be deduced.
 	 */
 	@Nullable
@@ -225,6 +226,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
+	 * 返回类型的源对象，会返回{@link Field}、{@link MethodParameter}、{@link Type}其中的一个
 	 * Return the underlying source of the resolvable type. Will return a {@link Field},
 	 * {@link MethodParameter} or {@link Type} depending on how the {@link ResolvableType}
 	 * was constructed. With the exception of the {@link #NONE} constant, this method will
@@ -249,6 +251,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
+	 * 给定对象是否为{@code ResolvableType}的实例
 	 * Determine whether the given object is an instance of this {@code ResolvableType}.
 	 * @param obj the object to check
 	 * @since 4.2
@@ -259,6 +262,8 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
+	 * 给定类型是否可以赋值给当前对象
+	 * 给定类型是否是该{@code ResolvableType}的子类
 	 * Determine whether this {@code ResolvableType} is assignable from the
 	 * specified other type.
 	 * @param other the type to be checked against (as a {@code Class})
@@ -270,6 +275,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
+	 * 给定类型是否可以赋值给当前对象
 	 * Determine whether this {@code ResolvableType} is assignable from the
 	 * specified other type.
 	 * <p>Attempts to follow the same rules as the Java compiler, considering
@@ -377,6 +383,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
+	 * 返回该ResolvableType是否是数组
 	 * Return {@code true} if this type resolves to a Class that represents an array.
 	 * @see #getComponentType()
 	 */
@@ -389,6 +396,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
+	 * 获取组成元素的类型，如数组中的类型
 	 * Return the ResolvableType representing the component type of the array or
 	 * {@link #NONE} if this type does not represent an array.
 	 * @see #isArray()
@@ -770,6 +778,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
+	 * 将该类型解析为{@link java.lang.Class}，无法解析时返回{@code null}
 	 * Resolve this type to a {@link java.lang.Class}, returning {@code null}
 	 * if the type cannot be resolved. This method will consider bounds of
 	 * {@link TypeVariable TypeVariables} and {@link WildcardType WildcardTypes} if
@@ -982,6 +991,7 @@ public class ResolvableType implements Serializable {
 	// Factory methods
 
 	/**
+	 * 根据给定类返回{@link ResolvableType}
 	 * Return a {@link ResolvableType} for the specified {@link Class},
 	 * using the full generic type information for assignability checks.
 	 * For example: {@code ResolvableType.forClass(MyArrayList.class)}.
@@ -1369,6 +1379,7 @@ public class ResolvableType implements Serializable {
 
 
 	/**
+	 * 对给定的{@link ParameterizedTypeReference}返回一个{@link ResolvableType}
 	 * Return a {@link ResolvableType} for the specified {@link ParameterizedTypeReference}.
 	 * <p>Note: The resulting {@link ResolvableType} instance may not be {@link Serializable}.
 	 * @param typeReference the reference to obtain the source type from
@@ -1392,6 +1403,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
+	 * 对给定的{@link Type}返回一个{@link ResolvableType}
 	 * Return a {@link ResolvableType} for the specified {@link Type} backed by a given
 	 * {@link VariableResolver}.
 	 * @param type the source type or {@code null}
@@ -1430,6 +1442,7 @@ public class ResolvableType implements Serializable {
 	}
 
 	/**
+	 * 清除{@code ResolvableType}/{@code SerializableTypeWrapper}中的缓存
 	 * Clear the internal {@code ResolvableType}/{@code SerializableTypeWrapper} cache.
 	 * @since 4.2
 	 */

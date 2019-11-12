@@ -602,6 +602,7 @@ public abstract class ObjectUtils {
 	//---------------------------------------------------------------------
 
 	/**
+	 * 返回给定对象的全局唯一字符串表示
 	 * Return a String representation of an object's overall identity.
 	 * @param obj the object (may be {@code null})
 	 * @return the object's identity as String representation,

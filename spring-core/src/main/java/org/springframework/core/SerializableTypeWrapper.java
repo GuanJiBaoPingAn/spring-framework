@@ -36,6 +36,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
+ * 可序列化类型的包装器
  * Internal utility class that can be used to obtain wrapped {@link Serializable}
  * variants of {@link java.lang.reflect.Type java.lang.reflect.Types}.
  *
@@ -56,6 +57,9 @@ import org.springframework.util.ReflectionUtils;
  */
 final class SerializableTypeWrapper {
 
+	/**
+	 * 支持序列化的类型：泛型数组类型、参数化类型、类型变量、通配符类型
+	 */
 	private static final Class<?>[] SUPPORTED_SERIALIZABLE_TYPES = {
 			GenericArrayType.class, ParameterizedType.class, TypeVariable.class, WildcardType.class};
 
@@ -67,6 +71,7 @@ final class SerializableTypeWrapper {
 
 
 	/**
+	 * 根据给定的域返回一个支持序列化的类型
 	 * Return a {@link Serializable} variant of {@link Field#getGenericType()}.
 	 */
 	@Nullable
@@ -75,6 +80,7 @@ final class SerializableTypeWrapper {
 	}
 
 	/**
+	 * 根据给定的方法参数返回一个支持序列化的类型
 	 * Return a {@link Serializable} variant of
 	 * {@link MethodParameter#getGenericParameterType()}.
 	 */
@@ -84,7 +90,7 @@ final class SerializableTypeWrapper {
 	}
 
 	/**
-	 * 将type解包，返回不可序列化的类型
+	 * 将type解包，返回原来不可序列化的类型
 	 * Unwrap the given type, effectively returning the original non-serializable type.
 	 * @param type the type to unwrap
 	 * @return the original non-serializable type
@@ -99,6 +105,7 @@ final class SerializableTypeWrapper {
 	}
 
 	/**
+	 * 返回TypeProvider包装的Type，如果是可序列化的类型则进行代理（JDK代理）并缓存，若不可序列化则返回不可代理的类型
 	 * Return a {@link Serializable} {@link Type} backed by a {@link TypeProvider} .
 	 * <p>If type artifacts are generally not serializable in the current runtime
 	 * environment, this delegate will simply return the original {@code Type} as-is.
@@ -160,6 +167,7 @@ final class SerializableTypeWrapper {
 		Type getType();
 
 		/**
+		 * 返回类型的源
 		 * Return the source of the type, or {@code null} if not known.
 		 * <p>The default implementations returns {@code null}.
 		 */
@@ -224,6 +232,7 @@ final class SerializableTypeWrapper {
 
 
 	/**
+	 * 域类型Provider，保存 {@link Field}，域名称，声明的类
 	 * {@link TypeProvider} for {@link Type Types} obtained from a {@link Field}.
 	 */
 	@SuppressWarnings("serial")
@@ -264,6 +273,7 @@ final class SerializableTypeWrapper {
 
 
 	/**
+	 * 方法参数类型Provider
 	 * {@link TypeProvider} for {@link Type Types} obtained from a {@link MethodParameter}.
 	 */
 	@SuppressWarnings("serial")
@@ -318,6 +328,7 @@ final class SerializableTypeWrapper {
 
 
 	/**
+	 * 方法类型Provider
 	 * {@link TypeProvider} for {@link Type Types} obtained by invoking a no-arg method.
 	 */
 	@SuppressWarnings("serial")

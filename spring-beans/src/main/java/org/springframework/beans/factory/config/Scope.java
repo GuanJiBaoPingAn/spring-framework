@@ -20,6 +20,7 @@ import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link ConfigurableBeanFactory} 使用的策略接口，用于表明bean实例的目标scope
  * Strategy interface used by a {@link ConfigurableBeanFactory},
  * representing a target scope to hold bean instances in.
  * This allows for extending the BeanFactory's standard scopes
@@ -60,6 +61,7 @@ import org.springframework.lang.Nullable;
 public interface Scope {
 
 	/**
+	 *
 	 * Return the object with the given name from the underlying scope,
 	 * {@link org.springframework.beans.factory.ObjectFactory#getObject() creating it}
 	 * if not found in the underlying storage mechanism.
@@ -75,11 +77,11 @@ public interface Scope {
 
 	/**
 	 * Remove the object with the given {@code name} from the underlying scope.
-	 * <p>Returns {@code null} if no object was found; otherwise
+	 * <p>Returns {@code null} if no bject was found; otherwise
 	 * returns the removed {@code Object}.
 	 * <p>Note that an implementation should also remove a registered destruction
 	 * callback for the specified object, if any. It does, however, <i>not</i>
-	 * need to <i>execute</i> a registered destruction callback in this case,
+	 * need to <i>execute</i> a registereod destruction callback in this case,
 	 * since the object will be destroyed by the caller (if appropriate).
 	 * <p><b>Note: This is an optional operation.</b> Implementations may throw
 	 * {@link UnsupportedOperationException} if they do not support explicitly

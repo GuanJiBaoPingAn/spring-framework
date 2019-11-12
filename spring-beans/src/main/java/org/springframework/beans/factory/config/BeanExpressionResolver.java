@@ -20,9 +20,12 @@ import org.springframework.beans.BeansException;
 import org.springframework.lang.Nullable;
 
 /**
+ * 解析表达式的策略接口
  * Strategy interface for resolving a value through evaluating it
  * as an expression, if applicable.
  *
+ * {@link org.springframework.beans.factory.BeanFactory} 不支持
+ * {@link org.springframework.context.ApplicationContext} 支持
  * <p>A raw {@link org.springframework.beans.factory.BeanFactory} does not
  * contain a default implementation of this strategy. However,
  * {@link org.springframework.context.ApplicationContext} implementations
@@ -34,6 +37,7 @@ import org.springframework.lang.Nullable;
 public interface BeanExpressionResolver {
 
 	/**
+	 * 将给定的value作为表达式进行解析
 	 * Evaluate the given value as an expression, if applicable;
 	 * return the value as-is otherwise.
 	 * @param value the value to check

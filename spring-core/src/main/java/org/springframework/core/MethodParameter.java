@@ -42,6 +42,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 方法参数封装类，包括{@link Method} 和 {@link Constructor}，增加了参数下标和嵌套类型下标
  * Helper class that encapsulates the specification of a method parameter, i.e. a {@link Method}
  * or {@link Constructor} plus a parameter index and a nested type index for a declared generic
  * type. Useful as a specification object to pass along.
@@ -101,6 +102,7 @@ public class MethodParameter {
 
 
 	/**
+	 * 根据给定方法{@link java.lang.reflect.Method}创建 {@code MethodParameter}，嵌套层级为1
 	 * Create a new {@code MethodParameter} for the given method, with nesting level 1.
 	 * @param method the Method to specify a parameter for
 	 * @param parameterIndex the index of the parameter: -1 for the method
@@ -129,6 +131,7 @@ public class MethodParameter {
 	}
 
 	/**
+	 * 根据给定方法{@link java.lang.reflect.Constructor}创建 {@code MethodParameter}，嵌套层级为1
 	 * Create a new MethodParameter for the given constructor, with nesting level 1.
 	 * @param constructor the Constructor to specify a parameter for
 	 * @param parameterIndex the index of the parameter
@@ -169,6 +172,7 @@ public class MethodParameter {
 	}
 
 	/**
+	 * 拷贝构造函数
 	 * Copy constructor, resulting in an independent MethodParameter object
 	 * based on the same metadata and cache state that the original object was in.
 	 * @param original the original MethodParameter object to copy from
@@ -190,6 +194,7 @@ public class MethodParameter {
 
 
 	/**
+	 * 获取包装的方法（如果有的话），没有返回null
 	 * Return the wrapped Method, if any.
 	 * <p>Note: Either Method or Constructor is available.
 	 * @return the Method, or {@code null} if none
@@ -200,6 +205,7 @@ public class MethodParameter {
 	}
 
 	/**
+	 * 获取包装的构造函数（如果有的话），没有返回null
 	 * Return the wrapped Constructor, if any.
 	 * <p>Note: Either Method or Constructor is available.
 	 * @return the Constructor, or {@code null} if none
@@ -217,6 +223,7 @@ public class MethodParameter {
 	}
 
 	/**
+	 * 返回 以{@link java.lang.reflect.Member}形式返回包装
 	 * Return the wrapped member.
 	 * @return the Method or Constructor as Member
 	 */
@@ -225,6 +232,7 @@ public class MethodParameter {
 	}
 
 	/**
+	 * 返回 以{@link java.lang.reflect.AnnotatedElement} 形式返回包装
 	 * Return the wrapped annotated element.
 	 * <p>Note: This method exposes the annotations declared on the method/constructor
 	 * itself (i.e. at the method/constructor level, not at the parameter level).
@@ -235,6 +243,7 @@ public class MethodParameter {
 	}
 
 	/**
+	 * 返回 以{@link java.lang.reflect.Executable} 形式返回包装
 	 * Return the wrapped executable.
 	 * @return the Method or Constructor as Executable
 	 * @since 5.0
@@ -244,6 +253,7 @@ public class MethodParameter {
 	}
 
 	/**
+	 * 返回方法或构造函数的参数描述符
 	 * Return the {@link Parameter} descriptor for method/constructor parameter.
 	 * @since 5.0
 	 */
@@ -853,6 +863,12 @@ public class MethodParameter {
 				"] does not match any parameter in the declaring executable");
 	}
 
+	/**
+	 * 校验参数下标是否超出可执行方法的所有参数数
+	 * @param executable
+	 * @param parameterIndex
+	 * @return
+	 */
 	private static int validateIndex(Executable executable, int parameterIndex) {
 		int count = executable.getParameterCount();
 		Assert.isTrue(parameterIndex >= -1 && parameterIndex < count,

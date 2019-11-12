@@ -19,6 +19,7 @@ package org.springframework.beans.factory.config;
 import org.springframework.beans.BeanMetadataElement;
 
 /**
+ * 保存bean引用（只保存beanName，而不是真实bean引用）
  * Interface that exposes a reference to a bean name in an abstract fashion.
  * This interface does not necessarily imply a reference to an actual bean
  * instance; it just expresses a logical reference to the name of a bean.

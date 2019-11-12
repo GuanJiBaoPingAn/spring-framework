@@ -401,6 +401,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
+	 * 注册包含关系，containingBeanName 包含 containedBeanName
 	 * Register a containment relationship between two beans,
 	 * e.g. between an inner bean and its containing outer bean.
 	 * <p>Also registers the containing bean as dependent on the contained bean
