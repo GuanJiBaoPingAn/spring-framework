@@ -28,6 +28,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.lang.Nullable;
 
 /**
+ * 属性占位符帮助类
  * Utility class for working with Strings that have placeholder values in them. A placeholder takes the form
  * {@code ${name}}. Using {@code PropertyPlaceholderHelper} these placeholders can be substituted for
  * user-supplied values. <p> Values for substitution can be supplied using a {@link Properties} instance or
@@ -213,12 +214,14 @@ public class PropertyPlaceholderHelper {
 
 
 	/**
+	 * 策略接口，用于解析替换字符串中的占位符
 	 * Strategy interface used to resolve replacement values for placeholders contained in Strings.
 	 */
 	@FunctionalInterface
 	public interface PlaceholderResolver {
 
 		/**
+		 * 解析给定的占位符，返回需要替换上的值
 		 * Resolve the supplied placeholder name to the replacement value.
 		 * @param placeholderName the name of the placeholder to resolve
 		 * @return the replacement value, or {@code null} if no replacement is to be made

@@ -24,6 +24,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 表示名称-值对的抽象基类
  * Abstract base class representing a source of name/value property pairs. The underlying
  * {@linkplain #getSource() source object} may be of any type {@code T} that encapsulates
  * properties. Examples include {@link java.util.Properties} objects, {@link java.util.Map}
@@ -190,6 +191,7 @@ public abstract class PropertySource<T> {
 
 
 	/**
+	 * {@code PropertySource} 的占位符，以使应用上下文创建期间属性可以早期初始化
 	 * {@code PropertySource} to be used as a placeholder in cases where an actual
 	 * property source cannot be eagerly initialized at application context
 	 * creation time.  For example, a {@code ServletContext}-based property source
@@ -197,6 +199,7 @@ public abstract class PropertySource<T> {
 	 * {@code ApplicationContext}.  In such cases, a stub should be used to hold the
 	 * intended default position/order of the property source, then be replaced
 	 * during context refresh.
+	 * 例如在基于{@code ServletContext}的情况下，需要等到{@code ServletContext}可用
 	 * @see org.springframework.context.support.AbstractApplicationContext#initPropertySources()
 	 * @see org.springframework.web.context.support.StandardServletEnvironment
 	 * @see org.springframework.web.context.support.ServletContextPropertySource
@@ -219,6 +222,7 @@ public abstract class PropertySource<T> {
 
 
 	/**
+	 * 用于集合之间进行比较的实现
 	 * A {@code PropertySource} implementation intended for collection comparison
 	 * purposes.
 	 *

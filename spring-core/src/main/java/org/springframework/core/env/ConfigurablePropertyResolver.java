@@ -20,6 +20,8 @@ import org.springframework.core.convert.support.ConfigurableConversionService;
 import org.springframework.lang.Nullable;
 
 /**
+ * 可配置的{@link PropertyResolver}类型解析器
+ * 提供操作和自定义{@link org.springframework.core.convert.ConversionService}的功能
  * Configuration interface to be implemented by most if not all {@link PropertyResolver}
  * types. Provides facilities for accessing and customizing the
  * {@link org.springframework.core.convert.ConversionService ConversionService}

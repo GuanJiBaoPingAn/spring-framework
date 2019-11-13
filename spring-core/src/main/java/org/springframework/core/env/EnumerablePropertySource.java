@@ -19,6 +19,7 @@ package org.springframework.core.env;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * {@link PropertySource} 的可枚举基类
  * A {@link PropertySource} implementation capable of interrogating its
  * underlying source object to enumerate all possible property name/value
  * pairs. Exposes the {@link #getPropertyNames()} method to allow callers

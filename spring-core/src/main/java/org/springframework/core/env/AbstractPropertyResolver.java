@@ -88,6 +88,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	}
 
 	/**
+	 * 解析器用于替换占位符的字符串必须以某个作为开头，默认为"${"
 	 * Set the prefix that placeholders replaced by this resolver must begin with.
 	 * <p>The default is "${".
 	 * @see org.springframework.util.SystemPropertyUtils#PLACEHOLDER_PREFIX
@@ -99,6 +100,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	}
 
 	/**
+	 * 解析器用于替换占位符的字符串必须以某个作为结束，默认为"}"
 	 * Set the suffix that placeholders replaced by this resolver must end with.
 	 * <p>The default is "}".
 	 * @see org.springframework.util.SystemPropertyUtils#PLACEHOLDER_SUFFIX
@@ -110,6 +112,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	}
 
 	/**
+	 * 设定占位符之间的分隔符，默认为":"
 	 * Specify the separating character between the placeholders replaced by this
 	 * resolver and their associated default value, or {@code null} if no such
 	 * special character should be processed as a value separator.
@@ -122,6 +125,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	}
 
 	/**
+	 * 当遇到不可解析的占位符时，是否抛出异常
 	 * Set whether to throw an exception when encountering an unresolvable placeholder
 	 * nested within the value of a given property. A {@code false} value indicates strict
 	 * resolution, i.e. that an exception will be thrown. A {@code true} value indicates
