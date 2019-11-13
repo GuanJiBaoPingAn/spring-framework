@@ -19,10 +19,13 @@ package org.springframework.core.convert.converter;
 import org.springframework.core.convert.TypeDescriptor;
 
 /**
+ * 允许{@link Converter}, {@link GenericConverter} or {@link ConverterFactory}根据源和目标
+ * 进行有条件的执行
  * Allows a {@link Converter}, {@link GenericConverter} or {@link ConverterFactory} to
  * conditionally execute based on attributes of the {@code source} and {@code target}
  * {@link TypeDescriptor}.
  *
+ * 一般用于条件转换，如String field 转换为 Date field，当目标域有{@code @DateTimeFormat}注解时进行转换
  * <p>Often used to selectively match custom conversion logic based on the presence of a
  * field or class-level characteristic, such as an annotation or method. For example, when
  * converting from a String field to a Date field, an implementation might return

@@ -31,11 +31,14 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * JavaBeans属性的描述，用于避免对{@code java.beans.PropertyDescriptor}的依赖。
+ * {@code java.beans}在安卓，Java ME 环境不可用
  * A description of a JavaBeans Property that allows us to avoid a dependency on
  * {@code java.beans.PropertyDescriptor}. The {@code java.beans} package
  * is not available in a number of environments (e.g. Android, Java ME), so this is
  * desirable for portability of Spring's core conversion facility.
  *
+ * 用于从属性位置创建一个{@link TypeDescriptor}
  * <p>Used to build a {@link TypeDescriptor} from a property location. The built
  * {@code TypeDescriptor} can then be used to convert from/to the property type.
  *

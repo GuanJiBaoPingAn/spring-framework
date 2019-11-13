@@ -23,6 +23,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
+ * 存放命令行参数的{@link PropertySource}抽象基类实现，参数化类型T代表存放命令行选项
  * Abstract base class for {@link PropertySource} implementations backed by command line
  * arguments. The parameterized type {@code T} represents the underlying source of command
  * line options. This may be as simple as a String array in the case of

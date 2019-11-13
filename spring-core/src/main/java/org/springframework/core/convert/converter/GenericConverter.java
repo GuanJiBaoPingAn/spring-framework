@@ -23,6 +23,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 通用转换器，用于转换两个或多个类型
  * Generic converter interface for converting between two or more types.
  *
  * <p>This is the most flexible of the Converter SPI interfaces, but also the most complex.
@@ -68,6 +69,7 @@ public interface GenericConverter {
 
 
 	/**
+	 * 源到目标对的持有
 	 * Holder for a source-to-target class pair.
 	 */
 	final class ConvertiblePair {

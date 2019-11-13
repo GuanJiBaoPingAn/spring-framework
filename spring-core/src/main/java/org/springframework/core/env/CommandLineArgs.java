@@ -26,6 +26,7 @@ import java.util.Set;
 import org.springframework.lang.Nullable;
 
 /**
+ * 命令行参数包装，分为选项参数和非选项参数
  * A simple representation of command line arguments, broken into "option arguments" and
  * "non-option arguments".
  *

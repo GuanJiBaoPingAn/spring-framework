@@ -49,6 +49,7 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link ConversionService}的基本实现
  * Base {@link ConversionService} implementation suitable for use in most environments.
  * Indirectly implements {@link ConverterRegistry} as registration API through the
  * {@link ConfigurableConversionService} interface.
@@ -76,6 +77,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 	private final Converters converters = new Converters();
 
+	// 转换器缓存
 	private final Map<ConverterCacheKey, GenericConverter> converterCache = new ConcurrentReferenceHashMap<>(64);
 
 
@@ -239,6 +241,10 @@ public class GenericConversionService implements ConfigurableConversionService {
 	}
 
 	/**
+	 * 根据给定源目标类型获取转换器
+	 * 1、查询转换服务中的转换器缓存
+	 * 2、若不存在，查询所有已注册的转换器
+	 * 3、若还不存在，返回默认的转换器
 	 * Hook method to lookup the converter for a given sourceType/targetType pair.
 	 * First queries this ConversionService's converter cache.
 	 * On a cache miss, then performs an exhaustive search for a matching converter.
@@ -272,6 +278,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 	}
 
 	/**
+	 * 当源类型可以赋值给目标类型则返回默认转换器，否则返回null
 	 * Return the default converter if no converter is found for the given sourceType/targetType pair.
 	 * <p>Returns a NO_OP Converter if the source type is assignable to the target type.
 	 * Returns {@code null} otherwise, indicating no suitable converter could be found.
@@ -444,6 +451,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 
 	/**
+	 * 用于生成转换器缓存的键
 	 * Key for use with the converter cache.
 	 */
 	private static final class ConverterCacheKey implements Comparable<ConverterCacheKey> {
@@ -495,6 +503,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 
 	/**
+	 * 管理该服务下的所有已注册的转换器
 	 * Manages all converters registered with the service.
 	 */
 	private static class Converters {
@@ -652,6 +661,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 
 	/**
+	 * 管理使用{@link ConvertiblePair}注册的转换器
 	 * Manages converters registered with a specific {@link ConvertiblePair}.
 	 */
 	private static class ConvertersForPair {
@@ -681,6 +691,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 
 	/**
+	 * 内部转换器，不进行任何操作
 	 * Internal converter that performs no operation.
 	 */
 	private static class NoOpConverter implements GenericConverter {

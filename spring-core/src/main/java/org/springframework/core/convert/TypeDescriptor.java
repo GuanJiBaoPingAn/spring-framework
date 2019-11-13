@@ -36,6 +36,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 类型转换的上下文
  * Context about a type to convert from or to.
  *
  * @author Keith Donald
@@ -263,6 +264,9 @@ public class TypeDescriptor implements Serializable {
 	}
 
 	/**
+	 * 返回是否当前类型描述符是否可以赋值给给定类型描述符
+	 * 如，{@code valueOf(String.class).isAssignableTo(valueOf(CharSequence.class))}将返回为 {@code true}
+	 * 而{@code valueOf(Number.class).isAssignableTo(valueOf(Integer.class))}返回为 {@code false}
 	 * Returns true if an object of this type descriptor can be assigned to the location
 	 * described by the given type descriptor.
 	 * <p>For example, {@code valueOf(String.class).isAssignableTo(valueOf(CharSequence.class))}

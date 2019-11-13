@@ -24,6 +24,7 @@ import java.util.Set;
 import org.springframework.lang.Nullable;
 
 /**
+ * 用于存储只读的系统属性和环境变量的类
  * Read-only {@code Map<String, String>} implementation that is backed by system
  * properties or environment variables.
  *

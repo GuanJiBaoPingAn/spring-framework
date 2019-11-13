@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
+ * {@link PropertySource} 的实现，用于从{@link java.util.Properties} 抽取属性
  * {@link PropertySource} implementation that extracts properties from a
  * {@link java.util.Properties} object.
  *

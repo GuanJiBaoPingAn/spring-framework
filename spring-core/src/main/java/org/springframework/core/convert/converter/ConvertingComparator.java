@@ -25,6 +25,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.comparator.Comparators;
 
 /**
+ * 一个比较器，在比较前进行值的转换。指定的转换器{@link Converter}将先进行值的转换，再
+ * 交给指定的比较器{@code Comparator}
  * A {@link Comparator} that converts values before they are compared.
  * The specified {@link Converter} will be used to convert each value
  * before it passed to the underlying {@code Comparator}.
