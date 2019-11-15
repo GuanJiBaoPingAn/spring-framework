@@ -26,6 +26,7 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
+ * 将数组转换为对象，转换并返回数组的第一个元素
  * Converts an array to an Object by returning the first array element
  * after converting it to the desired target type.
  *

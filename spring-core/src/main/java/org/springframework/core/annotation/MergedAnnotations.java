@@ -27,6 +27,7 @@ import java.util.stream.Stream;
 import org.springframework.lang.Nullable;
 
 /**
+ * 提供一个合并了的注解的集合
  * Provides access to a collection of merged annotations, usually obtained
  * from a source such as a {@link Class} or {@link Method}.
  *
@@ -56,6 +57,8 @@ import org.springframework.lang.Nullable;
  * }
  * </pre>
  *
+ * 如果一个方法被{@code @PostMapping("/home")}注解，它会有{@code @PostMapping} 合并注解
+ * {@code @RequestMapping} 元注解
  * <p>If a method is annotated with {@code @PostMapping("/home")} it will contain
  * merged annotations for both {@code @PostMapping} and the meta-annotation
  * {@code @RequestMapping}. The merged view of the {@code @RequestMapping}
@@ -130,6 +133,7 @@ import org.springframework.lang.Nullable;
 public interface MergedAnnotations extends Iterable<MergedAnnotation<Annotation>> {
 
 	/**
+	 * 确定给定的注解是否是直接有还是meta-present
 	 * Determine if the specified annotation is either directly present or
 	 * meta-present.
 	 * <p>Equivalent to calling {@code get(annotationType).isPresent()}.
@@ -149,6 +153,7 @@ public interface MergedAnnotations extends Iterable<MergedAnnotation<Annotation>
 	boolean isPresent(String annotationType);
 
 	/**
+	 * 给定的注解是否是直接注解
 	 * Determine if the specified annotation is directly present.
 	 * <p>Equivalent to calling {@code get(annotationType).isDirectlyPresent()}.
 	 * @param annotationType the annotation type to check
@@ -157,6 +162,7 @@ public interface MergedAnnotations extends Iterable<MergedAnnotation<Annotation>
 	<A extends Annotation> boolean isDirectlyPresent(Class<A> annotationType);
 
 	/**
+	 * 给定的注解是否是直接注解
 	 * Determine if the specified annotation is directly present.
 	 * <p>Equivalent to calling {@code get(annotationType).isDirectlyPresent()}.
 	 * @param annotationType the fully qualified class name of the annotation type

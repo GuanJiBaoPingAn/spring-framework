@@ -19,6 +19,7 @@ package org.springframework.core.convert.support;
 import org.springframework.core.convert.converter.Converter;
 
 /**
+ * 将字符串转换为{@link java.lang.Character}，只去字符串的第一个字符
  * Converts a String to a Character.
  *
  * @author Keith Donald

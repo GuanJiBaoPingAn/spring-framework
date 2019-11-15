@@ -20,6 +20,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 
 /**
+ * 通过调用{@link Class#getEnumConstants()} 将整形转换为枚举
  * Converts from a Integer to a {@link java.lang.Enum} by calling {@link Class#getEnumConstants()}.
  *
  * @author Yanming Zhou

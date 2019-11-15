@@ -20,6 +20,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 
 /**
+ * 将字符串转换为{@link java.lang.Enum} 通过调用{@link Enum#valueOf(Class, String)}
  * Converts from a String to a {@link java.lang.Enum} by calling {@link Enum#valueOf(Class, String)}.
  *
  * @author Keith Donald

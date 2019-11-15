@@ -21,6 +21,7 @@ import org.springframework.core.convert.converter.ConverterFactory;
 import org.springframework.util.NumberUtils;
 
 /**
+ * 将字符串转换为{@link java.lang.Number}
  * Converts from a String any JDK-standard Number implementation.
  *
  * <p>Support Number classes including Byte, Short, Integer, Float, Double, Long, BigInteger, BigDecimal. This class

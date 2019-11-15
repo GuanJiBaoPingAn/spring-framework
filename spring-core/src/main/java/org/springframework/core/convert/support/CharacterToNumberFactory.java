@@ -21,6 +21,8 @@ import org.springframework.core.convert.converter.ConverterFactory;
 import org.springframework.util.NumberUtils;
 
 /**
+ * 将{@link java.lang.Character} 转换为任何 {@link java.lang.Number} 的实现
+ * 包括Byte, Short, Integer, Float, Double, Long, BigInteger 等等
  * Converts from a Character to any JDK-standard Number implementation.
  *
  * <p>Support Number classes including Byte, Short, Integer, Float, Double, Long, BigInteger, BigDecimal. This class

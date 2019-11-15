@@ -28,6 +28,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 将数组转换为数组。
+ * 通过{@link CollectionToArrayConverter} 将数组代理为列表，进行转换
  * Converts an array to another array. First adapts the source array to a List,
  * then delegates to {@link CollectionToArrayConverter} to perform the target
  * array conversion.

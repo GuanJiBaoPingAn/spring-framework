@@ -30,6 +30,7 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
+ * 将{@link Stream} 转化为数组或集合，或从数组后集合转换为{@link Stream}
  * Converts a {@link Stream} to and from a collection or array, converting the
  * element type if necessary.
  *

@@ -28,6 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
+ * 将逗号分隔的字符串转换为集合
  * Converts a comma-delimited String to a Collection.
  * If the target collection element type is declared, only matches if
  * {@code String.class} can be converted to it.

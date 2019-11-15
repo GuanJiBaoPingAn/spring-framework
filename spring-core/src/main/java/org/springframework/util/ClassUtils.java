@@ -82,30 +82,36 @@ public abstract class ClassUtils {
 
 
 	/**
+	 * 包装类和基础类型的map，如 Integer.class -> int.class.
 	 * Map with primitive wrapper type as key and corresponding primitive
 	 * type as value, for example: Integer.class -> int.class.
 	 */
 	private static final Map<Class<?>, Class<?>> primitiveWrapperTypeMap = new IdentityHashMap<>(8);
 
 	/**
+	 * 基础类型和包装类之间的map，如 int.class -> Integer.class
 	 * Map with primitive type as key and corresponding wrapper
 	 * type as value, for example: int.class -> Integer.class.
 	 */
 	private static final Map<Class<?>, Class<?>> primitiveTypeToWrapperMap = new IdentityHashMap<>(8);
 
 	/**
+	 * 基础类型名和类的map，如 "int" -> "int.class"
 	 * Map with primitive type name as key and corresponding primitive
 	 * type as value, for example: "int" -> "int.class".
 	 */
 	private static final Map<String, Class<?>> primitiveTypeNameMap = new HashMap<>(32);
 
 	/**
+	 * 常用类缓存，类名 -> 类
+	 * 主要用于远程调用反序列化
 	 * Map with common Java language class name as key and corresponding Class as value.
 	 * Primarily for efficient deserialization of remote invocations.
 	 */
 	private static final Map<String, Class<?>> commonClassCache = new HashMap<>(64);
 
 	/**
+	 * 在搜索用户级别的接口时需要忽略的接口
 	 * Common Java language interfaces which are supposed to be ignored
 	 * when searching for 'primary' user-level interfaces.
 	 */
@@ -155,6 +161,7 @@ public abstract class ClassUtils {
 
 
 	/**
+	 * 将常用类注册到缓存中
 	 * Register the given common classes with the ClassUtils cache.
 	 */
 	private static void registerCommonClasses(Class<?>... commonClasses) {
@@ -164,6 +171,9 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 获取默认的类加载器，
+	 * 1、线程上下文类加载器 {@code Thread.currentThread().getContextClassLoader()}
+	 * 2、加载该类的类加载器 {@code ClassUtils.class.getClassLoader()}
 	 * Return the default ClassLoader to use: typically the thread context
 	 * ClassLoader, if available; the ClassLoader that loaded the ClassUtils
 	 * class will be used as fallback.
@@ -203,6 +213,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 修改线程上下文的类加载器，如果线程上下文的类加载器和给定类加载器不同的话
 	 * Override the thread context ClassLoader with the environment's bean ClassLoader
 	 * if necessary, i.e. if the bean ClassLoader is not equivalent to the thread
 	 * context ClassLoader already.
@@ -223,6 +234,8 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 作为{@code Class.forName()} 的拓展，支持基础类型如"int"，数组类型如"String[]"，
+	 * 还可以解析内部类
 	 * Replacement for {@code Class.forName()} that also returns Class instances
 	 * for primitives (e.g. "int") and array class names (e.g. "String[]").
 	 * Furthermore, it is also capable of resolving inner class names in Java source
@@ -293,6 +306,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 解析给定类名返回类，功能同{@link #forName(String, ClassLoader)} 一致，只有抛出的异常不同
 	 * Resolve the given class name into a Class instance. Supports
 	 * primitives (like "int") and array class names (like "String[]").
 	 * <p>This is effectively equivalent to the {@code forName}
@@ -329,6 +343,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 类名在类加载器中是否存在
 	 * Determine whether the {@link Class} identified by the supplied name is present
 	 * and can be loaded. Will return {@code false} if either the class or
 	 * one of its dependencies is not present or cannot be loaded.
@@ -358,6 +373,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 给定类是否在给定类加载器中可见
 	 * Check whether the given class is visible in the given ClassLoader.
 	 * @param clazz the class to check (typically an interface)
 	 * @param classLoader the ClassLoader to check against
@@ -424,6 +440,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 检查给定类是否在给定类加载器中可加载
 	 * Check whether the given class is loadable in the given ClassLoader.
 	 * @param clazz the class to check (typically an interface)
 	 * @param classLoader the ClassLoader to check against
@@ -441,6 +458,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 根据基础类型名获取类
 	 * Resolve the given class name as primitive class, if appropriate,
 	 * according to the JVM's naming rules for primitive classes.
 	 * <p>Also supports the JVM's internal class names for primitive arrays.
@@ -463,6 +481,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 是否是基础类型的包装类，如Boolean，Byte，Character等等
 	 * Check if the given class represents a primitive wrapper,
 	 * i.e. Boolean, Byte, Character, Short, Integer, Long, Float, Double, or
 	 * Void.
@@ -475,6 +494,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 检查给定类是否是基础类型及其包装类，如boolean、Boolean等等
 	 * Check if the given class represents a primitive (i.e. boolean, byte,
 	 * char, short, int, long, float, or double), {@code void}, or a wrapper for
 	 * those types (i.e. Boolean, Byte, Character, Short, Integer, Long, Float,
@@ -489,6 +509,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 检查给定类是否是基础类型的数组
 	 * Check if the given class represents an array of primitives,
 	 * i.e. boolean, byte, char, short, int, long, float, or double.
 	 * @param clazz the class to check
@@ -500,6 +521,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 检查给定类是否是基础类型的包装类数组
 	 * Check if the given class represents an array of primitive wrappers,
 	 * i.e. Boolean, Byte, Character, Short, Integer, Long, Float, or Double.
 	 * @param clazz the class to check
@@ -511,6 +533,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 如果是基础类，返回其包装类
 	 * Resolve the given class if it is a primitive class,
 	 * returning the corresponding primitive wrapper type instead.
 	 * @param clazz the class to check
@@ -522,6 +545,8 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * {@code rhsType} 是否可以赋值给 {@code lhsType}
+	 * 对于基础类型，基础类型的包装类可赋值给对应的基础类
 	 * Check if the right-hand side type may be assigned to the left-hand side
 	 * type, assuming setting by reflection. Considers primitive wrapper
 	 * classes as assignable to the corresponding primitive types.
@@ -552,6 +577,8 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 确定给定值能否赋值给给定类型
+	 * 对于基础类型，基础类型的包装类可赋值给对应的基础类
 	 * Determine if the given type is assignable from the given value,
 	 * assuming setting by reflection. Considers primitive wrapper classes
 	 * as assignable to the corresponding primitive types.
@@ -585,6 +612,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 返回{@code ClassLoader.getResource} 和 {@code Class.getResource}适用的路径
 	 * Return a path suitable for use with {@code ClassLoader.getResource}
 	 * (also suitable for use with {@code Class.getResource} by prepending a
 	 * slash ('/') to the return value). Built by taking the package of the specified
@@ -727,6 +755,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 返回给定类实现的所有接口，如果传入的是接口，则返回只有该接口的集合
 	 * Return all interfaces that the given class implements as a Set,
 	 * including ones implemented by superclasses.
 	 * <p>If the class itself is an interface, it gets returned as sole interface.
@@ -738,6 +767,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 返回给定类实现的所有接口，如果传入的是接口，则返回只有该接口的集合
 	 * Return all interfaces that the given class implements as a Set,
 	 * including ones implemented by superclasses.
 	 * <p>If the class itself is an interface, it gets returned as sole interface.

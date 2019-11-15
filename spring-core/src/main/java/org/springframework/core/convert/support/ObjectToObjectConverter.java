@@ -34,6 +34,15 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.ReflectionUtils;
 
 /**
+ * 通用转换器，将原对象转换为目标类型，通过将方法或静态工厂方法代理给源对象或目标类型的构造函数实现
+ *
+ * 转换算法
+ * 1、如果源对象的静态方法{@code to[targetType.simpleName]()} 存在的话，进行调用
+ * 如，{@code org.example.Bar Foo#toBar()}
+ * 2、调用目标类型{@code targetType} 的静态方法，如{@code valueOf(sourceType)}、
+ * {@code of(sourceType)}、 {@code from(sourceType)}
+ * 3、调用目标类型{@code targetType} 只接受一个源类型{@code sourceType} 的构造函数
+ *
  * Generic converter that uses conventions to convert a source object to a
  * {@code targetType} by delegating to a method on the source object or to
  * a static factory method or constructor on the {@code targetType}.

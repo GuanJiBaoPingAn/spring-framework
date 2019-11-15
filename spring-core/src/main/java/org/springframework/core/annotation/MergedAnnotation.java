@@ -62,12 +62,14 @@ import org.springframework.lang.Nullable;
 public interface MergedAnnotation<A extends Annotation> {
 
 	/**
+	 * 只有一个元素的注解的属性名称
 	 * The attribute name for annotations with a single element.
 	 */
 	String VALUE = "value";
 
 
 	/**
+	 * 实际注解类型的类引用
 	 * Get the {@code Class} reference for the actual annotation type.
 	 * @return the annotation type
 	 */

@@ -48,6 +48,13 @@ abstract class ConversionUtils {
 		}
 	}
 
+	/**
+	 * 给定转换服务能否对源类型和目标类型进行转换
+	 * @param sourceElementType
+	 * @param targetElementType
+	 * @param conversionService
+	 * @return
+	 */
 	public static boolean canConvertElements(@Nullable TypeDescriptor sourceElementType,
 			@Nullable TypeDescriptor targetElementType, ConversionService conversionService) {
 

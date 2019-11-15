@@ -26,6 +26,7 @@ import org.springframework.core.convert.converter.ConverterRegistry;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link GenericConversionService} 的默认实现，配置了环境需要的转换器
  * A specialization of {@link GenericConversionService} configured by default
  * with converters appropriate for most environments.
  *
@@ -54,6 +55,7 @@ public class DefaultConversionService extends GenericConversionService {
 
 
 	/**
+	 * 返回单例对象
 	 * Return a shared default {@code ConversionService} instance,
 	 * lazily building it once needed.
 	 * <p><b>NOTE:</b> We highly recommend constructing individual
@@ -79,6 +81,7 @@ public class DefaultConversionService extends GenericConversionService {
 	}
 
 	/**
+	 * 添加默认转换器
 	 * Add converters appropriate for most environments.
 	 * @param converterRegistry the registry of converters to add to
 	 * (must also be castable to ConversionService, e.g. being a {@link ConfigurableConversionService})

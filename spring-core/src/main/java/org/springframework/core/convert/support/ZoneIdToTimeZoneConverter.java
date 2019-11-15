@@ -22,6 +22,7 @@ import java.util.TimeZone;
 import org.springframework.core.convert.converter.Converter;
 
 /**
+ * 将{@link java.time.ZoneId} 转换为 {@link java.util.TimeZone}
  * Simple converter from Java 8's {@link java.time.ZoneId} to {@link java.util.TimeZone}.
  *
  * <p>Note that Spring's default ConversionService setup understands the 'from'/'to' convention

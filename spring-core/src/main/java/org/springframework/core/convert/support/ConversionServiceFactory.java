@@ -25,6 +25,7 @@ import org.springframework.core.convert.converter.GenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link org.springframework.core.convert.ConversionService} 的工厂
  * A factory for common {@link org.springframework.core.convert.ConversionService}
  * configurations.
  *
@@ -40,6 +41,7 @@ public final class ConversionServiceFactory {
 
 
 	/**
+	 * 将转换器注册到指定的转换注册器中
 	 * Register the given Converter objects with the given target ConverterRegistry.
 	 * @param converters the converter objects: implementing {@link Converter},
 	 * {@link ConverterFactory}, or {@link GenericConverter}

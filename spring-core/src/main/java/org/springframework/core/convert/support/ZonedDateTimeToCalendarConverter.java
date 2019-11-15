@@ -23,6 +23,7 @@ import java.util.GregorianCalendar;
 import org.springframework.core.convert.converter.Converter;
 
 /**
+ * 将{@link java.time.ZonedDateTime} 转换为 {@link java.util.Calendar}
  * Simple converter from Java 8's {@link java.time.ZonedDateTime} to {@link java.util.Calendar}.
  *
  * <p>Note that Spring's default ConversionService setup understands the 'from'/'to' convention

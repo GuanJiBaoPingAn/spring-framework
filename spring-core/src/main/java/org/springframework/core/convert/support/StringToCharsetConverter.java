@@ -16,11 +16,14 @@
 
 package org.springframework.core.convert.support;
 
+import java.lang.String;
 import java.nio.charset.Charset;
 
 import org.springframework.core.convert.converter.Converter;
 
 /**
+ * 将字符串转换为{@link java.nio.charset.Charset}，通过调用
+ * {@link java.nio.charset.Charset#forName(java.lang.String)}
  * Convert a String to a {@link Charset}.
  *
  * @author Stephane Nicoll

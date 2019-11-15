@@ -27,6 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 将一个对象转换为只有一个元素的数组
  * Converts an Object to a single-element array containing the Object.
  * Will convert the Object to the target array's component type if necessary.
  *

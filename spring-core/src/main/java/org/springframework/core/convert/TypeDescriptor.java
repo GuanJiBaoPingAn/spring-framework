@@ -66,10 +66,12 @@ public class TypeDescriptor implements Serializable {
 	}
 
 
+	// 封装类型的类
 	private final Class<?> type;
 
 	private final ResolvableType resolvableType;
 
+	// 类型描述符的注解
 	private final AnnotatedElementAdapter annotatedElement;
 
 
@@ -128,6 +130,7 @@ public class TypeDescriptor implements Serializable {
 
 
 	/**
+	 * {@link #getType()} 的变体，支持基础类型，将返回基础类型的包装类
 	 * Variation of {@link #getType()} that accounts for a primitive type by
 	 * returning its object wrapper type.
 	 * <p>This is useful for conversion service implementations that wish to
@@ -138,6 +141,7 @@ public class TypeDescriptor implements Serializable {
 	}
 
 	/**
+	 * 封装类型的类，基础类型直接返回
 	 * The type of the backing class, method parameter, field, or property
 	 * described by this TypeDescriptor.
 	 * <p>Returns primitive types as-is. See {@link #getObjectType()} for a
@@ -158,6 +162,7 @@ public class TypeDescriptor implements Serializable {
 	}
 
 	/**
+	 * 返回描述符的源，将会返回{@link Field},{@link MethodParameter} 或 {@link Type}其中的一种
 	 * Return the underlying source of the descriptor. Will return a {@link Field},
 	 * {@link MethodParameter} or {@link Type} depending on how the {@link TypeDescriptor}
 	 * was constructed. This method is primarily to provide access to additional
@@ -169,6 +174,7 @@ public class TypeDescriptor implements Serializable {
 	}
 
 	/**
+	 * 例如 {@code java.lang.Object} 将会变为 {@code java.util.HashMap}
 	 * Narrows this {@link TypeDescriptor} by setting its type to the class of the
 	 * provided value.
 	 * <p>If the value is {@code null}, no narrowing is performed and this TypeDescriptor
@@ -193,6 +199,7 @@ public class TypeDescriptor implements Serializable {
 	}
 
 	/**
+	 * 将该{@link TypeDescriptor}转换为给定的超类或实现的接口，保留注解和嵌套的类型上下文
 	 * Cast this {@link TypeDescriptor} to a superclass or implemented interface
 	 * preserving annotations and nested type context.
 	 * @param superType the super type to cast to (can be {@code null})
@@ -322,6 +329,10 @@ public class TypeDescriptor implements Serializable {
 	}
 
 	/**
+	 * 如果是数组，返回组成数组元素的类型
+	 * 如果是{@code Stream}，返回组成流元素的类型
+	 * 如果是参数化的{@link Collection}，返回集合元素类型
+	 * 如果是未参数化的集合，返回null
 	 * If this type is an array, returns the array's component type.
 	 * If this type is a {@code Stream}, returns the stream's component type.
 	 * If this type is a {@link Collection} and it is parameterized, returns the Collection's element type.
@@ -537,6 +548,7 @@ public class TypeDescriptor implements Serializable {
 	}
 
 	/**
+	 * 为给定类型创建一个类型描述符，
 	 * Create a new type descriptor from the given type.
 	 * <p>Use this to instruct the conversion system to convert an object to a
 	 * specific target type, when no type location such as a method parameter or
@@ -731,6 +743,7 @@ public class TypeDescriptor implements Serializable {
 
 
 	/**
+	 * {@link AnnotatedElement} 的适配器类，用于暴露{@code TypeDescriptor}的注解
 	 * Adapter class for exposing a {@code TypeDescriptor}'s annotations as an
 	 * {@link AnnotatedElement}, in particular to {@link AnnotatedElementUtils}.
 	 * @see AnnotatedElementUtils#isAnnotated(AnnotatedElement, Class)

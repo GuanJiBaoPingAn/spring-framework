@@ -29,6 +29,9 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
+ * 将map转换为另一个map
+ * 1、创建和源map大小一致的目标map
+ * 2、将参数化的K、V类型转换为目标类型
  * Converts a Map to another Map.
  *
  * <p>First, creates a new Map of the requested targetType with a size equal to the

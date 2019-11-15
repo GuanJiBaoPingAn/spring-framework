@@ -22,6 +22,9 @@ import java.util.Set;
 import org.springframework.core.convert.converter.Converter;
 
 /**
+ * 将字符串转换为Boolean
+ * “true、on、yes、1” -> Boolean.True
+ * “false、off、no、0” -> Boolean.False
  * Converts String to a Boolean.
  *
  * @author Keith Donald

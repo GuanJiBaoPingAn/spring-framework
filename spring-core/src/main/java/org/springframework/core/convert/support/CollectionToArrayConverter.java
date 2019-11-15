@@ -28,6 +28,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 将集合转换为数组的转换器，
+ * 1、创建与源集合大小相同的目标类型数组
+ * 2、将集合中的每一个元素赋给数组，将会对集合元素的参数化类型进行转换
  * Converts a Collection to an array.
  *
  * <p>First, creates a new array of the requested targetType with a length equal to the

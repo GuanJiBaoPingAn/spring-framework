@@ -23,6 +23,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link AnnotationFilter} 的实现
  * {@link AnnotationFilter} implementation used for
  * {@link AnnotationFilter#packages(String...)}.
  *

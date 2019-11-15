@@ -28,6 +28,7 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
+ * 将对象转换为{@code java.util.Optional<T>}
  * Convert an Object to {@code java.util.Optional<T>} if necessary using the
  * {@code ConversionService} to convert the source Object to the generic type
  * of Optional when known.

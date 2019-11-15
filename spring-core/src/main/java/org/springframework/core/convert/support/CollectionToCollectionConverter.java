@@ -27,6 +27,9 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
+ * 将集合转换为另一个集合
+ * 1、创建一个和源集合大小相同的目标类型集合
+ * 2、转换并复制源集合中的每一个元素
  * Converts from a Collection to another Collection.
  *
  * <p>First, creates a new Collection of the requested targetType with a size equal to the

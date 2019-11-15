@@ -19,6 +19,7 @@ package org.springframework.core.annotation;
 import java.lang.annotation.Annotation;
 
 /**
+ * 回调接口，用于过滤某些注解
  * Callback interface that can be used to filter specific annotation types.
  *
  * @author Phillip Webb
@@ -41,6 +42,7 @@ public interface AnnotationFilter {
 	AnnotationFilter JAVA = packages("java", "javax");
 
 	/**
+	 * 过滤全部注解
 	 * {@link AnnotationFilter} that always matches and can be used when no
 	 * relevant annotation types are expected to be present at all.
 	 */
@@ -64,6 +66,7 @@ public interface AnnotationFilter {
 	};
 
 	/**
+	 * 没有注解被过滤
 	 * {@link AnnotationFilter} that never matches and can be used when no
 	 * filtering is needed (allowing for any annotation types to be present).
 	 */
@@ -88,6 +91,7 @@ public interface AnnotationFilter {
 
 
 	/**
+	 * 给定注解是否匹配的上过滤器
 	 * Test if the given annotation matches the filter.
 	 * @param annotation the annotation to test
 	 * @return {@code true} if the annotation matches

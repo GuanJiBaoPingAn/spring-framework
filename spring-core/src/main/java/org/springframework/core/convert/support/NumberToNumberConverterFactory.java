@@ -23,6 +23,7 @@ import org.springframework.core.convert.converter.ConverterFactory;
 import org.springframework.util.NumberUtils;
 
 /**
+ * 将{@link java.lang.Number} 实现转换为另一个{@link java.lang.Number} 实现的转换工厂
  * Converts from any JDK-standard Number implementation to any other JDK-standard Number implementation.
  *
  * <p>Support Number classes including Byte, Short, Integer, Float, Double, Long, BigInteger, BigDecimal. This class

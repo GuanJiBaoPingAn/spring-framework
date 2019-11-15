@@ -30,6 +30,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
+ * 将实体id转换为实体引用，通过调用目标实体类的静态finder方法
  * Converts an entity identifier to a entity reference by calling a static finder method
  * on the target entity type.
  *

@@ -25,6 +25,7 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
+ * 调用{@link Object#toString()} 将对象转换为字符串
  * Simply calls {@link Object#toString()} to convert any supported object
  * to a {@link String}.
  *

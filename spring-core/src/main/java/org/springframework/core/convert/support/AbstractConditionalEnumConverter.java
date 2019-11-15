@@ -22,6 +22,7 @@ import org.springframework.core.convert.converter.ConditionalConverter;
 import org.springframework.util.ClassUtils;
 
 /**
+ * {@link ConditionalConverter} 的基本实现，用于基于枚举的转换器
  * A {@link ConditionalConverter} base implementation for enum-based converters.
  *
  * @author Stephane Nicoll

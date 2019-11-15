@@ -28,6 +28,9 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
+ * 将数组转换为集合的转换器
+ * 1、创建一个目标类型的集合
+ * 2、将数组中的元素加入到集合中，会进行类型转换
  * Converts an array to a Collection.
  *
  * <p>First, creates a new Collection of the requested target type.

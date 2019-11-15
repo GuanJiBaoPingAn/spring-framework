@@ -63,6 +63,7 @@ public abstract class NumberUtils {
 
 
 	/**
+	 * 将给定的{@link java.lang.Number} 实例转换为目标类型
 	 * Convert the given number into an instance of the given target class.
 	 * @param number the number to convert
 	 * @param targetClass the target class to convert to

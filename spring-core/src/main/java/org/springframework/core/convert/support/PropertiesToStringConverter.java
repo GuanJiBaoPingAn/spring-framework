@@ -23,6 +23,7 @@ import java.util.Properties;
 import org.springframework.core.convert.converter.Converter;
 
 /**
+ * 将{@link java.util.Properties} 转换为字符串，通过调用{@link Properties#store(java.io.OutputStream, String)}实现
  * Converts from a Properties to a String by calling {@link Properties#store(java.io.OutputStream, String)}.
  * Decodes with the ISO-8859-1 charset before returning the String.
  *

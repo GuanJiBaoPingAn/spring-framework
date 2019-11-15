@@ -129,7 +129,7 @@ public abstract class AnnotationUtils {
 	 * @see #isCandidateClass(Class, String)
 	 */
 	public static boolean isCandidateClass(Class<?> clazz, Collection<Class<? extends Annotation>> annotationTypes) {
-		for (Class<? extends Annotation> annotationType : annotationTypes) {
+		for (Class<? extends > annotationType : annotationTypes) {
 			if (isCandidateClass(clazz, annotationType)) {
 				return true;
 			}

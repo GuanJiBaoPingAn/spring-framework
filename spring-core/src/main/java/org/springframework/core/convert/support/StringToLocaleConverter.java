@@ -23,6 +23,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
+ * 将字符串转换为{@link java.util.Locale}
  * Converts from a String to a {@link java.util.Locale}.
  *
  * <p>Accepts the classic {@link Locale} String format ({@link Locale#toString()})

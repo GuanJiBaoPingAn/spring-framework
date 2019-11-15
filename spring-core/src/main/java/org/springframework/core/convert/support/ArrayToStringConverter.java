@@ -27,6 +27,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 将数组转换为逗号分隔的字符串
+ * 1、将数组转换为列表
+ * 2、通过{@link CollectionToStringConverter} 将集合转换为字符串
  * Converts an array to a comma-delimited String. First adapts the source array
  * to a List, then delegates to {@link CollectionToStringConverter} to perform
  * the target String conversion.

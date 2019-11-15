@@ -93,6 +93,7 @@ import org.springframework.util.MultiValueMap;
 public abstract class AnnotatedElementUtils {
 
 	/**
+	 * 根据给定的注解创建 {@link AnnotatedElement} 的适配器类
 	 * Build an adapted {@link AnnotatedElement} for the given annotations,
 	 * typically for use with other methods on {@link AnnotatedElementUtils}.
 	 * @param annotations the annotations to expose through the {@code AnnotatedElement}
@@ -794,6 +795,7 @@ public abstract class AnnotatedElementUtils {
 
 
 	/**
+	 * {@link AnnotatedElement} 的适配器，用于持有特定的注解
 	 * Adapted {@link AnnotatedElement} that hold specific annotations.
 	 */
 	private static class AnnotatedElementForAnnotations implements AnnotatedElement {
