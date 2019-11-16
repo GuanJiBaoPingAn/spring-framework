@@ -19,6 +19,7 @@ package org.springframework.context.event;
 import org.springframework.context.ApplicationContext;
 
 /**
+ * 应用上下文停止时触发上下文停止事件
  * Event raised when an {@code ApplicationContext} gets stopped.
  *
  * @author Mark Fisher

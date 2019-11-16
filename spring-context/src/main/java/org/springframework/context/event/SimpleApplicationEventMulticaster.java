@@ -29,6 +29,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ErrorHandler;
 
 /**
+ * {@link ApplicationEventMulticaster} 的简单实现
+ * 对所有已注册的监听器广播事件，交给监听器自己忽略无关事件
  * Simple implementation of the {@link ApplicationEventMulticaster} interface.
  *
  * <p>Multicasts all events to all registered listeners, leaving it up to

@@ -23,9 +23,11 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
+ * 标准{@link ApplicationListener} 的拓展接口，暴露支持的事件类型、源类型
  * Extended variant of the standard {@link ApplicationListener} interface,
  * exposing further metadata such as the supported event and source type.
  *
+ * 在Spring Framework 4.2 中， 该接口取代了{@link SmartApplicationListener}，全权处理通用事件
  * <p>As of Spring Framework 4.2, this interface supersedes the Class-based
  * {@link SmartApplicationListener} with full handling of generic event types.
  *

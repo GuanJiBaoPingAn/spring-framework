@@ -17,6 +17,12 @@
 package org.springframework.context;
 
 /**
+ * {@link Lifecycle} 的拓展接口，那些需要在{@code ApplicationContext} 刷新和关闭期间
+ * 以一定顺序执行的类实现
+ * {@link #isAutoStartup()} 表明，类是否在上下文刷新时开始
+ * {@link #stop(Runnable)} 方法用于异步关闭
+ *
+ * 启动流程
  * An extension of the {@link Lifecycle} interface for those objects that require
  * to be started upon {@code ApplicationContext} refresh and/or shutdown in a
  * particular order.

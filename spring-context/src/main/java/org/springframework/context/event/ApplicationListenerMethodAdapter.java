@@ -51,6 +51,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
+ * {@link GenericApplicationListener} 的适配器类，用于被{@link EventListener} 注解
+ * 方法的事件代理
  * {@link GenericApplicationListener} adapter that delegates the processing of
  * an event to an {@link EventListener} annotated method.
  *

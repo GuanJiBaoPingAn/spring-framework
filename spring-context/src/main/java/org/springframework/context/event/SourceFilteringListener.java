@@ -23,6 +23,7 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link org.springframework.context.ApplicationListener} 的装饰器，用于过滤特定的事件
  * {@link org.springframework.context.ApplicationListener} decorator that filters
  * events from a specified event source, invoking its delegate listener for
  * matching {@link org.springframework.context.ApplicationEvent} objects only.

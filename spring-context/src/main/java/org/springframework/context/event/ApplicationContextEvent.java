@@ -20,6 +20,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 
 /**
+ * {@code ApplicationContext} 应用上下文事件
  * Base class for events raised for an {@code ApplicationContext}.
  *
  * @author Juergen Hoeller
