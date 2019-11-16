@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * 策略接口，用于将InputStream转换为对象
  * A strategy interface for converting from data in an InputStream to an Object.
  *
  * @author Gary Russell

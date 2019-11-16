@@ -30,6 +30,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * {@link DataBuffer} 的默认实现，内部使用{@link java.nio.ByteBuffer}
  * Default implementation of the {@link DataBuffer} interface that uses a
  * {@link ByteBuffer} internally. with separate read and write positions.
  * Constructed using the {@link DefaultDataBufferFactory}.

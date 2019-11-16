@@ -34,6 +34,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ResourceUtils;
 
 /**
+ * {@link Resource} 的抽象实现
  * Convenience base class for {@link Resource} implementations,
  * pre-implementing typical behavior.
  *

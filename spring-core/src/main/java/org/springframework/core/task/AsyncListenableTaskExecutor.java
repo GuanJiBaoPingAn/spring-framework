@@ -21,6 +21,7 @@ import java.util.concurrent.Callable;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
+ * {@link AsyncTaskExecutor} 的拓展接口，增加了可以返回{@link ListenableFuture ListenableFutures} 的方法
  * Extension of the {@link AsyncTaskExecutor} interface, adding the capability to submit
  * tasks for {@link ListenableFuture ListenableFutures}.
  *

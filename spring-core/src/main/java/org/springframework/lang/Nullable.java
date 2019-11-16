@@ -27,6 +27,7 @@ import javax.annotation.meta.TypeQualifierNickname;
 import javax.annotation.meta.When;
 
 /**
+ * Spring 的通用注解， 用来表明被注解元素可能为{@code null}
  * A common Spring annotation to declare that annotated elements can be {@code null} under
  * some circumstance.
  *

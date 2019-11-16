@@ -23,6 +23,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 对给定的{@link InputStream} 的 {@link Resource} 实现，当没有其他实现时可以使用，
+ * 一般推荐{@link ByteArrayResource} 或其他基于文件的{@code Resource} 实现
  * {@link Resource} implementation for a given {@link InputStream}.
  * <p>Should only be used if no other specific {@code Resource} implementation
  * is applicable. In particular, prefer {@link ByteArrayResource} or any of the

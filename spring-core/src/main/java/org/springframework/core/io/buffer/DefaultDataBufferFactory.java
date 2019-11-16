@@ -22,6 +22,7 @@ import java.util.List;
 import org.springframework.util.Assert;
 
 /**
+ * {@code DataBufferFactory} 的默认实现。允许在构造时指定默认初始容量，堆内存或直接内存
  * Default implementation of the {@code DataBufferFactory} interface. Allows for
  * specification of the default initial capacity at construction time, as well
  * as whether heap-based or direct buffers are to be preferred.
@@ -32,13 +33,14 @@ import org.springframework.util.Assert;
 public class DefaultDataBufferFactory implements DataBufferFactory {
 
 	/**
+	 * 未设置时的默认容量
 	 * The default capacity when none is specified.
 	 * @see #DefaultDataBufferFactory()
 	 * @see #DefaultDataBufferFactory(boolean)
 	 */
 	public static final int DEFAULT_INITIAL_CAPACITY = 256;
 
-
+	// 是否使用直接内存
 	private final boolean preferDirect;
 
 	private final int defaultInitialCapacity;

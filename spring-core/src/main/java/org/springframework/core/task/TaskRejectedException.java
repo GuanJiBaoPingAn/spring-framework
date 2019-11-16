@@ -19,6 +19,7 @@ package org.springframework.core.task;
 import java.util.concurrent.RejectedExecutionException;
 
 /**
+ * {@link TaskExecutor} 拒绝任务时抛出异常
  * Exception thrown when a {@link TaskExecutor} rejects to accept
  * a given task for execution.
  *

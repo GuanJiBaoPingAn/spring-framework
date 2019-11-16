@@ -20,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
 /**
+ * {@link Future} 的拓展，用于接收完成时执行的回调，如果回调添加时已完成，则回调立即执行
  * Extend {@link Future} with the capability to accept completion callbacks.
  * If the future has completed when the callback is added, the callback is
  * triggered immediately.

@@ -20,6 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 用于创建{@code toString()} 方法的工具类
  * Utility class that builds pretty-printing {@code toString()} methods
  * with pluggable styling conventions. By default, ToStringCreator adheres
  * to Spring's {@code toString()} styling conventions.

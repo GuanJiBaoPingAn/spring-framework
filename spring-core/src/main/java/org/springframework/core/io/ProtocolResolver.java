@@ -19,6 +19,7 @@ package org.springframework.core.io;
 import org.springframework.lang.Nullable;
 
 /**
+ * 资源协议解析的策略接口
  * A resolution strategy for protocol-specific resource handles.
  *
  * <p>Used as an SPI for {@link DefaultResourceLoader}, allowing for

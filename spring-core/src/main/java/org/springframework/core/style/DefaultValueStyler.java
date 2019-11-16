@@ -28,6 +28,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 将对象转换为字符串，一般用于debug，使用spring的{@code toString}实现
+ *
  * Converts objects to String form, generally for debugging purposes,
  * using Spring's {@code toString} styling conventions.
  *

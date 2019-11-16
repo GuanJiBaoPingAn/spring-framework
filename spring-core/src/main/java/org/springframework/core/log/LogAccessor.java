@@ -22,6 +22,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * 通用日志的存取器
  * A convenient accessor for Commons Logging, providing not only
  * {@code CharSequence} based log methods but also {@code Supplier}
  * based variants for use with Java 8 lambda expressions.

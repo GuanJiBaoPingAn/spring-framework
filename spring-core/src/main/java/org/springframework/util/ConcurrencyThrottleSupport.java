@@ -24,6 +24,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * 支持类，用于控制对某一资源的并发访问
  * Support class for throttling concurrent access to a specific resource.
  *
  * <p>Designed for use as a base class, with the subclass invoking

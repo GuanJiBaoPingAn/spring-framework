@@ -23,6 +23,8 @@ import java.io.InputStream;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link Resource} 的简单实现，不指向具体可读的资源，
+ * 可作为一个占位符，当不需要正正读数据时
  * Simple {@link Resource} implementation that holds a resource description
  * but does not point to an actually readable resource.
  *

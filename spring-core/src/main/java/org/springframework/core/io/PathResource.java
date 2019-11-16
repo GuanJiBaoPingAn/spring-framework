@@ -36,6 +36,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * {@link Resource} 对{@link java.nio.file.Path} 的实现，所有操作均基于
+ * {@code Path} 的API
  * {@link Resource} implementation for {@link java.nio.file.Path} handles,
  * performing all operations and transformations via the {@code Path} API.
  * Supports resolution as a {@link File} and also as a {@link URL}.

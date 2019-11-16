@@ -26,6 +26,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.meta.TypeQualifierDefault;
 
 /**
+ * Spring 的通用注解，用于表明域默认不能为null
  * A common Spring annotation to declare that fields are to be considered as
  * non-nullable by default for a given package.
  *

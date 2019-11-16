@@ -30,6 +30,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
+ * 策略接口，用于将类型为{@code <T>} 的对象编码为字节流
  * Strategy to encode a stream of Objects of type {@code <T>} into an output
  * stream of bytes.
  *
