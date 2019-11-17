@@ -21,6 +21,7 @@ import java.beans.PropertyEditorSupport;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@code java.util.Locale} 编辑器，用于直接输出locale 属性
  * Editor for {@code java.util.Locale}, to directly populate a Locale property.
  *
  * <p>Expects the same syntax as Locale's {@code toString}, i.e. language +

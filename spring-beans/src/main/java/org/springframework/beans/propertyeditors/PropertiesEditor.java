@@ -26,6 +26,8 @@ import java.util.Properties;
 import org.springframework.lang.Nullable;
 
 /**
+ * 用于将{@link String} 转换为{@code Properties}，
+ * {@link Map} 转换为 {@code Properties}
  * Custom {@link java.beans.PropertyEditor} for {@link Properties} objects.
  *
  * <p>Handles conversion from content {@link String} to {@code Properties} object.

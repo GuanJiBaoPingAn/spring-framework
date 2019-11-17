@@ -215,6 +215,7 @@ public abstract class BeanUtils {
 	}
 
 	/**
+	 * 返回给定类的主要构造函数
 	 * Return the primary constructor of the provided class. For Kotlin classes, this
 	 * returns the Java constructor corresponding to the Kotlin primary constructor
 	 * (as defined in the Kotlin specification). Otherwise, in particular for non-Kotlin

@@ -24,6 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * {@link org.springframework.beans.factory.support.GenericBeanDefinition} 的拓展类
+ * 通过实现{@link AnnotatedBeanDefinition} 接口，实现对注解元数据的暴露
  * Extension of the {@link org.springframework.beans.factory.support.GenericBeanDefinition}
  * class, adding support for annotation metadata exposed through the
  * {@link AnnotatedBeanDefinition} interface.

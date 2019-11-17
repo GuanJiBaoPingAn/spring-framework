@@ -20,6 +20,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringValueResolver;
 
 /**
+ * {@link StringValueResolver} 的适配器类，用于解析占位符
+ * {@link ConfigurableBeanFactory} 中的表达式
  * {@link StringValueResolver} adapter for resolving placeholders and
  * expressions against a {@link ConfigurableBeanFactory}.
  *

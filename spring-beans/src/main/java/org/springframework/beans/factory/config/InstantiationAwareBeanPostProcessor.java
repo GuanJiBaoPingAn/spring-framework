@@ -23,6 +23,8 @@ import org.springframework.beans.PropertyValues;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link BeanPostProcessor} 的拓展接口，增加了实例化前的回调，实例化后但是在设置属性和自动装配前
+ * 的回调
  * Subinterface of {@link BeanPostProcessor} that adds a before-instantiation callback,
  * and a callback after instantiation but before explicit properties are set or
  * autowiring occurs.

@@ -23,6 +23,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 代表重写方法，需要查找容器内的对象
  * Represents an override of a method that looks up an object in the same IoC context.
  *
  * <p>Methods eligible for lookup override must not have arguments.

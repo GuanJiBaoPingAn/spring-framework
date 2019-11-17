@@ -23,6 +23,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * 字符串数组编辑器
  * Custom {@link java.beans.PropertyEditor} for String arrays.
  *
  * <p>Strings must be in CSV format, with a customizable separator.

@@ -19,6 +19,7 @@ package org.springframework.beans.factory;
 import org.springframework.beans.BeansException;
 
 /**
+ * 用于需要知道{@link BeanFactory} 的类实现
  * Interface to be implemented by beans that wish to be aware of their
  * owning {@link BeanFactory}.
  *

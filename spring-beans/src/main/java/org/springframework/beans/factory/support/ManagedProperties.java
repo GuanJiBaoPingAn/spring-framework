@@ -23,6 +23,7 @@ import org.springframework.beans.Mergeable;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link Properties} 的拓展类，实现了{@link Mergeable}
  * Tag class which represents a Spring-managed {@link Properties} instance
  * that supports merging of parent/child definitions.
  *

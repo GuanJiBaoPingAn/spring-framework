@@ -25,6 +25,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link Class Classes} 数组编辑器，用于直接输出类数组，而不是通过类名称
  * Property editor for an array of {@link Class Classes}, to enable
  * the direct population of a {@code Class[]} property without having to
  * use a {@code String} class name property as bridge.

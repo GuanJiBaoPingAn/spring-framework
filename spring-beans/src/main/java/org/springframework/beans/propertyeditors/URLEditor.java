@@ -25,6 +25,7 @@ import org.springframework.core.io.ResourceEditor;
 import org.springframework.util.Assert;
 
 /**
+ * {@code java.net.URL} 用于直接返回URI而不是字符串
  * Editor for {@code java.net.URL}, to directly populate a URL property
  * instead of using a String property as bridge.
  *

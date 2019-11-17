@@ -31,6 +31,19 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringValueResolver;
 
 /**
+ * 被大多数Bean工厂实现的配置接口，可用于配置
+ * 1、父类Bean 工厂
+ * 2、Bean 类加载器
+ * 3、临时类加载器
+ * 4、是否缓存Bean 元数据，如BeanDefinition、Bean 类，默认为开启
+ * 5、表达式的解析器{@link BeanExpressionResolver}
+ * 6、转换服务{@link ConversionService}
+ * 7、属性编辑器注册{@link PropertyEditorRegistrar}
+ * 8、类型转换器{@link TypeConverter}
+ * 9、字符串值解析器{@link StringValueResolver}
+ * 10、Bean后处理器{@link BeanPostProcessor}
+ * 11、别名
+ *
  * Configuration interface to be implemented by most bean factories. Provides
  * facilities to configure a bean factory, in addition to the bean factory
  * client methods in the {@link org.springframework.beans.factory.BeanFactory}

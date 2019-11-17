@@ -22,6 +22,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
+ * 用于从字符串输出{@code Character} 或 {@code char}属性
  * Editor for a {@link Character}, to populate a property
  * of type {@code Character} or {@code char} from a String value.
  *

@@ -20,7 +20,7 @@ import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link ConfigurableBeanFactory} 使用的策略接口，用于表明bean实例的目标scope
+ * {@link ConfigurableBeanFactory} 使用的策略接口，用于表明bean实例的目标作用域
  * Strategy interface used by a {@link ConfigurableBeanFactory},
  * representing a target scope to hold bean instances in.
  * This allows for extending the BeanFactory's standard scopes

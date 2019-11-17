@@ -69,6 +69,12 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link org.springframework.beans.factory.config.BeanPostProcessor BeanPostProcessor} 的实现，
+ * 用于自动装配被注解的域、setter方法、任意配置方法。默认注解为{@link Autowired @Autowired} 和 {@link Value @Value}
+ *
+ * 构造函数、域、方法自动装配同{@link Autowired}
+ * {@link Lookup}
+ *
  * {@link org.springframework.beans.factory.config.BeanPostProcessor BeanPostProcessor}
  * implementation that autowires annotated fields, setter methods, and arbitrary
  * config methods. Such members to be injected are detected through annotations:
@@ -146,6 +152,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 
 	private final Set<String> lookupMethodsChecked = Collections.newSetFromMap(new ConcurrentHashMap<>(256));
 
+	// 候选构造函数缓存
 	private final Map<Class<?>, Constructor<?>[]> candidateConstructorsCache = new ConcurrentHashMap<>(256);
 
 	private final Map<String, InjectionMetadata> injectionMetadataCache = new ConcurrentHashMap<>(256);
@@ -173,6 +180,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 
 
 	/**
+	 * 用于设置类似{@link Autowired}，会进行自动装配的注解类型
 	 * Set the 'autowired' annotation type, to be used on constructors, fields,
 	 * setter methods and arbitrary config methods.
 	 * <p>The default autowired annotation type is the Spring-provided {@link Autowired}
@@ -251,6 +259,13 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		this.injectionMetadataCache.remove(beanName);
 	}
 
+	/**
+	 * 获取给定bean的候选构造函数，规则同最上描述
+	 * @param beanClass
+	 * @param beanName
+	 * @return
+	 * @throws BeanCreationException
+	 */
 	@Override
 	@Nullable
 	public Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, final String beanName)
@@ -319,8 +334,10 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 							continue;
 						}
 						MergedAnnotation<?> ann = findAutowiredAnnotation(candidate);
+						// 如果没有自动装配注解，查看是否是CGLIB 生成的类，如果是，查看原有类是否有相关注解
 						if (ann == null) {
 							Class<?> userClass = ClassUtils.getUserClass(beanClass);
+							// CGLIB 生成的类
 							if (userClass != beanClass) {
 								try {
 									Constructor<?> superCtor =
@@ -332,7 +349,9 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 								}
 							}
 						}
+						// 如果有自动装配注解
 						if (ann != null) {
+							// 只能有一个required 的构造函数
 							if (requiredConstructor != null) {
 								throw new BeanCreationException(beanName,
 										"Invalid autowire-marked constructor: " + candidate +
@@ -513,6 +532,11 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		return InjectionMetadata.forElements(elements, clazz);
 	}
 
+	/**
+	 * 获取给定元素自动装配的注解，如果有直接返回，反之，返回null
+	 * @param ao
+	 * @return
+	 */
 	@Nullable
 	private MergedAnnotation<?> findAutowiredAnnotation(AccessibleObject ao) {
 		MergedAnnotations annotations = MergedAnnotations.from(ao);
@@ -526,6 +550,8 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 	}
 
 	/**
+	 * 确认被注解的域或方法是否是被required的，当没有bean时是否自动装配失败，也就是说，
+	 * 当没有相关bean时是否直接跳过
 	 * Determine if the annotated field or method requires its dependency.
 	 * <p>A 'required' dependency means that autowiring should fail when no beans
 	 * are found. Otherwise, the autowiring process will simply bypass the field

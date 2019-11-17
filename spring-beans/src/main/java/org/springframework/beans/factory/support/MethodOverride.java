@@ -24,6 +24,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 代表重写方法的对象（与aop不同）
  * Object representing the override of a method on a managed object by the IoC
  * container.
  *

@@ -26,6 +26,7 @@ import org.springframework.core.io.ResourceEditor;
 import org.springframework.util.Assert;
 
 /**
+ * 用于将资源路径字符串转换为{@code org.xml.sax.InputSource}对象
  * Editor for {@code org.xml.sax.InputSource}, converting from a
  * Spring resource location String to a SAX InputSource object.
  *

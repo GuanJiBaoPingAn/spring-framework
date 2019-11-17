@@ -23,6 +23,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link Class java.lang.Class} 类属性编辑器，用于直接输出类，而不是通过类名称
  * Property editor for {@link Class java.lang.Class}, to enable the direct
  * population of a {@code Class} property without recourse to having to use a
  * String class name property as bridge.

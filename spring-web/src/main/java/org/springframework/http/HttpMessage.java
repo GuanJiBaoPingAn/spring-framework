@@ -17,6 +17,7 @@
 package org.springframework.http;
 
 /**
+ * HTTP request和response消息的基础接口，定义了{@link #getHeaders()}
  * Represents the base interface for HTTP request and response messages.
  * Consists of {@link HttpHeaders}, retrievable via {@link #getHeaders()}.
  *

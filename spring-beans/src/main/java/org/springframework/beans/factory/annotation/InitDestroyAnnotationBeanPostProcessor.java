@@ -49,6 +49,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
+ * {@link org.springframework.beans.factory.config.BeanPostProcessor} 的实现，用于调用
+ * 被注解的初始和销毁方法，用于替代{@link org.springframework.beans.factory.InitializingBean}
+ * 和{@link org.springframework.beans.factory.DisposableBean} 的回调接口
+ *
  * {@link org.springframework.beans.factory.config.BeanPostProcessor} implementation
  * that invokes annotated init and destroy methods. Allows for an annotation
  * alternative to Spring's {@link org.springframework.beans.factory.InitializingBean}
@@ -113,6 +117,8 @@ public class InitDestroyAnnotationBeanPostProcessor
 
 
 	/**
+	 * 设置需要检查的初始化注解，在bean配置完成后调用初始化方法
+	 * 典型的可以使用{@link javax.annotation.PostConstruct}
 	 * Specify the init annotation to check for, indicating initialization
 	 * methods to call after configuration of a bean.
 	 * <p>Any custom annotation can be used, since there are no required
@@ -124,6 +130,8 @@ public class InitDestroyAnnotationBeanPostProcessor
 	}
 
 	/**
+	 * 设置需要检查的销毁注解，在上下文关闭前调用销毁方法
+	 * 典型的可以使用{@link javax.annotation.PreDestroy}
 	 * Specify the destroy annotation to check for, indicating destruction
 	 * methods to call when the context is shutting down.
 	 * <p>Any custom annotation can be used, since there are no required
@@ -270,6 +278,7 @@ public class InitDestroyAnnotationBeanPostProcessor
 
 
 	/**
+	 * 被注解了初始和销毁方法的类
 	 * Class representing information about annotated init and destroy methods.
 	 */
 	private class LifecycleMetadata {
@@ -359,6 +368,7 @@ public class InitDestroyAnnotationBeanPostProcessor
 
 
 	/**
+	 * 被注解方法的注入信息
 	 * Class representing injection information about an annotated method.
 	 */
 	private static class LifecycleElement {

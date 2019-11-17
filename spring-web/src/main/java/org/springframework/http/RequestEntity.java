@@ -29,6 +29,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * {@link HttpEntity} 对请求的实现，增加了{@linkplain HttpMethod method}、{@linkplain URI uri}
  * Extension of {@link HttpEntity} that adds a {@linkplain HttpMethod method} and
  * {@linkplain URI uri}. Used in {@code RestTemplate} and {@code @Controller} methods.
  *

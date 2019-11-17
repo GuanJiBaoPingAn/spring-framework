@@ -24,6 +24,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * 将类标位spring驱动的配置
+ * 典型的使用为{@code AnnotationBeanConfigurerAspect}
  * Marks a class as being eligible for Spring-driven configuration.
  *
  * <p>Typically used with the AspectJ {@code AnnotationBeanConfigurerAspect}.

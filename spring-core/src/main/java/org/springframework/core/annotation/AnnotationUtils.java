@@ -129,7 +129,7 @@ public abstract class AnnotationUtils {
 	 * @see #isCandidateClass(Class, String)
 	 */
 	public static boolean isCandidateClass(Class<?> clazz, Collection<Class<? extends Annotation>> annotationTypes) {
-		for (Class<? extends > annotationType : annotationTypes) {
+		for (Class<? extends Annotation> annotationType : annotationTypes) {
 			if (isCandidateClass(clazz, annotationType)) {
 				return true;
 			}
@@ -138,6 +138,7 @@ public abstract class AnnotationUtils {
 	}
 
 	/**
+	 * 给定类是否有给定注解
 	 * Determine whether the given class is a candidate for carrying the specified annotation
 	 * (at type, method or field level).
 	 * @param clazz the class to introspect

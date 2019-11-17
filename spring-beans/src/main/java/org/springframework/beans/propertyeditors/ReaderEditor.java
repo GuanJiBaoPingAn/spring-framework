@@ -26,6 +26,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 用于将字符串转换为{@code java.io.Reader}，字符串会被解析成资源文件，
+ * 支持"file:", "http:" 等格式
  * One-way PropertyEditor which can convert from a text String to a
  * {@code java.io.Reader}, interpreting the given String as a Spring
  * resource location (e.g. a URL String).

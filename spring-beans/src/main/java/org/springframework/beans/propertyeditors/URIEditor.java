@@ -28,6 +28,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@code java.net.URI} 用于直接返回URI而不是字符串
  * Editor for {@code java.net.URI}, to directly populate a URI property
  * instead of using a String property as bridge.
  *

@@ -36,6 +36,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
+ * 管理注入元数据的内部类，不可在应用中直接使用
  * Internal class for managing injection metadata.
  * Not intended for direct use in applications.
  *

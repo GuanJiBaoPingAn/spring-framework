@@ -30,6 +30,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
+ * {@link BeanDefinition} 的访问者类，用于遍历属性值、构造函数参数值
+ * 被{@link PlaceholderConfigurerSupport} 用于分析解析BeanDefinition 中发现的占位符
  * Visitor class for traversing {@link BeanDefinition} objects, in particular
  * the property values and constructor argument values contained in them,
  * resolving bean metadata values.

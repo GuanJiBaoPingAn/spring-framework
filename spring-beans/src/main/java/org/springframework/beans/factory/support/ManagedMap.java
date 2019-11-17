@@ -24,6 +24,7 @@ import org.springframework.beans.Mergeable;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link LinkedHashMap} 的拓展类，实现了{@link Mergeable}
  * Tag collection class used to hold managed Map values, which may
  * include runtime bean references (to be resolved into bean objects).
  *

@@ -25,6 +25,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 用于将字符串转换为{@code java.io.InputStream}，字符串将会被解析成资源路径
  * One-way PropertyEditor which can convert from a text String to a
  * {@code java.io.InputStream}, interpreting the given String as a
  * Spring resource location (e.g. a URL String).

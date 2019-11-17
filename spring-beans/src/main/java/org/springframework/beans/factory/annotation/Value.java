@@ -23,6 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * 注解在域、方法、构造函数的参数上，表明参数有一个默认值
  * Annotation at the field or method/constructor parameter level
  * that indicates a default value expression for the affected argument.
  *

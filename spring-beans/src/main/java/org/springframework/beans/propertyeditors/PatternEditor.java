@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@code java.util.regex.Pattern} 的编辑器，用于直接输出模式属性
  * Editor for {@code java.util.regex.Pattern}, to directly populate a Pattern property.
  * Expects the same syntax as Pattern's {@code compile} method.
  *

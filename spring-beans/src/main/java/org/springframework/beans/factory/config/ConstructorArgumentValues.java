@@ -32,6 +32,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 构造函数参数值的封装类，一般作为BeanDefinition的一部分
+ * 支持下标方式和类型方式
  * Holder for constructor argument values, typically as part of a bean definition.
  *
  * <p>Supports values for a specific index in the constructor argument list
@@ -430,6 +432,7 @@ public class ConstructorArgumentValues {
 
 
 	/**
+	 * 构造函数参数值封装类，有一个条件参数，type，表明构造函数参数的真正类型
 	 * Holder for a constructor argument value, with an optional type
 	 * attribute indicating the target type of the actual constructor argument.
 	 */

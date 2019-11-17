@@ -23,6 +23,24 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * 将构造函数、域、setter进行自动装配，{@link javax.inject.Inject} 的替代注解
+ * 自动装配构造函数
+ * 	一个bean 类只有一个被该注解的构造函数能被声明为{@link #required} {@code true}，
+ * 	多个被注解为non-required的构造函数会被当做参赛者，容器中被依赖最多的构造会被选中。
+ * 	如果没有满足条件的，选择默认构造函数。如果只有一个构造函数，永远会选择那个。与函数是否public无关
+ *
+ * 自动装配域
+ * 	域在bean构造完成后进行注入，在所有配置方法之前执行
+ *
+ * 自动装配方法
+ * 	配置方法可以试任何名称和任何数量的参数。方法内的每一个参数都会被装配上容器内的bean。
+ * 	bean属性中的setter方法是配置方法的特殊情况。与是否为public无关
+ *
+ * 自动装配参数
+ * 	5.0 后支持方法内的参数，
+ *
+ * 自动装配数组、集合、map
+ * 	map 的键必须为string
  * Marks a constructor, field, setter method, or config method as to be autowired by
  * Spring's dependency injection facilities. This is an alternative to the JSR-330
  * {@link javax.inject.Inject} annotation, adding required-vs-optional semantics.

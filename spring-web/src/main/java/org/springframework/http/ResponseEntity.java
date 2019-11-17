@@ -31,6 +31,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * {@link HttpEntity} 对响应的实现，增加了{@link HttpStatus}
  * Extension of {@link HttpEntity} that adds a {@link HttpStatus} status code.
  * Used in {@code RestTemplate} as well {@code @Controller} methods.
  *

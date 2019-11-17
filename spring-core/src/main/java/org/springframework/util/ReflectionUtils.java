@@ -308,6 +308,7 @@ public abstract class ReflectionUtils {
 	}
 
 	/**
+	 * 对给定类匹配的所有方法执行给定的回调操作
 	 * Perform the given callback operation on all matching methods of the given
 	 * class, as locally declared or equivalent thereof (such as default methods
 	 * on Java 8 based interfaces that the given class implements).

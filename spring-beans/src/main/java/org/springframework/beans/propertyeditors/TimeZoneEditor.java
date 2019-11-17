@@ -22,6 +22,7 @@ import java.util.TimeZone;
 import org.springframework.util.StringUtils;
 
 /**
+ * 用于{@code java.util.TimeZone}对象和字符串之间的转换
  * Editor for {@code java.util.TimeZone}, translating timezone IDs into
  * {@code TimeZone} objects. Exposes the {@code TimeZone} ID as a text
  * representation.

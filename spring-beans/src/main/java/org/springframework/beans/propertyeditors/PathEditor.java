@@ -30,6 +30,8 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.Assert;
 
 /**
+ * {@link java.beans.PropertyEditorSupport} 的拓展类，支持{@code java.nio.file.Path}
+ * 的编辑
  * Editor for {@code java.nio.file.Path}, to directly populate a Path
  * property instead of using a String property as bridge.
  *

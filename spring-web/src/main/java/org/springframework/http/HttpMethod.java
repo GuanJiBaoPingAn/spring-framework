@@ -22,6 +22,7 @@ import java.util.Map;
 import org.springframework.lang.Nullable;
 
 /**
+ * HTTP 请求方式的枚举
  * Java 5 enumeration of HTTP request methods. Intended for use
  * with {@link org.springframework.http.client.ClientHttpRequest}
  * and {@link org.springframework.web.client.RestTemplate}.

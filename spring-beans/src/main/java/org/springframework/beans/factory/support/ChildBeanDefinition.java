@@ -22,6 +22,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 用于从父代继承属性的BeanDefinition
+ *
+ * 子BeanDefinition 会继承构造函数参数值、属性值、方法重写
  * Bean definition for beans which inherit settings from their parent.
  * Child bean definitions have a fixed dependency on a parent bean definition.
  *

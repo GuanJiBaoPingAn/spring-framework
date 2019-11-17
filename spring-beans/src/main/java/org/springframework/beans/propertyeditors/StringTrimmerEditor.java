@@ -22,6 +22,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
+ * 用于切割字符串
  * Property editor that trims Strings.
  *
  * <p>Optionally allows transforming an empty string into a {@code null} value.

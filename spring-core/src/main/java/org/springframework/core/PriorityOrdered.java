@@ -17,6 +17,10 @@
 package org.springframework.core;
 
 /**
+ * {@link Ordered} 的拓展类，支持优先级，{@code PriorityOrdered} 对象总会在
+ * {@link Ordered} 对象之前
+ *
+ * 该类为框架本身用于识别特别重要的对象
  * Extension of the {@link Ordered} interface, expressing a <em>priority</em>
  * ordering: {@code PriorityOrdered} objects are always applied before
  * <em>plain</em> {@link Ordered} objects regardless of their order values.

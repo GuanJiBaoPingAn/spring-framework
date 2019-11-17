@@ -20,6 +20,7 @@ import java.beans.PropertyEditorSupport;
 import java.time.ZoneId;
 
 /**
+ * 用于{@code java.time.ZoneId}和字符串直接的转换
  * Editor for {@code java.time.ZoneId}, translating zone ID Strings into {@code ZoneId}
  * objects. Exposes the {@code TimeZone} ID as a text representation.
  *

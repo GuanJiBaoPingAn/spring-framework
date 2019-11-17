@@ -24,6 +24,7 @@ import org.springframework.beans.Mergeable;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link java.util.ArrayList} 的拓展类，实现了{@link Mergeable}
  * Tag collection class used to hold managed List elements, which may
  * include runtime bean references (to be resolved into bean objects).
  *

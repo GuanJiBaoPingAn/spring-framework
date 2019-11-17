@@ -21,6 +21,7 @@ import java.beans.PropertyEditorSupport;
 import org.springframework.lang.Nullable;
 
 /**
+ * 字符数组编辑器。将字符串转换为字符数组
  * Editor for char arrays. Strings will simply be converted to
  * their corresponding char representations.
  *

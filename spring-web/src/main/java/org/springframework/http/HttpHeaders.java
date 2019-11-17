@@ -53,6 +53,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
 /**
+ * 定义了request 和response 头
  * A data structure representing HTTP request or response headers, mapping String header names
  * to a list of String values, also offering accessors for common application-level data types.
  *

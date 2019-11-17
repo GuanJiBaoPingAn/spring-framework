@@ -20,6 +20,10 @@ import org.springframework.beans.BeansException;
 import org.springframework.lang.Nullable;
 
 /**
+ * 工厂钩子，用于对新建bean实例的自定义修改，如检查marker接口，给bean包装代理
+ * 典型的，检查marker接口实现{@link #postProcessBeforeInitialization}，
+ * 包装代理实现{@link #postProcessAfterInitialization}
+ *
  * Factory hook that allows for custom modification of new bean instances &mdash;
  * for example, checking for marker interfaces or wrapping beans with proxies.
  *
