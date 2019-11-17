@@ -30,6 +30,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureTask;
 
 /**
+ * {@link TaskExecutor} 的实现，用于异步执行任务，支持并发量配置，默认不限制
  * {@link TaskExecutor} implementation that fires up a new Thread for each task,
  * executing it asynchronously.
  *
@@ -52,12 +53,14 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator
 		implements AsyncListenableTaskExecutor, Serializable {
 
 	/**
+	 * 允许任何数量的并发调用
 	 * Permit any number of concurrent invocations: that is, don't throttle concurrency.
 	 * @see ConcurrencyThrottleSupport#UNBOUNDED_CONCURRENCY
 	 */
 	public static final int UNBOUNDED_CONCURRENCY = ConcurrencyThrottleSupport.UNBOUNDED_CONCURRENCY;
 
 	/**
+	 * 不允许并发调用
 	 * Switch concurrency 'off': that is, don't allow any concurrent invocations.
 	 * @see ConcurrencyThrottleSupport#NO_CONCURRENCY
 	 */
@@ -239,6 +242,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator
 
 
 	/**
+	 * ConcurrencyThrottleSupport 的适配器子类，用于暴露 {@code beforeAccess()} 和 {@code afterAccess()}
 	 * Subclass of the general ConcurrencyThrottleSupport class,
 	 * making {@code beforeAccess()} and {@code afterAccess()}
 	 * visible to the surrounding class.
@@ -258,6 +262,7 @@ public class SimpleAsyncTaskExecutor extends CustomizableThreadCreator
 
 
 	/**
+	 * 用于在正常任务执行完成后执行{@code afterAccess()}
 	 * This Runnable calls {@code afterAccess()} after the
 	 * target Runnable has finished its execution.
 	 */

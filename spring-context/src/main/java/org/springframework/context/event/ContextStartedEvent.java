@@ -19,6 +19,7 @@ package org.springframework.context.event;
 import org.springframework.context.ApplicationContext;
 
 /**
+ * 应用上下文启动时触发上下文启动事件
  * Event raised when an {@code ApplicationContext} gets started.
  *
  * @author Mark Fisher

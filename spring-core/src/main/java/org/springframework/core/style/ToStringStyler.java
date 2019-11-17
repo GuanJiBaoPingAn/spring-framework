@@ -19,6 +19,7 @@ package org.springframework.core.style;
 import org.springframework.lang.Nullable;
 
 /**
+ * 策略接口用于{@code toString()}方法，
  * A strategy interface for pretty-printing {@code toString()} methods.
  * Encapsulates the print algorithms; some other object such as a builder
  * should provide the workflow.

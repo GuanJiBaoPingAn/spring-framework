@@ -26,6 +26,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * 将字符串路径 {@code file:C:/myfile.txt} 或 {@code classpath:myfile.txt} 转换为
+ * {@code Resource} 属性
  * {@link java.beans.PropertyEditor Editor} for {@link Resource}
  * descriptors, to automatically convert {@code String} locations
  * e.g. {@code file:C:/myfile.txt} or {@code classpath:myfile.txt} to
@@ -54,6 +56,9 @@ public class ResourceEditor extends PropertyEditorSupport {
 	@Nullable
 	private PropertyResolver propertyResolver;
 
+	/**
+	 * 是否忽略不能解析的占位符，默认忽略
+	 */
 	private final boolean ignoreUnresolvablePlaceholders;
 
 

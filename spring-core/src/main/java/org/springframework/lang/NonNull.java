@@ -26,6 +26,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.meta.TypeQualifierNickname;
 
 /**
+ * Spring 的通用注解，用于表明被注解元素不能为{@code null}
  * A common Spring annotation to declare that annotated elements cannot be {@code null}.
  *
  * <p>Leverages JSR-305 meta-annotations to indicate nullability in Java to common

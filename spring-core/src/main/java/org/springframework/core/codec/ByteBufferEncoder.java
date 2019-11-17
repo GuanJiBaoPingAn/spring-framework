@@ -30,6 +30,7 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
+ * {@link ByteBuffer ByteBuffers} 的编码器
  * Encoder for {@link ByteBuffer ByteBuffers}.
  *
  * @author Sebastien Deleuze

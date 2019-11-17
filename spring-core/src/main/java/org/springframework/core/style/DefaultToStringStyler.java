@@ -22,6 +22,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * {@link ToStringStyler} 的默认实现
  * Spring's default {@code toString()} styler.
  *
  * <p>This class is used by {@link ToStringCreator} to style {@code toString()}

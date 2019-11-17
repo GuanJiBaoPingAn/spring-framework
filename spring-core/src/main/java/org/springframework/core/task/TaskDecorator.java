@@ -17,6 +17,7 @@
 package org.springframework.core.task;
 
 /**
+ * 回调接口，用于应用到被执行{@link Runnable} 的装饰器上
  * A callback interface for a decorator to be applied to any {@link Runnable}
  * about to be executed.
  *

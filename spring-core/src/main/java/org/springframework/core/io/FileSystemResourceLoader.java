@@ -17,6 +17,11 @@
 package org.springframework.core.io;
 
 /**
+ * {@link ResourceLoader} 的文件系统实现，会将普通路径当做文件系统路径解析
+ * {@link DefaultResourceLoader} 会将普通路径当做类路径解析
+ * 路径将被解析为当前虚拟机工作目录的相对路径，即使是以"/"开始，
+ * 以"file:"作为前缀来强制使用绝对路径
+ *
  * {@link ResourceLoader} implementation that resolves plain paths as
  * file system resources rather than as class path resources
  * (the latter is {@link DefaultResourceLoader}'s default strategy).

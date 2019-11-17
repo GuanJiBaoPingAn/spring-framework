@@ -22,6 +22,8 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.util.Assert;
 
 /**
+ * 适配器类，接收{@link org.springframework.core.task.TaskExecutor}，暴露
+ * {@link java.util.concurrent.Executor} 接口
  * Adapter that exposes the {@link java.util.concurrent.Executor} interface
  * for any Spring {@link org.springframework.core.task.TaskExecutor}.
  *

@@ -19,6 +19,7 @@ package org.springframework.context;
 import java.util.EventObject;
 
 /**
+ * 所有应用事件需要拓展的类
  * Class to be extended by all application events. Abstract as it
  * doesn't make sense for generic events to be published directly.
  *

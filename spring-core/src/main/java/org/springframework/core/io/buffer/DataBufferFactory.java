@@ -20,6 +20,7 @@ import java.nio.ByteBuffer;
 import java.util.List;
 
 /**
+ * {@link DataBuffer DataBuffers} 的工厂，允许分配和包装
  * A factory for {@link DataBuffer DataBuffers}, allowing for allocation and
  * wrapping of data buffers.
  *
@@ -30,6 +31,7 @@ import java.util.List;
 public interface DataBufferFactory {
 
 	/**
+	 * 分配默认大小的{@link DataBuffer}
 	 * Allocate a data buffer of a default initial capacity. Depending on the
 	 * underlying implementation and its configuration, this will be heap-based
 	 * or direct buffer.
@@ -38,6 +40,7 @@ public interface DataBufferFactory {
 	DataBuffer allocateBuffer();
 
 	/**
+	 * 分配给定大小的{@link DataBuffer}
 	 * Allocate a data buffer of the given initial capacity. Depending on the
 	 * underlying implementation and its configuration, this will be heap-based
 	 * or direct buffer.
@@ -47,6 +50,7 @@ public interface DataBufferFactory {
 	DataBuffer allocateBuffer(int initialCapacity);
 
 	/**
+	 * 将{@link java.nio.ByteBuffer} 包装成{@code DataBuffer}
 	 * Wrap the given {@link ByteBuffer} in a {@code DataBuffer}. Unlike
 	 * {@linkplain #allocateBuffer(int) allocating}, wrapping does not use new memory.
 	 * @param byteBuffer the NIO byte buffer to wrap
@@ -55,6 +59,7 @@ public interface DataBufferFactory {
 	DataBuffer wrap(ByteBuffer byteBuffer);
 
 	/**
+	 * 将{@code byte} 包装成{@code DataBuffer}
 	 * Wrap the given {@code byte} array in a {@code DataBuffer}. Unlike
  	 * {@linkplain #allocateBuffer(int) allocating}, wrapping does not use new memory.
 	 * @param bytes the byte array to wrap

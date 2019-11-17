@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
+ * 策略接口，用于将对象转换为OutputStream
  * A strategy interface for streaming an object to an OutputStream.
  *
  * @author Gary Russell

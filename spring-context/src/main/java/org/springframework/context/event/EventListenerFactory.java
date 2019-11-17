@@ -21,6 +21,8 @@ import java.lang.reflect.Method;
 import org.springframework.context.ApplicationListener;
 
 /**
+ * 用于创建{@link ApplicationListener} 的策略接口，用于对方法上注解了
+ * {@link EventListener} 的
  * Strategy interface for creating {@link ApplicationListener} for methods
  * annotated with {@link EventListener}.
  *

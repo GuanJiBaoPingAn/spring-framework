@@ -29,6 +29,7 @@ import java.util.function.IntPredicate;
 import org.springframework.util.Assert;
 
 /**
+ * 对字节缓存的抽象，功能同{@link io.netty.buffer.ByteBuf}
  * Basic abstraction over byte buffers.
  *
  * <p>{@code DataBuffer}s has a separate {@linkplain #readPosition() read} and
@@ -59,6 +60,7 @@ import org.springframework.util.Assert;
 public interface DataBuffer {
 
 	/**
+	 * 返回创建该缓存的{@link DataBufferFactory} 工厂
 	 * Return the {@link DataBufferFactory} that created this buffer.
 	 * @return the creating buffer factory
 	 */

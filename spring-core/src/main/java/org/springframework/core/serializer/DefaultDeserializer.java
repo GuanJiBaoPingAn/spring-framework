@@ -25,6 +25,7 @@ import org.springframework.core.NestedIOException;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link Deserializer} 的默认实现
  * A default {@link Deserializer} implementation that reads an input stream
  * using Java serialization.
  *

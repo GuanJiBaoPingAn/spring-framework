@@ -32,6 +32,8 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureTask;
 
 /**
+ * 适配器类接收@code java.util.concurrent.Executor}，执行spring定义的接口
+ * {@link org.springframework.core.task.TaskExecutor}
  * Adapter that takes a JDK {@code java.util.concurrent.Executor} and
  * exposes a Spring {@link org.springframework.core.task.TaskExecutor} for it.
  * Also detects an extended {@code java.util.concurrent.ExecutorService}, adapting

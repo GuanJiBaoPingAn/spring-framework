@@ -30,6 +30,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ResourceUtils;
 
 /**
+ * {@link UrlResource} 的子类
  * Subclass of {@link UrlResource} which assumes file resolution, to the degree
  * of implementing the {@link WritableResource} interface for it. This resource
  * variant also caches resolved {@link File} handles from {@link #getFile()}.

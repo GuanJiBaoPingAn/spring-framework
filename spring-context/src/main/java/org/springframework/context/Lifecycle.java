@@ -17,6 +17,8 @@
 package org.springframework.context;
 
 /**
+ * 定义了start/stop 生命周期控制，一般用于控制异步流程，不提供auto-startup
+ * 可以使用{@link SmartLifecycle}
  * A common interface defining methods for start/stop lifecycle control.
  * The typical use case for this is to control asynchronous processing.
  * <b>NOTE: This interface does not imply specific auto-startup semantics.

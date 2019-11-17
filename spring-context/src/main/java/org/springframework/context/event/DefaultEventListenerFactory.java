@@ -22,6 +22,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.core.Ordered;
 
 /**
+ * {@link EventListenerFactory} 的默认实现，支持{@link EventListener} 注解
  * Default {@link EventListenerFactory} implementation that supports the
  * regular {@link EventListener} annotation.
  *

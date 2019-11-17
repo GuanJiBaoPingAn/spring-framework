@@ -28,6 +28,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ConcurrentReferenceHashMap;
 
 /**
+ * {@link GenericApplicationListener} 的适配器类，用于确定支持的事件类型，通过内省目标监听器
  * {@link GenericApplicationListener} adapter that determines supported event types
  * through introspecting the generically declared type of the target listener.
  *
