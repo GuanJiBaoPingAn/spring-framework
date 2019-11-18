@@ -19,6 +19,7 @@ package org.springframework.context;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link MessageSource} 接口的拓展接口，用于层级的解析消息
  * Sub-interface of MessageSource to be implemented by objects that
  * can resolve messages hierarchically.
  *

@@ -24,6 +24,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link AbstractRefreshableApplicationContext} 的子类，增加了处理配置路径的功能。
+ * 作为如{@link ClassPathXmlApplicationContext} 基于XML的基类
  * {@link AbstractRefreshableApplicationContext} subclass that adds common handling
  * of specified config locations. Serves as base class for XML-based application
  * context implementations such as {@link ClassPathXmlApplicationContext} and

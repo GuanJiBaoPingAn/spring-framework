@@ -40,6 +40,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 通用应用上下文实现，持有一个内部{@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
+ *
+ *
  * Generic ApplicationContext implementation that holds a single internal
  * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
  * instance and does not assume a specific bean definition format. Implements

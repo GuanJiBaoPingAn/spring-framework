@@ -27,6 +27,7 @@ import org.springframework.core.io.ProtocolResolver;
 import org.springframework.lang.Nullable;
 
 /**
+ * 在{@link org.springframework.context.ApplicationContext} 的基础上提供可配置功能
  * SPI interface to be implemented by most if not all application contexts.
  * Provides facilities to configure an application context in addition
  * to the application context client methods in the
@@ -53,6 +54,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	String CONFIG_LOCATION_DELIMITERS = ",; \t\n";
 
 	/**
+	 * 没有指定转换服务将使用默认的转换服务
 	 * Name of the ConversionService bean in the factory.
 	 * If none is supplied, default conversion rules apply.
 	 * @since 3.0

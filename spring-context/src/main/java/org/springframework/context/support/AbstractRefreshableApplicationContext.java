@@ -26,7 +26,13 @@ import org.springframework.context.ApplicationContextException;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link org.springframework.context.ApplicationContext} 的抽象实现，支持多次调用{@link #refresh()}
+ * 每次都创建一个新的内部Bean工厂。
+ * 子类唯一要实现的是{@link #loadBeanDefinitions}，在每次刷新时被调用
  * Base class for {@link org.springframework.context.ApplicationContext}
+ * 值得一提的相似类{@link org.springframework.web.context.support.AbstractRefreshableWebApplicationContext}
+ * 提供了一样的策略，但增加了web 环境的功能
+ *
  * implementations which are supposed to support multiple calls to {@link #refresh()},
  * creating a new internal bean factory instance every time.
  * Typically (but not necessarily), such a context will be driven by
@@ -116,12 +122,14 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 
 
 	/**
+	 * 真正刷新上下文中的Bean 工厂，关闭之前的Bean 工厂并初始化新的工厂
 	 * This implementation performs an actual refresh of this context's underlying
 	 * bean factory, shutting down the previous bean factory (if any) and
 	 * initializing a fresh bean factory for the next phase of the context's lifecycle.
 	 */
 	@Override
 	protected final void refreshBeanFactory() throws BeansException {
+		// 如果之前有工厂，则销毁Bean 关闭工厂
 		if (hasBeanFactory()) {
 			destroyBeans();
 			closeBeanFactory();
@@ -190,6 +198,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
+	 * 为该上下文创建一个内部Bean 工厂，每次都调用{@link #refresh()}
 	 * Create an internal bean factory for this context.
 	 * Called for each {@link #refresh()} attempt.
 	 * <p>The default implementation creates a
@@ -208,6 +217,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
+	 * 自定义该上下文中的内部Bean 工厂，默认实现为设置allowBeanDefinitionOverriding 和 allowCircularReferences
 	 * Customize the internal bean factory used by this context.
 	 * Called for each {@link #refresh()} attempt.
 	 * <p>The default implementation applies this context's
@@ -231,6 +241,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
+	 * 加载BeanDefinition
 	 * Load bean definitions into the given bean factory, typically through
 	 * delegating to one or more bean definition readers.
 	 * @param beanFactory the bean factory to load bean definitions into

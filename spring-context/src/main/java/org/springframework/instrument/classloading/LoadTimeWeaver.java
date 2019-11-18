@@ -19,6 +19,7 @@ package org.springframework.instrument.classloading;
 import java.lang.instrument.ClassFileTransformer;
 
 /**
+ * 用于给{@link ClassLoader} 增加{@link ClassFileTransformer ClassFileTransformers}
  * Defines the contract for adding one or more
  * {@link ClassFileTransformer ClassFileTransformers} to a {@link ClassLoader}.
  *

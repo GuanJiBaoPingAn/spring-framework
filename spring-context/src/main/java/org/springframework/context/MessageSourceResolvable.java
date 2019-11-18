@@ -19,6 +19,7 @@ package org.springframework.context;
 import org.springframework.lang.Nullable;
 
 /**
+ * 用于解析{@link MessageSource}
  * Interface for objects that are suitable for message resolution in a
  * {@link MessageSource}.
  *
@@ -33,6 +34,7 @@ import org.springframework.lang.Nullable;
 public interface MessageSourceResolvable {
 
 	/**
+	 * 返回用于解析该消息的code
 	 * Return the codes to be used to resolve this message, in the order that
 	 * they should get tried. The last code will therefore be the default one.
 	 * @return a String array of codes which are associated with this message
@@ -41,6 +43,7 @@ public interface MessageSourceResolvable {
 	String[] getCodes();
 
 	/**
+	 * 返回用于解析该消息的参数数组
 	 * Return the array of arguments to be used to resolve this message.
 	 * <p>The default implementation simply returns {@code null}.
 	 * @return an array of objects to be used as parameters to replace
@@ -53,6 +56,7 @@ public interface MessageSourceResolvable {
 	}
 
 	/**
+	 * 返回用于解析该消息的默认消息
 	 * Return the default message to be used to resolve this message.
 	 * <p>The default implementation simply returns {@code null}.
 	 * Note that the default message may be identical to the primary

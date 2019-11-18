@@ -44,6 +44,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * {@link LifecycleProcessor} 的默认实现
  * Default implementation of the {@link LifecycleProcessor} strategy.
  *
  * @author Mark Fisher
@@ -90,6 +91,8 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 	// Lifecycle implementation
 
 	/**
+	 * 启动所有已注册的bean，实现了{@link SmartLifecycle} 接口的将根据阶段从小到大启动，确保
+	 * 启动Bean 依赖的Bean 被先启动（与阶段无关）
 	 * Start all registered beans that implement {@link Lifecycle} and are <i>not</i>
 	 * already running. Any bean that implements {@link SmartLifecycle} will be
 	 * started within its 'phase', and all phases will be ordered from lowest to
@@ -104,6 +107,8 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 	}
 
 	/**
+	 * 停止所有已注册的Bean，实现了{@link SmartLifecycle} 接口的将根据阶段从大到小停止，确保
+	 * 启动Bean 依赖的Bean 被先停止（与阶段无关）
 	 * Stop all registered beans that implement {@link Lifecycle} and <i>are</i>
 	 * currently running. Any bean that implements {@link SmartLifecycle} will be
 	 * stopped within its 'phase', and all phases will be ordered from highest to
@@ -137,6 +142,10 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 
 	// Internal helpers
 
+	/**
+	 * 将所有有生命周期的Bean根据阶段（phase）进行分组，从小到大启动（未实现Phase 接口的为0）
+	 * @param autoStartupOnly
+	 */
 	private void startBeans(boolean autoStartupOnly) {
 		Map<String, Lifecycle> lifecycleBeans = getLifecycleBeans();
 		Map<Integer, LifecycleGroup> phases = new HashMap<>();
@@ -161,6 +170,7 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 	}
 
 	/**
+	 * 启动给定beanName 的Bean，确保该Bean 依赖的Bean 被先启动
 	 * Start the specified bean as part of the given set of Lifecycle beans,
 	 * making sure that any beans that it depends on are started first.
 	 * @param lifecycleBeans a Map with bean name as key and Lifecycle instance as value
@@ -191,6 +201,9 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 		}
 	}
 
+	/**
+	 * 将所有有生命周期的Bean根据阶段（phase）进行分组，从大到小关闭（未实现Phase 接口的为0）
+	 */
 	private void stopBeans() {
 		Map<String, Lifecycle> lifecycleBeans = getLifecycleBeans();
 		Map<Integer, LifecycleGroup> phases = new HashMap<>();
@@ -213,6 +226,7 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 	}
 
 	/**
+	 * 关闭某个特定的Bean，确保依赖该Bean 的所有Bean 先关闭
 	 * Stop the specified bean as part of the given set of Lifecycle beans,
 	 * making sure that any beans that depends on it are stopped first.
 	 * @param lifecycleBeans a Map with bean name as key and Lifecycle instance as value
@@ -271,6 +285,7 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 	// overridable hooks
 
 	/**
+	 * 获取所有有生命周期的bean：所有单例都创建完成，即使是懒初始化的
 	 * Retrieve all applicable Lifecycle beans: all singletons that have already been created,
 	 * as well as all SmartLifecycle beans (even if they are marked as lazy-init).
 	 * @return the Map of applicable beans, with bean names as keys and bean instances as values
@@ -295,12 +310,22 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 		return beans;
 	}
 
+	/**
+	 * 给定Bean工厂中有给定beanName 的Bean类，并且可赋值给给定targetType
+	 * （给定beanName对应的Bean有实现给定类型）
+	 * @param targetType
+	 * @param beanName
+	 * @param beanFactory
+	 * @return
+	 */
 	private boolean matchesBeanType(Class<?> targetType, String beanName, BeanFactory beanFactory) {
 		Class<?> beanType = beanFactory.getType(beanName);
 		return (beanType != null && targetType.isAssignableFrom(beanType));
 	}
 
 	/**
+	 * 返回给定Bean 的生命周期阶段
+	 * 对应实现了{@link Phased} 接口的，调用{@link Phased#getPhase()}，没有的返回0
 	 * Determine the lifecycle phase of the given bean.
 	 * <p>The default implementation checks for the {@link Phased} interface, using
 	 * a default of 0 otherwise. Can be overridden to apply other/further policies.
@@ -315,6 +340,7 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 
 
 	/**
+	 * 帮助类，用于维护一组生命周期Bean，在开始和结束时一起执行
 	 * Helper class for maintaining a group of Lifecycle beans that should be started
 	 * and stopped together based on their 'phase' value (or the default value of 0).
 	 */
@@ -397,6 +423,7 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 
 
 	/**
+	 * 适配{@link java.lang.Comparable} 接口
 	 * Adapts the Comparable interface onto the lifecycle phase model.
 	 */
 	private class LifecycleGroupMember implements Comparable<LifecycleGroupMember> {

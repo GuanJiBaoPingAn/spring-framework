@@ -30,6 +30,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * {@link HierarchicalMessageSource} 的抽象实现
  * Abstract implementation of the {@link HierarchicalMessageSource} interface,
  * implementing common handling of message variants, making it easy
  * to implement a specific strategy for a concrete MessageSource.
