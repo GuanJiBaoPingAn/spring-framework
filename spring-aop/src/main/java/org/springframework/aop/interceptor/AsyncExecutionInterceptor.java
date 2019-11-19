@@ -91,6 +91,7 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 
 
 	/**
+	 * 拦截给定的方法调用，将真实要执行的方法提交给executor
 	 * Intercept the given method invocation, submit the actual calling of the method to
 	 * the correct task executor and return immediately to the caller.
 	 * @param invocation the method to intercept and make asynchronous

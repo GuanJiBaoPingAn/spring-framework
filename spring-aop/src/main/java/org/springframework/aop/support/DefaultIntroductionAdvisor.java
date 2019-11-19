@@ -92,6 +92,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 
 	/**
+	 * 将给定接口添加到需要引入接口的列表
 	 * Add the specified interface to the list of interfaces to introduce.
 	 * @param ifc the interface to introduce
 	 */

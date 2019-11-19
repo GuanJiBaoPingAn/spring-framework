@@ -19,6 +19,7 @@ package org.springframework.aop;
 import org.aopalliance.aop.Advice;
 
 /**
+ * 标记接口，表明在advice 前
  * Common marker interface for before advice, such as {@link MethodBeforeAdvice}.
  *
  * <p>Spring supports only method before advice. Although this is unlikely to change,

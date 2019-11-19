@@ -17,6 +17,7 @@
 package org.springframework.aop;
 
 /**
+ * 需要引入新方法或属性时实现
  * Interface supplying the information necessary to describe an introduction.
  *
  * <p>{@link IntroductionAdvisor IntroductionAdvisors} must implement this
@@ -31,6 +32,7 @@ package org.springframework.aop;
 public interface IntroductionInfo {
 
 	/**
+	 * 返回Advisor 或Advice 提供的额外接口
 	 * Return the additional interfaces introduced by this Advisor or Advice.
 	 * @return the introduced interfaces
 	 */

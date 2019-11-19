@@ -21,6 +21,7 @@ import java.util.LinkedList;
 import org.springframework.lang.Nullable;
 
 /**
+ * 基于{@link LinkedList} 结构，用于在解析时进行追踪
  * Simple {@link LinkedList}-based structure for tracking the logical position during
  * a parsing process. {@link Entry entries} are added to the LinkedList at
  * each point during the parse phase in a reader-specific manner.
@@ -115,6 +116,7 @@ public final class ParseState {
 
 
 	/**
+	 * 标记接口，用于向{@link ParseState} 添加元素
 	 * Marker interface for entries into the {@link ParseState}.
 	 */
 	public interface Entry {

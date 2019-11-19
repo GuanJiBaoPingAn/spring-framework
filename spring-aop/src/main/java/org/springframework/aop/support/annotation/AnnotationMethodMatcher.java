@@ -27,6 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 用于查找方法上的注解
  * Simple MethodMatcher that looks for a specific Java 5 annotation
  * being present on a method (checking both the method on the invoked
  * interface, if any, and the corresponding method on the target class).
@@ -82,6 +83,12 @@ public class AnnotationMethodMatcher extends StaticMethodMatcher {
 		return (specificMethod != method && matchesMethod(specificMethod));
 	}
 
+	/**
+	 * 方法是否有相关注解{@code checkInherited 为true} 向上查找继承的注解
+	 * {@code checkInherited 为false} 只查找当前方法
+	 * @param method
+	 * @return
+	 */
 	private boolean matchesMethod(Method method) {
 		return (this.checkInherited ? AnnotatedElementUtils.hasAnnotation(method, this.annotationType) :
 				method.isAnnotationPresent(this.annotationType));

@@ -19,6 +19,7 @@ package org.springframework.aop;
 import org.aopalliance.aop.Advice;
 
 /**
+ * 通知器，持有Advice 的基础接口
  * Base interface holding AOP <b>advice</b> (action to take at a joinpoint)
  * and a filter determining the applicability of the advice (such as
  * a pointcut). <i>This interface is not for use by Spring users, but to

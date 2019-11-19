@@ -34,6 +34,7 @@ import org.springframework.util.StringUtils;
 public abstract class AutoProxyUtils {
 
 	/**
+	 * BeanDefinition 属性，表明给定类是基于目标类代理
 	 * Bean definition attribute that may indicate whether a given bean is supposed
 	 * to be proxied with its target class (in case of it getting proxied in the first
 	 * place). The value is {@code Boolean.TRUE} or {@code Boolean.FALSE}.
@@ -46,6 +47,7 @@ public abstract class AutoProxyUtils {
 			Conventions.getQualifiedAttributeName(AutoProxyUtils.class, "preserveTargetClass");
 
 	/**
+	 * BeanDefinition 属性，表明自动代理Bean 的原目标类。如，用于基于接口代理的目标类的注解内省
 	 * Bean definition attribute that indicates the original target class of an
 	 * auto-proxied bean, e.g. to be used for the introspection of annotations
 	 * on the target class behind an interface-based proxy.
@@ -57,6 +59,7 @@ public abstract class AutoProxyUtils {
 
 
 	/**
+	 * 确定给定Bean 通过目标类代理而不是接口代理
 	 * Determine whether the given bean should be proxied with its target
 	 * class rather than its interfaces. Checks the
 	 * {@link #PRESERVE_TARGET_CLASS_ATTRIBUTE "preserveTargetClass" attribute}
@@ -102,6 +105,7 @@ public abstract class AutoProxyUtils {
 	}
 
 	/**
+	 * 暴露特定Bean 的目标类
 	 * Expose the given target class for the specified bean, if possible.
 	 * @param beanFactory the containing ConfigurableListableBeanFactory
 	 * @param beanName the name of the bean

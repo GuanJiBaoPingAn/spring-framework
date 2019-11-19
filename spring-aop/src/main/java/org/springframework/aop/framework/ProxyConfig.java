@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.springframework.util.Assert;
 
 /**
+ * 创建代理配置的超类，用于确保所有代理创建者有一样的属性
  * Convenience superclass for configuration used in creating proxies,
  * to ensure that all proxy creators have consistent properties.
  *
@@ -33,19 +34,25 @@ public class ProxyConfig implements Serializable {
 	/** use serialVersionUID from Spring 1.2 for interoperability. */
 	private static final long serialVersionUID = -8409359707199703185L;
 
-
+	// 是否直接代理目标类
 	private boolean proxyTargetClass = false;
 
 	private boolean optimize = false;
 
+	// 能否被转型为{@link Advised}
 	boolean opaque = false;
 
+	// 是否暴露代理到ThreadLocal 被AopContext 获取
 	boolean exposeProxy = false;
 
+	// 是否冻结配置
 	private boolean frozen = false;
 
 
 	/**
+	 * 是否直接代理目标类，而不是通过代理特定接口，默认为false
+	 * 设置为是，来强制代理类，如果目标类为接口，将会使用JDK 代理。如果目标类为类，CGLIB 代理
+	 * 会被使用
 	 * Set whether to proxy the target class directly, instead of just proxying
 	 * specific interfaces. Default is "false".
 	 * <p>Set this to "true" to force proxying for the TargetSource's exposed
@@ -91,6 +98,7 @@ public class ProxyConfig implements Serializable {
 	}
 
 	/**
+	 * 由配置生成的代理是否可以被转型成{@link Advised}，默认为false，代表可以进行转型
 	 * Set whether proxies created by this configuration should be prevented
 	 * from being cast to {@link Advised} to query proxy status.
 	 * <p>Default is "false", meaning that any AOP proxy can be cast to
@@ -109,6 +117,8 @@ public class ProxyConfig implements Serializable {
 	}
 
 	/**
+	 * 代理是否暴露到ThreadLocal，通过AopContext 获取。当一个被切对象需要调用另一个
+	 * 被切对象时游泳
 	 * Set whether the proxy should be exposed by the AOP framework as a
 	 * ThreadLocal for retrieval via the AopContext class. This is useful
 	 * if an advised object needs to call another advised method on itself.
@@ -130,6 +140,7 @@ public class ProxyConfig implements Serializable {
 	}
 
 	/**
+	 * 配置是否冻结
 	 * Set whether this config should be frozen.
 	 * <p>When a config is frozen, no advice changes can be made. This is
 	 * useful for optimization, and useful when we don't want callers to

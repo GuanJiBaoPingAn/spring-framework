@@ -22,6 +22,9 @@ import java.util.List;
 import org.springframework.util.Assert;
 
 /**
+ * 代理工厂的基类，提供了AopProxyFactory 的配置功能
+ * 1、advice 激活修改事件的回调
+ *
  * Base class for proxy factories.
  * Provides convenient access to a configurable AopProxyFactory.
  *

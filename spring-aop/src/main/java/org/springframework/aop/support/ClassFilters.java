@@ -87,6 +87,7 @@ public abstract class ClassFilters {
 
 
 	/**
+	 * ClassFilter 的实现，用于和给定ClassFilters 进行合并
 	 * ClassFilter implementation for a union of the given ClassFilters.
 	 */
 	@SuppressWarnings("serial")
@@ -128,6 +129,7 @@ public abstract class ClassFilters {
 
 
 	/**
+	 * ClassFilter 的实现，用于和给定ClassFilters 求交集
 	 * ClassFilter implementation for an intersection of the given ClassFilters.
 	 */
 	@SuppressWarnings("serial")

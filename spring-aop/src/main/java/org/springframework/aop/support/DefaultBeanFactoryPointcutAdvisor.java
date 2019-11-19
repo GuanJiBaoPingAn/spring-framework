@@ -20,6 +20,7 @@ import org.springframework.aop.Pointcut;
 import org.springframework.lang.Nullable;
 
 /**
+ * 基于BeanFactory 的切点通知器类，允许配置通知Bean 到BeanFactory
  * Concrete BeanFactory-based PointcutAdvisor that allows for any Advice
  * to be configured as reference to an Advice bean in the BeanFactory,
  * as well as the Pointcut to be configured through a bean property.

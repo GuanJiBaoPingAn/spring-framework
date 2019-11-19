@@ -28,6 +28,7 @@ import org.springframework.util.PatternMatchUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * 基于BeanName 的自动代理创建者
  * Auto proxy creator that identifies beans to proxy via a list of names.
  * Checks for direct, "xxx*", and "*xxx" matches.
  *
@@ -51,6 +52,7 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 
 
 	/**
+	 * 设置需要自动用代理包装的BeanName
 	 * Set the names of the beans that should automatically get wrapped with proxies.
 	 * A name can specify a prefix to match by ending with "*", e.g. "myBean,tx*"
 	 * will match the bean named "myBean" and all beans whose name start with "tx".
@@ -105,6 +107,7 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 	}
 
 	/**
+	 * 返回给定beanName 是否能匹配上给定mappedName
 	 * Return if the given bean name matches the mapped name.
 	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
 	 * as well as direct equality. Can be overridden in subclasses.

@@ -28,6 +28,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 基于BeanFactory 的切点通知器抽象基类，允许配置通知Bean 到BeanFactory
+ * 指定通知Bean 的名称而不是通知对象本身，使在初始化阶段解耦和
+ *
  * Abstract BeanFactory-based PointcutAdvisor that allows for any Advice
  * to be configured as reference to an Advice bean in a BeanFactory.
  *

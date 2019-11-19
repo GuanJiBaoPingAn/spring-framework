@@ -51,6 +51,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link org.springframework.beans.factory.config.BeanPostProcessor} 的实现，封装类每一个
+ * 有AOP 代理的Bean，在调用Bean 本身前，代理给特定的拦截器
+ * 该类与常用拦截器不同：共享了所有它创建的代理，
+ * 特殊拦截器：每个Bean 实例一个
+ *
  * {@link org.springframework.beans.factory.config.BeanPostProcessor} implementation
  * that wraps each eligible bean with an AOP proxy, delegating to specified interceptors
  * before invoking the bean itself.
@@ -94,6 +99,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 		implements SmartInstantiationAwareBeanPostProcessor, BeanFactoryAware {
 
 	/**
+	 * 不进行代理
 	 * Convenience constant for subclasses: Return value for "do not proxy".
 	 * @see #getAdvicesAndAdvisorsForBean
 	 */
@@ -101,6 +107,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	protected static final Object[] DO_NOT_PROXY = null;
 
 	/**
+	 * 不需要额外拦截器的代理
 	 * Convenience constant for subclasses: Return value for
 	 * "proxy without additional interceptors, just the common ones".
 	 * @see #getAdvicesAndAdvisorsForBean
@@ -184,6 +191,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	}
 
 	/**
+	 * 设置普通拦截器。
 	 * Set the common interceptors. These must be bean names in the current factory.
 	 * They can be of any advice or advisor type Spring supports.
 	 * <p>If this property isn't set, there will be zero common interceptors.
@@ -195,6 +203,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	}
 
 	/**
+	 * 普通拦截器是否在Bean 特定拦截器之前被应用。默认为{@code true}
 	 * Set whether the common interceptors should be applied before bean-specific ones.
 	 * Default is "true"; else, bean-specific interceptors will get applied first.
 	 */
@@ -304,6 +313,9 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 
 	/**
+	 * 为给定的Bean 类和BeanName 创建缓存键名称（缓存中Bean 的名称）
+	 * 如果是{@code FactoryBean} 则添加{@link BeanFactory#FACTORY_BEAN_PREFIX}，
+	 * 如果不是则直接返回
 	 * Build a cache key for the given bean class and bean name.
 	 * <p>Note: As of 4.2.3, this implementation does not return a concatenated
 	 * class/name String anymore but rather the most efficient cache key possible:
@@ -429,6 +441,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	}
 
 	/**
+	 * 为给定Bean 创建AOP 代理
 	 * Create an AOP proxy for the given bean.
 	 * @param beanClass the class of the bean
 	 * @param beanName the name of the bean
@@ -472,6 +485,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	}
 
 	/**
+	 * 判断给定Bean 使用目标类代理而不是接口代理
 	 * Determine whether the given bean should be proxied with its target class rather than its interfaces.
 	 * <p>Checks the {@link AutoProxyUtils#PRESERVE_TARGET_CLASS_ATTRIBUTE "preserveTargetClass" attribute}
 	 * of the corresponding bean definition.
@@ -500,6 +514,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	}
 
 	/**
+	 * 确定给定Bean 的advisors，包括普通和特殊拦截器
 	 * Determine the advisors for the given bean, including the specific interceptors
 	 * as well as the common interceptor, all adapted to the Advisor interface.
 	 * @param beanName the name of the bean
@@ -568,6 +583,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 
 	/**
+	 * 返回给定的Bean 是否需要被哪些advices、advisors 代理
 	 * Return whether the given bean is to be proxied, what additional
 	 * advices (e.g. AOP Alliance interceptors) and advisors to apply.
 	 * @param beanClass the class of the bean to advise

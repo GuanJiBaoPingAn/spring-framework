@@ -20,6 +20,7 @@ import org.springframework.aop.Pointcut;
 import org.springframework.lang.Nullable;
 
 /**
+ * 用字符串表达式的切点
  * Interface to be implemented by pointcuts that use String expressions.
  *
  * @author Rob Harrop

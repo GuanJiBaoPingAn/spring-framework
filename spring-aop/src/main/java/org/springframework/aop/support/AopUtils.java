@@ -96,6 +96,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 确定给定Bean 实例的目标类，可能是AOP 代理
 	 * Determine the target class of the given bean instance which might be an AOP proxy.
 	 * <p>Returns the target class for an AOP proxy or the plain class otherwise.
 	 * @param candidate the instance to check (might be an AOP proxy)
@@ -177,6 +178,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 给定方法（可能来自接口）和目标类，返回目标类中的实现方法
 	 * Given a method, which may come from an interface, and a target class used
 	 * in the current AOP invocation, find the corresponding target method if there
 	 * is one. E.g. the method may be {@code IFoo.bar()} and the target class
@@ -259,6 +261,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 给定Advisor 能否应用在给定类上
 	 * Can the given advisor apply at all on the given class?
 	 * This is an important test as it can be used to optimize
 	 * out a advisor for a class.
@@ -271,6 +274,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 给定Advisor 能否应用在给定类上
 	 * Can the given advisor apply at all on the given class?
 	 * <p>This is an important test as it can be used to optimize out a advisor for a class.
 	 * This version also takes into account introductions (for IntroductionAwareMethodMatchers).
@@ -295,6 +299,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * 确定给定的{@code candidateAdvisors} 列表是否可以应用在给定类上
 	 * Determine the sublist of the {@code candidateAdvisors} list
 	 * that is applicable to the given class.
 	 * @param candidateAdvisors the Advisors to evaluate

@@ -23,6 +23,7 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.lang.Nullable;
 
 /**
+ * 用于观察的拦截器基类
  * Base class for monitoring interceptors, such as performance monitors.
  * Provides configurable "prefix and "suffix" properties that help to
  * classify/group performance monitoring results.

@@ -136,6 +136,7 @@ public abstract class BeanFactoryUtils {
 	}
 
 	/**
+	 * 返回给定工厂中的所有BeanName，包括父工厂内的
 	 * Return all bean names in the factory, including ancestor factories.
 	 * @param lbf the bean factory
 	 * @return the array of matching bean names, or an empty array if none
@@ -239,6 +240,7 @@ public abstract class BeanFactoryUtils {
 	}
 
 	/**
+	 * 获取给定类型的所有BeanName，包括父工厂内的。
 	 * Get all bean names for the given type, including those defined in ancestor
 	 * factories. Will return unique names in case of overridden bean definitions.
 	 * <p>Does consider objects created by FactoryBeans if the "allowEagerInit"

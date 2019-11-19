@@ -26,6 +26,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * {@link org.springframework.aop.PointcutAdvisor} 的抽象基类。
+ * 可被特定切点继承
  * Abstract base class for {@link org.springframework.aop.PointcutAdvisor}
  * implementations. Can be subclassed for returning a specific pointcut/advice
  * or a freely configurable pointcut/advice.

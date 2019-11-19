@@ -19,6 +19,7 @@ package org.aopalliance.intercept;
 import org.aopalliance.aop.Advice;
 
 /**
+ * 代表通用拦截器的接口
  * This interface represents a generic interceptor.
  *
  * <p>A generic interceptor can intercept runtime events that occur

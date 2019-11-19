@@ -31,6 +31,9 @@ import org.springframework.aop.IntroductionInfo;
 import org.springframework.util.ClassUtils;
 
 /**
+ * {@link org.springframework.aop.IntroductionInfo} 的实现
+ * 允许子类对给定对象添加接口，抑制不应该添加的接口，也允许查询所有引入的接口。
+ *
  * Support for implementations of {@link org.springframework.aop.IntroductionInfo}.
  *
  * <p>Allows subclasses to conveniently add all interfaces from a given object,
@@ -65,6 +68,7 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 	}
 
 	/**
+	 * 检查给定接口是否是已发布的引入接口
 	 * Check whether the specified interfaces is a published introduction interface.
 	 * @param ifc the interface to check
 	 * @return whether the interface is part of this introduction
@@ -79,6 +83,7 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 	}
 
 	/**
+	 * 发布所有给定对象实现的接口
 	 * Publish all interfaces that the given delegate implements at the proxy level.
 	 * @param delegate the delegate object
 	 */
@@ -87,6 +92,7 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 	}
 
 	/**
+	 * 方法所在类是否有实现引入接口
 	 * Is this method on an introduced interface?
 	 * @param mi the method invocation
 	 * @return whether the invoked method is on an introduced interface

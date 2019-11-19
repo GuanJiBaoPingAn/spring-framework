@@ -27,6 +27,9 @@ import org.springframework.aop.support.AopUtils;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@code MethodInterceptor} 用于追踪的实现
+ *
+ *
  * Base {@code MethodInterceptor} implementation for tracing.
  *
  * <p>By default, log messages are written to the log for the interceptor class,
@@ -68,6 +71,7 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 
 
 	/**
+	 * 设置是否使用动态logger或静态logger，默认为静态logger
 	 * Set whether to use a dynamic logger or a static logger.
 	 * Default is a static logger for this trace interceptor.
 	 * <p>Used to determine which {@code Log} instance should be used to write
@@ -226,6 +230,7 @@ public abstract class AbstractTraceInterceptor implements MethodInterceptor, Ser
 
 
 	/**
+	 * 子类必须重写该方法，用于追踪{@code MethodInvocation} 的调用
 	 * Subclasses must override this method to perform any tracing around the
 	 * supplied {@code MethodInvocation}. Subclasses are responsible for
 	 * ensuring that the {@code MethodInvocation} actually executes by

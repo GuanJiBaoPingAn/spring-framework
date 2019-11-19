@@ -20,6 +20,9 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.logging.Log;
 
 /**
+ * {@link AbstractTraceInterceptor} 的简单实现，记录方法的进入和离开消息
+ * 需要更多的功能可以使用{@code CustomizableTraceInterceptor}
+ *
  * Simple AOP Alliance {@code MethodInterceptor} that can be introduced
  * in a chain to display verbose trace information about intercepted method
  * invocations, with method entry and method exit info.

@@ -31,6 +31,9 @@ import org.springframework.util.StopWatch;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@code MethodInterceptor} 的实现，允许高度自定义的追踪，如占位符
+ *
+ *
  * {@code MethodInterceptor} implementation that allows for highly customizable
  * method-level tracing, using placeholders.
  *
@@ -72,12 +75,14 @@ import org.springframework.util.StringUtils;
 public class CustomizableTraceInterceptor extends AbstractTraceInterceptor {
 
 	/**
+	 * 方法名称占位符
 	 * The {@code $[methodName]} placeholder.
 	 * Replaced with the name of the method being invoked.
 	 */
 	public static final String PLACEHOLDER_METHOD_NAME = "$[methodName]";
 
 	/**
+	 * 目标类名称（全限定符）占位符
 	 * The {@code $[targetClassName]} placeholder.
 	 * Replaced with the fully-qualified name of the {@code Class}
 	 * of the method invocation target.
@@ -85,6 +90,7 @@ public class CustomizableTraceInterceptor extends AbstractTraceInterceptor {
 	public static final String PLACEHOLDER_TARGET_CLASS_NAME = "$[targetClassName]";
 
 	/**
+	 * 目标类名称占位符
 	 * The {@code $[targetClassShortName]} placeholder.
 	 * Replaced with the short name of the {@code Class} of the
 	 * method invocation target.
@@ -92,6 +98,7 @@ public class CustomizableTraceInterceptor extends AbstractTraceInterceptor {
 	public static final String PLACEHOLDER_TARGET_CLASS_SHORT_NAME = "$[targetClassShortName]";
 
 	/**
+	 * 返回值占位符
 	 * The {@code $[returnValue]} placeholder.
 	 * Replaced with the {@code String} representation of the value
 	 * returned by the method invocation.
@@ -99,6 +106,7 @@ public class CustomizableTraceInterceptor extends AbstractTraceInterceptor {
 	public static final String PLACEHOLDER_RETURN_VALUE = "$[returnValue]";
 
 	/**
+	 * 参数类型占位符，逗号分隔的参数类型
 	 * The {@code $[argumentTypes]} placeholder.
 	 * Replaced with a comma-separated list of the argument types for the
 	 * method invocation. Argument types are written as short class names.
@@ -106,6 +114,7 @@ public class CustomizableTraceInterceptor extends AbstractTraceInterceptor {
 	public static final String PLACEHOLDER_ARGUMENT_TYPES = "$[argumentTypes]";
 
 	/**
+	 * 参数占位符，
 	 * The {@code $[arguments]} placeholder.
 	 * Replaced with a comma separated list of the argument values for the
 	 * method invocation. Relies on the {@code toString()} method of
@@ -114,6 +123,7 @@ public class CustomizableTraceInterceptor extends AbstractTraceInterceptor {
 	public static final String PLACEHOLDER_ARGUMENTS = "$[arguments]";
 
 	/**
+	 * 异常占位符
 	 * The {@code $[exception]} placeholder.
 	 * Replaced with the {@code String} representation of any
 	 * {@code Throwable} raised during method invocation.
@@ -121,24 +131,28 @@ public class CustomizableTraceInterceptor extends AbstractTraceInterceptor {
 	public static final String PLACEHOLDER_EXCEPTION = "$[exception]";
 
 	/**
+	 * 调用时间占位符
 	 * The {@code $[invocationTime]} placeholder.
 	 * Replaced with the time taken by the invocation (in milliseconds).
 	 */
 	public static final String PLACEHOLDER_INVOCATION_TIME = "$[invocationTime]";
 
 	/**
+	 * 默认进入方法的消息格式
 	 * The default message used for writing method entry messages.
 	 */
 	private static final String DEFAULT_ENTER_MESSAGE = "Entering method '" +
 			PLACEHOLDER_METHOD_NAME + "' of class [" + PLACEHOLDER_TARGET_CLASS_NAME + "]";
 
 	/**
+	 * 默认离开方法的消息格式
 	 * The default message used for writing method exit messages.
 	 */
 	private static final String DEFAULT_EXIT_MESSAGE = "Exiting method '" +
 			PLACEHOLDER_METHOD_NAME + "' of class [" + PLACEHOLDER_TARGET_CLASS_NAME + "]";
 
 	/**
+	 * 默认抛出异常的消息格式
 	 * The default message used for writing exception messages.
 	 */
 	private static final String DEFAULT_EXCEPTION_MESSAGE = "Exception thrown in method '" +
@@ -277,6 +291,7 @@ public class CustomizableTraceInterceptor extends AbstractTraceInterceptor {
 	}
 
 	/**
+	 * 将占位符替换为给定值
 	 * Replace the placeholders in the given message with the supplied values,
 	 * or values derived from those supplied.
 	 * @param message the message template containing the placeholders to be replaced

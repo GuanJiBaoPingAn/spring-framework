@@ -19,6 +19,8 @@ package org.springframework.aop.support;
 import org.aopalliance.aop.Advice;
 
 /**
+ * {@link org.springframework.aop.PointcutAdvisor} 的抽象通用实现，允许{@link Advice} 可配置
+ *
  * Abstract generic {@link org.springframework.aop.PointcutAdvisor}
  * that allows for any {@link Advice} to be configured.
  *

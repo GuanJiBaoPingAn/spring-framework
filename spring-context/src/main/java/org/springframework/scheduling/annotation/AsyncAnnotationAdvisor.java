@@ -38,6 +38,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.function.SingletonSupplier;
 
 /**
+ * {@link Async} 注解，激活异步方法执行的advisor
  * Advisor that activates asynchronous method execution through the {@link Async}
  * annotation. This annotation can be used at the method and type level in
  * implementation classes as well as in service interfaces.
@@ -68,6 +69,7 @@ public class AsyncAnnotationAdvisor extends AbstractPointcutAdvisor implements B
 	}
 
 	/**
+	 * 对给定的Executor 创建一个{@code AsyncAnnotationAdvisor}
 	 * Create a new {@code AsyncAnnotationAdvisor} for the given task executor.
 	 * @param executor the task executor to use for asynchronous methods
 	 * (can be {@code null} to trigger default executor resolution)
@@ -156,6 +158,7 @@ public class AsyncAnnotationAdvisor extends AbstractPointcutAdvisor implements B
 	}
 
 	/**
+	 * 对给定的async 注解类型计算切点
 	 * Calculate a pointcut for the given async annotation types, if any.
 	 * @param asyncAnnotationTypes the async annotation types to introspect
 	 * @return the applicable Pointcut object, or {@code null} if none

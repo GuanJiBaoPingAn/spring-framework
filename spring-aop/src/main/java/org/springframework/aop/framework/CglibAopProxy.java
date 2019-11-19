@@ -57,6 +57,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
+ * {@link AopProxy} 的实现，使用CGLIB 实现
  * CGLIB-based {@link AopProxy} implementation for the Spring AOP framework.
  *
  * <p>Objects of this type should be obtained through proxy factories,

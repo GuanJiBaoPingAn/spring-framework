@@ -17,6 +17,7 @@
 package org.aopalliance.intercept;
 
 /**
+ * 拦截新对象构造函数的执行
  * Intercepts the construction of a new object.
  *
  * <p>The user should implement the {@link

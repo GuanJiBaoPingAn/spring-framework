@@ -188,6 +188,8 @@ public abstract class AnnotatedElementUtils {
 	}
 
 	/**
+	 * 判断给定{@link AnnotatedElement} 是否有给定的注解{@code annotationType}
+	 * 会查找继承的注解
 	 * Determine if an annotation of the specified {@code annotationType}
 	 * is <em>present</em> on the supplied {@link AnnotatedElement} or
 	 * within the annotation hierarchy <em>above</em> the specified element.

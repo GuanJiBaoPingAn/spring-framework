@@ -17,6 +17,8 @@
 package org.springframework.aop.framework;
 
 /**
+ * 标记接口，表明Bean 为Spring AOP 的基础内容。一般用于表明不需要自动代理，即使
+ * 符合切点
  * Marker interface that indicates a bean that is part of Spring's
  * AOP infrastructure. In particular, this implies that any such bean
  * is not subject to auto-proxying, even if a pointcut would match.

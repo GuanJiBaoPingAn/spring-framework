@@ -43,6 +43,9 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
 
 /**
+ * AOP 代理配置管理的基类，本身不是AOP 代理，但是该类的子类通常是AOP 代理实例工厂
+ * 该类用于储存Advices Advisors，但本身不实现代理创建，由子类提供
+ *
  * Base class for AOP proxy configuration managers.
  * These are not themselves AOP proxies, but subclasses of this class are
  * normally factories from which AOP proxy instances are obtained directly.
@@ -84,6 +87,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	private transient Map<MethodCacheKey, List<Object>> methodCache;
 
 	/**
+	 * 该代理需要实现的接口
 	 * Interfaces to be implemented by the proxy. Held in List to keep the order
 	 * of registration, to create JDK proxy with specified order of interfaces.
 	 */
@@ -140,6 +144,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	}
 
 	/**
+	 * 将目标类设置为被代理类。
 	 * Set a target class to be proxied, indicating that the proxy
 	 * should be castable to the given class.
 	 * <p>Internally, an {@link org.springframework.aop.target.EmptyTargetSource}
@@ -488,6 +493,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	}
 
 	/**
+	 * 当advice 改变时清空{@link methodCache} 缓存
 	 * Invoked when advice has changed.
 	 */
 	protected void adviceChanged() {
@@ -577,6 +583,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 
 	/**
+	 * 方法Method 的包装类，作为缓存方法时的键
 	 * Simple wrapper class around a Method. Used as the key when
 	 * caching methods, for efficient equals and hashCode comparisons.
 	 */

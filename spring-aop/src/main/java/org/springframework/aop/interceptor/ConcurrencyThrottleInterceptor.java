@@ -24,6 +24,7 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.util.ConcurrencyThrottleSupport;
 
 /**
+ * 拦截对资源的并发访问
  * Interceptor that throttles concurrent access, blocking invocations
  * if a specified concurrency limit is reached.
  *

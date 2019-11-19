@@ -24,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.lang.Nullable;
 
 /**
+ * 简单实现的秒表，允许给多个任务计时
  * Simple stop watch, allowing for timing of a number of tasks, exposing total
  * running time and running time for each named task.
  *

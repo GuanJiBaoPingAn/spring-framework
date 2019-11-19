@@ -45,6 +45,10 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.function.SingletonSupplier;
 
 /**
+ * 异步方法执行切面基类，如
+ * {@code org.springframework.scheduling.annotation.AnnotationAsyncExecutionInterceptor} 或
+ * {@code org.springframework.scheduling.aspectj.AnnotationAsyncExecutionAspect}
+ *
  * Base class for asynchronous method execution aspects, such as
  * {@code org.springframework.scheduling.annotation.AnnotationAsyncExecutionInterceptor}
  * or {@code org.springframework.scheduling.aspectj.AnnotationAsyncExecutionAspect}.
@@ -72,8 +76,12 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
+	/**
+	 * 方法和执行器缓存：Method -> Executor
+	 */
 	private final Map<Method, AsyncTaskExecutor> executors = new ConcurrentHashMap<>(16);
 
+	// 默认执行器
 	private SingletonSupplier<Executor> defaultExecutor;
 
 	private SingletonSupplier<AsyncUncaughtExceptionHandler> exceptionHandler;
@@ -155,6 +163,9 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 
 	/**
+	 * 确定给定方法执行所使用的executor
+	 * 1、从缓存{@link executors} 取
+	 * 2、以限定符获取执行器，不存在则用默认执行器，进行缓存
 	 * Determine the specific executor to use when executing the given method.
 	 * Should preferably return an {@link AsyncListenableTaskExecutor} implementation.
 	 * @return the executor to use (or {@code null}, but just if no default executor is available)
@@ -169,6 +180,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 				targetExecutor = findQualifiedExecutor(this.beanFactory, qualifier);
 			}
 			else {
+				// 不存在限定符则为默认执行器
 				targetExecutor = this.defaultExecutor.get();
 			}
 			if (targetExecutor == null) {
@@ -182,6 +194,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	}
 
 	/**
+	 * 获取给定方法的执行器限定符名称
 	 * Return the qualifier or bean name of the executor to be used when executing the
 	 * given async method, typically specified in the form of an annotation attribute.
 	 * Returning an empty string or {@code null} indicates that no specific executor has
@@ -196,6 +209,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	protected abstract String getExecutorQualifier(Method method);
 
 	/**
+	 * 根据给定限定符，从BeanFactory 中获取执行器
 	 * Retrieve a target executor for the given qualifier.
 	 * @param qualifier the qualifier to resolve
 	 * @return the target executor, or {@code null} if none available
@@ -212,6 +226,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	}
 
 	/**
+	 * 获取或新建一个默认执行器
 	 * Retrieve or build a default executor for this advice instance.
 	 * An executor returned from here will be cached for further use.
 	 * <p>The default implementation searches for a unique {@link TaskExecutor} bean
@@ -262,6 +277,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 
 	/**
+	 * 将任务提交给给定执行器
 	 * Delegate for actually executing the given task with the chosen executor.
 	 * @param task the task to execute
 	 * @param executor the chosen executor

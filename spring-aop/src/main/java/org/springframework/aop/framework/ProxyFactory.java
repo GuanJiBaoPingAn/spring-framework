@@ -23,6 +23,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
+ * AOP 代理工厂。该类提供了一个简单的方法用于获取和配置AOP 代理实例
  * Factory for AOP proxies for programmatic use, rather than via declarative
  * setup in a bean factory. This class provides a simple way of obtaining
  * and configuring AOP proxy instances in custom user code.

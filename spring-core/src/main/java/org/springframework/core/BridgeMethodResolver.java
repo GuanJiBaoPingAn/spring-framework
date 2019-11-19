@@ -30,6 +30,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.ReflectionUtils.MethodFilter;
 
 /**
+ * 桥接方法解析器
  * Helper for resolving synthetic {@link Method#isBridge bridge Methods} to the
  * {@link Method} being bridged.
  *
@@ -57,6 +58,7 @@ public final class BridgeMethodResolver {
 
 
 	/**
+	 * 返回给定方法（桥接方法）的原始方法
 	 * Find the original method for the supplied {@link Method bridge Method}.
 	 * <p>It is safe to call this method passing in a non-bridge {@link Method} instance.
 	 * In such a case, the supplied {@link Method} instance is returned directly to the caller.

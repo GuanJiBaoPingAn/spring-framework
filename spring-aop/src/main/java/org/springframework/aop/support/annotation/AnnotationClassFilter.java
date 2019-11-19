@@ -24,6 +24,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 用于查找类上的注解
  * Simple ClassFilter that looks for a specific Java 5 annotation
  * being present on a class.
  *

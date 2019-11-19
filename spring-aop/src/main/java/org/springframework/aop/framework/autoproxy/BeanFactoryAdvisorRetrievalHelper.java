@@ -31,6 +31,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 帮助类，用于从BeanFactory 中获取表中Spring Advisors，用于自动代理
  * Helper for retrieving standard Spring Advisors from a BeanFactory,
  * for use with auto-proxying.
  *
@@ -59,6 +60,7 @@ public class BeanFactoryAdvisorRetrievalHelper {
 
 
 	/**
+	 * 获取当前BeanFactory 中所有匹配的Advisor Bean，忽略FactoryBean 和正在创建中的Bean
 	 * Find all eligible Advisor beans in the current bean factory,
 	 * ignoring FactoryBeans and excluding beans that are currently in creation.
 	 * @return the list of {@link org.springframework.aop.Advisor} beans
@@ -114,6 +116,7 @@ public class BeanFactoryAdvisorRetrievalHelper {
 	}
 
 	/**
+	 * 确定给定的名称是否是匹配的切面Bean，默认为{@code true}
 	 * Determine whether the aspect bean with the given name is eligible.
 	 * <p>The default implementation always returns {@code true}.
 	 * @param beanName the name of the aspect bean

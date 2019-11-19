@@ -50,6 +50,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link org.aopalliance.aop.Advice} 的基类
  * Base class for AOP Alliance {@link org.aopalliance.aop.Advice} classes
  * wrapping an AspectJ aspect or an AspectJ-annotated advice method.
  *
@@ -69,6 +70,7 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 
 
 	/**
+	 * 当前调用的懒实例化连接点，需要MethodInvocation 与 ExposeInvocationInterceptor绑定
 	 * Lazily instantiate joinpoint for the current invocation.
 	 * Requires MethodInvocation to be bound with ExposeInvocationInterceptor.
 	 * <p>Do not use if access is available to the current ReflectiveMethodInvocation

@@ -35,6 +35,7 @@ import org.springframework.aop.framework.adapter.GlobalAdvisorAdapterRegistry;
 import org.springframework.lang.Nullable;
 
 /**
+ * 根据给定方法、{@link Advised} 对象创建一个advice 链
  * A simple but definitive way of working out an advice chain for a Method,
  * given an {@link Advised} object. Always rebuilds each advice chain;
  * caching can be provided by subclasses.

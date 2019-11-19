@@ -28,6 +28,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 代理处理器常用功能，同时进行类加载器管理
  * Base class with common functionality for proxy processors, in particular
  * ClassLoader management and the {@link #evaluateProxyInterfaces} algorithm.
  *
@@ -40,6 +41,7 @@ import org.springframework.util.ObjectUtils;
 public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanClassLoaderAware, AopInfrastructureBean {
 
 	/**
+	 * 在所有处理器运行完成后运行
 	 * This should run after all other processors, so that it can just add
 	 * an advisor to existing proxies rather than double-proxy.
 	 */
@@ -94,6 +96,7 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 
 
 	/**
+	 * 检查给定Bean 的接口，设置给定ProxyFactory 的代理状态 -> 确定代理方式（JDK或 CGLIB）
 	 * Check the interfaces on the given bean class and apply them to the {@link ProxyFactory},
 	 * if appropriate.
 	 * <p>Calls {@link #isConfigurationCallbackInterface} and {@link #isInternalLanguageInterface}
@@ -123,6 +126,7 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 	}
 
 	/**
+	 * 确定给定的接口是否为容器的回调接口（不需要进行代理的接口）
 	 * Determine whether the given interface is just a container callback and
 	 * therefore not to be considered as a reasonable proxy interface.
 	 * <p>If no reasonable proxy interface is found for a given bean, it will get
@@ -136,6 +140,7 @@ public class ProxyProcessorSupport extends ProxyConfig implements Ordered, BeanC
 	}
 
 	/**
+	 * 确定给定接口是否为内部语言接口（不需要进行代理的接口）
 	 * Determine whether the given interface is a well-known internal language interface
 	 * and therefore not to be considered as a reasonable proxy interface.
 	 * <p>If no reasonable proxy interface is found for a given bean, it will get

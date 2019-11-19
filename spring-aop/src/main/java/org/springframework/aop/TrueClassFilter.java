@@ -19,6 +19,7 @@ package org.springframework.aop;
 import java.io.Serializable;
 
 /**
+ * ClassFilter 实例，匹配所有类
  * Canonical ClassFilter instance that matches all classes.
  *
  * @author Rod Johnson

@@ -24,6 +24,10 @@ import org.springframework.aop.Pointcut;
 import org.springframework.lang.Nullable;
 
 /**
+ * 基于切点事件的通知器实现
+ * 最通用通知器实现。能用于任何切点和通知类型，除了引入。因此，一般不需要基础该类或实现自定义的
+ * 通知器。
+ *
  * Convenient Pointcut-driven Advisor implementation.
  *
  * <p>This is the most commonly used Advisor implementation. It can be used

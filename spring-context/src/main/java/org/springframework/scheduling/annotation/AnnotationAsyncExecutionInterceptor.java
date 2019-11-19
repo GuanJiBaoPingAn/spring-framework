@@ -25,6 +25,7 @@ import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link AsyncExecutionInterceptor} 的特化，用于对{@link Async} 注解的方法代理
  * Specialization of {@link AsyncExecutionInterceptor} that delegates method execution to
  * an {@code Executor} based on the {@link Async} annotation. Specifically designed to
  * support use of {@link Async#value()} executor qualification mechanism introduced in

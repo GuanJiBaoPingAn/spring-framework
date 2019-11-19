@@ -27,6 +27,7 @@ import org.springframework.core.NamedThreadLocal;
 import org.springframework.core.PriorityOrdered;
 
 /**
+ * 暴露当前{@link org.aopalliance.intercept.MethodInvocation} 对象。当切点需要知道调用上下文时。
  * Interceptor that exposes the current {@link org.aopalliance.intercept.MethodInvocation}
  * as a thread-local object. We occasionally need to do this; for example, when a pointcut
  * (e.g. an AspectJ expression pointcut) needs to know the full invocation context.
@@ -62,6 +63,7 @@ public final class ExposeInvocationInterceptor implements MethodInterceptor, Pri
 
 
 	/**
+	 * 返回与当前调用相关的，AOP 联盟方法调用对象
 	 * Return the AOP Alliance MethodInvocation object associated with the current invocation.
 	 * @return the invocation object associated with the current invocation
 	 * @throws IllegalStateException if there is no AOP invocation in progress,

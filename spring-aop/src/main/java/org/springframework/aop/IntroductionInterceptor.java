@@ -19,6 +19,7 @@ package org.springframework.aop;
 import org.aopalliance.intercept.MethodInterceptor;
 
 /**
+ * AOP Alliance MethodInterceptor 的子接口，允许拦截器实现额外的接口
  * Subinterface of AOP Alliance MethodInterceptor that allows additional interfaces
  * to be implemented by the interceptor, and available via a proxy using that
  * interceptor. This is a fundamental AOP concept called <b>introduction</b>.

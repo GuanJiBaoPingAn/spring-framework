@@ -20,6 +20,7 @@ import org.springframework.core.NamedThreadLocal;
 import org.springframework.lang.Nullable;
 
 /**
+ * 当前代理创建上下文持有者，暴露给自动代理创建者使用，如{@link AbstractAdvisorAutoProxyCreator}
  * Holder for the current proxy creation context, as exposed by auto-proxy creators
  * such as {@link AbstractAdvisorAutoProxyCreator}.
  *
@@ -48,6 +49,7 @@ public final class ProxyCreationContext {
 	}
 
 	/**
+	 * 设置当前代理了的Bean
 	 * Set the name of the currently proxied bean instance.
 	 * @param beanName the name of the bean, or {@code null} to reset it
 	 */

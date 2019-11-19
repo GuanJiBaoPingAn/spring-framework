@@ -21,6 +21,9 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link org.aopalliance.intercept.MethodInvocation} 的拓展接口，
+ * 用于在方法调用时获取代理
+ *
  * Extension of the AOP Alliance {@link org.aopalliance.intercept.MethodInvocation}
  * interface, allowing access to the proxy that the method invocation was made through.
  *

@@ -101,6 +101,7 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 	}
 
 	/**
+	 * 获取所有候选advisors
 	 * Find all candidate Advisors to use in auto-proxying.
 	 * @return the List of candidate Advisors
 	 */
@@ -110,6 +111,7 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 	}
 
 	/**
+	 * 获取所有可以应用在特定Bean 上的advisor
 	 * Search the given candidate Advisors to find all Advisors that
 	 * can apply to the specified bean.
 	 * @param candidateAdvisors the candidate Advisors
@@ -141,6 +143,7 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 	}
 
 	/**
+	 * 进行排序
 	 * Sort advisors based on ordering. Subclasses may choose to override this
 	 * method to customize the sorting strategy.
 	 * @param advisors the source List of Advisors

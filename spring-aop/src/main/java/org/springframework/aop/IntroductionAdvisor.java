@@ -17,6 +17,7 @@
 package org.springframework.aop;
 
 /**
+ * 通知器 需要一个或多个AOP 引入时需实现
  * Superinterface for advisors that perform one or more AOP <b>introductions</b>.
  *
  * <p>This interface cannot be implemented directly; subinterfaces must

@@ -19,6 +19,7 @@ package org.springframework.aop;
 import org.aopalliance.aop.Advice;
 
 /**
+ * Advice 的子接口，允许添加通知需要实现的接口，
  * Subinterface of AOP Alliance Advice that allows additional interfaces
  * to be implemented by an Advice, and available via a proxy using that
  * interceptor. This is a fundamental AOP concept called <b>introduction</b>.
@@ -39,6 +40,7 @@ import org.aopalliance.aop.Advice;
 public interface DynamicIntroductionAdvice extends Advice {
 
 	/**
+	 * 该Advice 是否有实现给定接口
 	 * Does this introduction advice implement the given interface?
 	 * @param intf the interface to check
 	 * @return whether the advice implements the specified interface
