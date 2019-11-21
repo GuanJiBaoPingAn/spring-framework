@@ -26,6 +26,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * 根据{@link TransactionPhase} 调用的 时间监听器
+ *
  * An {@link EventListener} that is invoked according to a {@link TransactionPhase}.
  *
  * <p>If the event is not published within an active transaction, the event is discarded

@@ -64,6 +64,9 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link org.springframework.aop.Pointcut} 的实现，使用AspectJ 织入器
+ * 解析切点表达式，切点表达式为AspectJ 表达式。可引用其他切点。一般来说，只支持方法切点
+ *
  * Spring {@link org.springframework.aop.Pointcut} implementation
  * that uses the AspectJ weaver to evaluate a pointcut expression.
  *

@@ -22,6 +22,10 @@ import org.springframework.transaction.SavepointManager;
 import org.springframework.util.Assert;
 
 /**
+ * {@link org.springframework.transaction.TransactionStatus} 的默认实现，被
+ * {@link AbstractPlatformTransactionManager} 使用，有{@link AbstractPlatformTransactionManager}
+ * 需要的所有消息，包括一个通用事务对象基于具体的事务管理器实现。
+ *
  * Default implementation of the {@link org.springframework.transaction.TransactionStatus}
  * interface, used by {@link AbstractPlatformTransactionManager}. Based on the concept
  * of an underlying "transaction object".
@@ -61,6 +65,7 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 
 	private final boolean debug;
 
+	// 因为该事务导致暂停的资源
 	@Nullable
 	private final Object suspendedResources;
 
@@ -153,6 +158,7 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 	//---------------------------------------------------------------------
 
 	/**
+	 * 根据事务对象确定全局rollback-only 标识
 	 * Determine the rollback-only flag via checking the transaction object, provided
 	 * that the latter implements the {@link SmartTransactionObject} interface.
 	 * <p>Will return {@code true} if the global transaction itself has been marked
@@ -182,6 +188,7 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 	}
 
 	/**
+	 * 内部事务对象是否实现了{@link SavepointManager}
 	 * Return whether the underlying transaction implements the {@link SavepointManager}
 	 * interface and therefore supports savepoints.
 	 * @see #getTransaction()

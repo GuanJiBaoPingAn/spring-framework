@@ -24,6 +24,9 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.TransactionUsageException;
 
 /**
+ * {@link org.springframework.transaction.TransactionStatus} 的抽象基类实现
+ * 实现了本地rollback-only 的处理
+ *
  * Abstract base implementation of the
  * {@link org.springframework.transaction.TransactionStatus} interface.
  *
@@ -46,6 +49,7 @@ import org.springframework.transaction.TransactionUsageException;
  */
 public abstract class AbstractTransactionStatus implements TransactionStatus {
 
+	// 本地标识
 	private boolean rollbackOnly = false;
 
 	private boolean completed = false;

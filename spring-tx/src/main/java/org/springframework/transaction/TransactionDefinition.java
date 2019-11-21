@@ -19,6 +19,7 @@ package org.springframework.transaction;
 import org.springframework.lang.Nullable;
 
 /**
+ * Spring 事务属性的接口，包括事务传播，事务隔离属性
  * Interface that defines Spring-compliant transaction properties.
  * Based on the propagation behavior definitions analogous to EJB CMT attributes.
  *
@@ -281,6 +282,7 @@ public interface TransactionDefinition {
 	// Static builder methods
 
 	/**
+	 * 返回不可修改的默认{@code TransactionDefinition}
 	 * Return an unmodifiable {@code TransactionDefinition} with defaults.
 	 * <p>For customization purposes, use the modifiable
 	 * {@link org.springframework.transaction.support.DefaultTransactionDefinition}

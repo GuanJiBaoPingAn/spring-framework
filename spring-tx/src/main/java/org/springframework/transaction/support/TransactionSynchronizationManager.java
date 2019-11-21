@@ -33,6 +33,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 为每个线程管理资源和事务同步
+ *
  * Central delegate that manages resources and transaction synchronizations per thread.
  * To be used by resource management code but not by typical application code.
  *
@@ -78,6 +80,7 @@ public abstract class TransactionSynchronizationManager {
 
 	private static final Log logger = LogFactory.getLog(TransactionSynchronizationManager.class);
 
+	//
 	private static final ThreadLocal<Map<Object, Object>> resources =
 			new NamedThreadLocal<>("Transactional resources");
 
@@ -102,6 +105,8 @@ public abstract class TransactionSynchronizationManager {
 	//-------------------------------------------------------------------------
 
 	/**
+	 * 返回和该线程绑定的所有资源
+	 *
 	 * Return all resources that are bound to the current thread.
 	 * <p>Mainly for debugging purposes. Resource managers should always invoke
 	 * {@code hasResource} for a specific resource key that they are interested in.
@@ -116,6 +121,8 @@ public abstract class TransactionSynchronizationManager {
 	}
 
 	/**
+	 * 确定当前线程是否有给定键绑定的资源
+	 *
 	 * Check if there is a resource for the given key bound to the current thread.
 	 * @param key the key to check (usually the resource factory)
 	 * @return if there is a value bound to the current thread
@@ -128,6 +135,8 @@ public abstract class TransactionSynchronizationManager {
 	}
 
 	/**
+	 * 获取当前线程对给定键绑定的资源
+	 *
 	 * Retrieve a resource for the given key that is bound to the current thread.
 	 * @param key the key to check (usually the resource factory)
 	 * @return a value bound to the current thread (usually the active

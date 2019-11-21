@@ -55,6 +55,8 @@ public abstract class TransactionSynchronizationUtils {
 	}
 
 	/**
+	 * 解去包装
+	 *
 	 * Unwrap the given resource handle if necessary; otherwise return
 	 * the given handle as-is.
 	 * @see org.springframework.core.InfrastructureProxy#getWrappedObject()

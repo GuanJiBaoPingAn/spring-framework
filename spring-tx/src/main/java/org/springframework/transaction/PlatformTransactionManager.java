@@ -19,6 +19,7 @@ package org.springframework.transaction;
 import org.springframework.lang.Nullable;
 
 /**
+ * Spring 事务功能的核心接口。
  * This is the central interface in Spring's transaction infrastructure.
  * Applications can use this directly, but it is not primarily meant as API:
  * Typically, applications will work with either TransactionTemplate or
@@ -45,6 +46,8 @@ import org.springframework.lang.Nullable;
 public interface PlatformTransactionManager extends TransactionManager {
 
 	/**
+	 * 根据给定传播行为，返回当前活跃的事务或新建一个。值得一提的，隔离级别、超时时间只会应用到
+	 * 新建的事务中，因此参与到事务中时，属性会被忽略。进一步，不是所有的事务管理器都支持事务定义。
 	 * Return a currently active transaction or create a new one, according to
 	 * the specified propagation behavior.
 	 * <p>Note that parameters like isolation level or timeout will only be applied
@@ -71,6 +74,9 @@ public interface PlatformTransactionManager extends TransactionManager {
 			throws TransactionException;
 
 	/**
+	 * 根据事务状态提交给定事务。如果被设置为rollback-only，则回滚。如果事务不是新建的，
+	 * 忽略该提交并参与到周围的事务中。如果之前的事务被暂停而新建了一个，则在提交了新建的事务
+	 * 后恢复前事务。
 	 * Commit the given transaction, with regard to its status. If the transaction
 	 * has been marked rollback-only programmatically, perform a rollback.
 	 * <p>If the transaction wasn't a new one, omit the commit for proper
@@ -100,6 +106,8 @@ public interface PlatformTransactionManager extends TransactionManager {
 	void commit(TransactionStatus status) throws TransactionException;
 
 	/**
+	 * 对给定事务进行回滚。如果事务不是新建的，将参与的事务设置为rollback-only。如果之前的事务
+	 * 被暂停能创建一个新的，则在回滚新的事务之后恢复之前的事务。
 	 * Perform a rollback of the given transaction.
 	 * <p>If the transaction wasn't a new one, just set it rollback-only for proper
 	 * participation in the surrounding transaction. If a previous transaction

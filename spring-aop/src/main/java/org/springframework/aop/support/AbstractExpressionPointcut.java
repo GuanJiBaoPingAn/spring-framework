@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.springframework.lang.Nullable;
 
 /**
+ * 表达式切点的抽象实现类，提供了位置和表达式属性
  * Abstract superclass for expression pointcuts,
  * offering location and expression properties.
  *

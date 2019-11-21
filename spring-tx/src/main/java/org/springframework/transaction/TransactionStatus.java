@@ -19,6 +19,7 @@ package org.springframework.transaction;
 import java.io.Flushable;
 
 /**
+ * 事务状态
  * Representation of the status of a transaction.
  *
  * <p>Transactional code can use this to retrieve status information,
@@ -39,6 +40,7 @@ import java.io.Flushable;
 public interface TransactionStatus extends TransactionExecution, SavepointManager, Flushable {
 
 	/**
+	 * 事务内部是否有保存点
 	 * Return whether this transaction internally carries a savepoint,
 	 * that is, has been created as nested transaction based on a savepoint.
 	 * <p>This method is mainly here for diagnostic purposes, alongside

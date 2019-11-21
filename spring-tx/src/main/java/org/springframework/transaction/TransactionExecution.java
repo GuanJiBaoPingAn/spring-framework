@@ -17,6 +17,8 @@
 package org.springframework.transaction;
 
 /**
+ * 表示当前事务的状态，作为{@link TransactionStatus} 和 {@link ReactiveTransaction}
+ * 的基础接口
  * Common representation of the current state of a transaction.
  * Serves as base interface for {@link TransactionStatus} as well as
  * {@link ReactiveTransaction}.
@@ -27,6 +29,7 @@ package org.springframework.transaction;
 public interface TransactionExecution {
 
 	/**
+	 * 是否是新建的事务。否则是参与在其他事务中
 	 * Return whether the present transaction is new; otherwise participating
 	 * in an existing transaction, or potentially not running in an actual
 	 * transaction in the first place.
@@ -41,12 +44,14 @@ public interface TransactionExecution {
 	void setRollbackOnly();
 
 	/**
+	 * 是否被设置为rollback-only
 	 * Return whether the transaction has been marked as rollback-only
 	 * (either by the application or by the transaction infrastructure).
 	 */
 	boolean isRollbackOnly();
 
 	/**
+	 * 事务是否已完成（是否已提交或回滚）
 	 * Return whether this transaction is completed, that is,
 	 * whether it has already been committed or rolled back.
 	 */

@@ -19,6 +19,8 @@ package org.springframework.transaction.support;
 import java.io.Flushable;
 
 /**
+ * 事务同步回调接口
+ *
  * Interface for transaction synchronization callbacks.
  * Supported by AbstractPlatformTransactionManager.
  *
@@ -48,6 +50,8 @@ public interface TransactionSynchronization extends Flushable {
 
 
 	/**
+	 * 暂停同步，用于解绑资源
+	 *
 	 * Suspend this synchronization.
 	 * Supposed to unbind resources from TransactionSynchronizationManager if managing any.
 	 * @see TransactionSynchronizationManager#unbindResource
@@ -56,6 +60,8 @@ public interface TransactionSynchronization extends Flushable {
 	}
 
 	/**
+	 * 恢复同步，用于重新绑定资源
+	 *
 	 * Resume this synchronization.
 	 * Supposed to rebind resources to TransactionSynchronizationManager if managing any.
 	 * @see TransactionSynchronizationManager#bindResource
@@ -73,6 +79,8 @@ public interface TransactionSynchronization extends Flushable {
 	}
 
 	/**
+	 * 在事务提交前调用
+	 *
 	 * Invoked before transaction commit (before "beforeCompletion").
 	 * Can e.g. flush transactional O/R Mapping sessions to the database.
 	 * <p>This callback does <i>not</i> mean that the transaction will actually be committed.
@@ -90,6 +98,8 @@ public interface TransactionSynchronization extends Flushable {
 	}
 
 	/**
+	 * 在事务完成（提交、回滚）前调用
+	 *
 	 * Invoked before transaction commit/rollback.
 	 * Can perform resource cleanup <i>before</i> transaction completion.
 	 * <p>This method will be invoked after {@code beforeCommit}, even when
@@ -104,6 +114,8 @@ public interface TransactionSynchronization extends Flushable {
 	}
 
 	/**
+	 * 在事务提交后调用
+	 *
 	 * Invoked after transaction commit. Can perform further operations right
 	 * <i>after</i> the main transaction has <i>successfully</i> committed.
 	 * <p>Can e.g. commit further operations that are supposed to follow on a successful
@@ -122,6 +134,8 @@ public interface TransactionSynchronization extends Flushable {
 	}
 
 	/**
+	 * 事务完成（提交、回滚）后调用
+	 *
 	 * Invoked after transaction commit/rollback.
 	 * Can perform resource cleanup <i>after</i> transaction completion.
 	 * <p><b>NOTE:</b> The transaction will have been committed or rolled back already,

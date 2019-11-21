@@ -54,6 +54,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link org.springframework.transaction.PlatformTransactionManager} 对JTA 的实现
+ *
+ *
  * {@link org.springframework.transaction.PlatformTransactionManager} implementation
  * for JTA, delegating to a backend JTA provider. This is typically used to delegate
  * to a Java EE server's transaction coordinator, but may also be configured with a

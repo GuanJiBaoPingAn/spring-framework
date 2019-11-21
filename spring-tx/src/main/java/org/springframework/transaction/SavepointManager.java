@@ -17,6 +17,7 @@
 package org.springframework.transaction;
 
 /**
+ * 事务保持点管理接口
  * Interface that specifies an API to programmatically manage transaction
  * savepoints in a generic fashion. Extended by TransactionStatus to
  * expose savepoint management functionality for a specific transaction.
@@ -37,6 +38,8 @@ package org.springframework.transaction;
 public interface SavepointManager {
 
 	/**
+	 * 创建一个保存点。可通过{@code rollbackToSavepoint} 回滚到指定保存点，
+	 * {@code releaseSavepoint} 释放保存点
 	 * Create a new savepoint. You can roll back to a specific savepoint
 	 * via {@code rollbackToSavepoint}, and explicitly release a savepoint
 	 * that you don't need anymore via {@code releaseSavepoint}.
@@ -53,6 +56,7 @@ public interface SavepointManager {
 	Object createSavepoint() throws TransactionException;
 
 	/**
+	 * 回滚到指定保存点
 	 * Roll back to the given savepoint.
 	 * <p>The savepoint will <i>not</i> be automatically released afterwards.
 	 * You may explicitly call {@link #releaseSavepoint(Object)} or rely on
@@ -66,6 +70,7 @@ public interface SavepointManager {
 	void rollbackToSavepoint(Object savepoint) throws TransactionException;
 
 	/**
+	 * 显示释放给定保存点
 	 * Explicitly release the given savepoint.
 	 * <p>Note that most transaction managers will automatically release
 	 * savepoints on transaction completion.
