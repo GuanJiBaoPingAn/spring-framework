@@ -687,6 +687,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		return getType(name, true);
 	}
 
+	/**
+	 * 根据BeanName 获取对应的类型，BeanName -> BeanInstance -> Class
+	 * @param name the name of the bean to query
+	 * @param allowFactoryBeanInit whether a {@code FactoryBean} may get initialized
+	 * just for the purpose of determining its object type
+	 * @return
+	 * @throws NoSuchBeanDefinitionException
+	 */
 	@Override
 	@Nullable
 	public Class<?> getType(String name, boolean allowFactoryBeanInit) throws NoSuchBeanDefinitionException {

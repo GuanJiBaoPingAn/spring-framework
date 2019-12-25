@@ -17,6 +17,9 @@
 package org.springframework.context;
 
 /**
+ * {@link ConfigurableApplicationContext} 初始化回调接口。
+ * 一般用于web环境下需要程序化初始化应用上下文。如，注册属性源，激活profile。
+ *
  * Callback interface for initializing a Spring {@link ConfigurableApplicationContext}
  * prior to being {@linkplain ConfigurableApplicationContext#refresh() refreshed}.
  *
@@ -42,6 +45,7 @@ package org.springframework.context;
 public interface ApplicationContextInitializer<C extends ConfigurableApplicationContext> {
 
 	/**
+	 * 初始化给定应用上下文
 	 * Initialize the given application context.
 	 * @param applicationContext the application to configure
 	 */

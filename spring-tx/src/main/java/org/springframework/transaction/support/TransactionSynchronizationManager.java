@@ -208,6 +208,7 @@ public abstract class TransactionSynchronizationManager {
 	}
 
 	/**
+	 * 将给定键和当前线程取消绑定
 	 * Unbind a resource for the given key from the current thread.
 	 * @param key the key to unbind (usually the resource factory)
 	 * @return the previously bound value (usually the active resource object)

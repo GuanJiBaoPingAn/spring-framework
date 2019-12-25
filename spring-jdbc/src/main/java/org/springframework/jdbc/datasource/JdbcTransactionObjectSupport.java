@@ -33,6 +33,7 @@ import org.springframework.transaction.support.SmartTransactionObject;
 import org.springframework.util.Assert;
 
 /**
+ * JDBC 事务支持的基类
  * Convenient base class for JDBC-aware transaction objects. Can contain a
  * {@link ConnectionHolder} with a JDBC {@code Connection}, and implements the
  * {@link SavepointManager} interface based on that {@code ConnectionHolder}.

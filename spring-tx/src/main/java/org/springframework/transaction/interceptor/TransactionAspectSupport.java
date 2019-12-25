@@ -53,6 +53,7 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.StringUtils;
 
 /**
+ * 事务切面的基类
  * Base class for transactional aspects, such as the {@link TransactionInterceptor}
  * or an AspectJ aspect.
  *
@@ -109,6 +110,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 			ClassUtils.isPresent("org.reactivestreams.Publisher", TransactionAspectSupport.class.getClassLoader());
 
 	/**
+	 * 当前事务信息
 	 * Holder to support the {@code currentTransactionStatus()} method,
 	 * and to support communication between different cooperating advices
 	 * (e.g. before and after advice) if the aspect involves more than a
@@ -161,12 +163,15 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	@Nullable
 	private final ReactiveAdapterRegistry reactiveAdapterRegistry;
 
+	/** 事务管理器Bean 名称 */
 	@Nullable
 	private String transactionManagerBeanName;
 
+	/** 事务管理器 */
 	@Nullable
 	private TransactionManager transactionManager;
 
+	/** 事务属性源 */
 	@Nullable
 	private TransactionAttributeSource transactionAttributeSource;
 
@@ -316,6 +321,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 
 	/**
+	 * 用于被around 通知的基类进行代理。
 	 * General delegate for around-advice-based subclasses, delegating to several other template
 	 * methods on this class. Able to handle {@link CallbackPreferringPlatformTransactionManager}
 	 * as well as regular {@link PlatformTransactionManager} implementations.
@@ -456,6 +462,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	}
 
 	/**
+	 * 确定给定事务属性所使用的事务管理器
 	 * Determine the specific transaction manager to use for the given transaction.
 	 */
 	@Nullable
@@ -541,6 +548,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	}
 
 	/**
+	 * 根据事务属性来决定是否需要创建事务
 	 * Create a transaction if necessary based on the given TransactionAttribute.
 	 * <p>Allows callers to perform custom TransactionAttribute lookups through
 	 * the TransactionAttributeSource.
@@ -582,6 +590,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	}
 
 	/**
+	 * 根据给定事务属性，事务状态创建{@code TransactionInfo}
 	 * Prepare a TransactionInfo for the given attribute and status object.
 	 * @param txAttr the TransactionAttribute (may be {@code null})
 	 * @param joinpointIdentification the fully qualified method name
@@ -619,6 +628,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	}
 
 	/**
+	 * 调用完成后提交事务
 	 * Execute after successful completion of call, but not after an exception was handled.
 	 * Do nothing if we didn't create a transaction.
 	 * @param txInfo information about the current transaction
@@ -633,6 +643,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	}
 
 	/**
+	 * 处理异常，基于配置可能是提交或是回滚
 	 * Handle a throwable, completing the transaction.
 	 * We may commit or roll back, depending on the configuration.
 	 * @param txInfo information about the current transaction
@@ -690,6 +701,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 
 	/**
+	 * 用于持有事务信息的透明对象。
 	 * Opaque object used to hold transaction information. Subclasses
 	 * must pass it back to methods on this class, but not see its internals.
 	 */
@@ -706,6 +718,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		@Nullable
 		private TransactionStatus transactionStatus;
 
+		/** 挂起的事务信息 */
 		@Nullable
 		private TransactionInfo oldTransactionInfo;
 

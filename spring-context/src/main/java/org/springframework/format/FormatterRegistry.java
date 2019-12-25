@@ -21,6 +21,7 @@ import java.lang.annotation.Annotation;
 import org.springframework.core.convert.converter.ConverterRegistry;
 
 /**
+ * 域格式化器注册
  * A registry of field formatting logic.
  *
  * @author Keith Donald

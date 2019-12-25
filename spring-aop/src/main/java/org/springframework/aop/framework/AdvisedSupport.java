@@ -83,7 +83,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	/** The AdvisorChainFactory to use. */
 	AdvisorChainFactory advisorChainFactory = new DefaultAdvisorChainFactory();
 
-	/** Cache with Method as key and advisor chain List as value. */
+	/** Method -> adivsors 方法和通知链 Cache with Method as key and advisor chain List as value. */
 	private transient Map<MethodCacheKey, List<Object>> methodCache;
 
 	/**
@@ -475,6 +475,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 
 	/**
+	 * 获取给定方法的方法拦截器{@link org.aopalliance.intercept.MethodInterceptor}
 	 * Determine a list of {@link org.aopalliance.intercept.MethodInterceptor} objects
 	 * for the given method, based on this configuration.
 	 * @param method the proxied method

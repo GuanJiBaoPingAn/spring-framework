@@ -32,6 +32,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
+ * {@link org.springframework.aop.IntroductionAdvisor} 的默认实现
  * Simple {@link org.springframework.aop.IntroductionAdvisor} implementation
  * that by default applies to any class.
  *
@@ -44,6 +45,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	private final Advice advice;
 
+	/** 需要引入的接口 */
 	private final Set<Class<?>> interfaces = new LinkedHashSet<>();
 
 	private int order = Ordered.LOWEST_PRECEDENCE;
@@ -109,6 +111,10 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 		return ClassUtils.toClassArray(this.interfaces);
 	}
 
+	/**
+	 * 如果该通知器包装的通知是{@link DynamicIntroductionAdvice}，则需要实现需要引入的接口{@link #interfaces}
+	 * @throws IllegalArgumentException
+	 */
 	@Override
 	public void validateInterfaces() throws IllegalArgumentException {
 		for (Class<?> ifc : this.interfaces) {

@@ -27,6 +27,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 注解配置应用上下文，支持{@link Configuration @Configuration} {@link org.springframework.stereotype.Component}
+ * {@link Bean @Bean}
+ *
  * Standalone application context, accepting <em>component classes</em> as input &mdash;
  * in particular {@link Configuration @Configuration}-annotated classes, but also plain
  * {@link org.springframework.stereotype.Component @Component} types and JSR-330 compliant

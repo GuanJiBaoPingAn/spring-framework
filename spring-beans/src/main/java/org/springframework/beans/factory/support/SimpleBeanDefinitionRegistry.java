@@ -27,6 +27,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link BeanDefinitionRegistry} 的简单实现，只提供注册相关功能，没有工厂的功能
+ *
  * Simple implementation of the {@link BeanDefinitionRegistry} interface.
  * Provides registry capabilities only, with no factory capabilities built in.
  * Can for example be used for testing bean definition readers.
@@ -36,7 +38,7 @@ import org.springframework.util.StringUtils;
  */
 public class SimpleBeanDefinitionRegistry extends SimpleAliasRegistry implements BeanDefinitionRegistry {
 
-	/** Map of bean definition objects, keyed by bean name. */
+	/** BeanName -> BeanDefinition Map of bean definition objects, keyed by bean name. */
 	private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(64);
 
 

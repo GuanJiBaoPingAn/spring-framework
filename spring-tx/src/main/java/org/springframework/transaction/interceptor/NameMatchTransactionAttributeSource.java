@@ -32,6 +32,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.PatternMatchUtils;
 
 /**
+ * {@link TransactionAttributeSource} 的简单实现，允许通过注册名称（方法名称）匹配
  * Simple {@link TransactionAttributeSource} implementation that
  * allows attributes to be matched by registered name.
  *
@@ -49,7 +50,7 @@ public class NameMatchTransactionAttributeSource implements TransactionAttribute
 	 */
 	protected static final Log logger = LogFactory.getLog(NameMatchTransactionAttributeSource.class);
 
-	/** Keys are method names; values are TransactionAttributes. */
+	/** Keys are method names; values are TransactionAttributes. 方法名称 -> 事务属性*/
 	private Map<String, TransactionAttribute> nameMap = new HashMap<>();
 
 

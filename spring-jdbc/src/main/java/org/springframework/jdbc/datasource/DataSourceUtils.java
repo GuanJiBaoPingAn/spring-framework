@@ -364,6 +364,7 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
+	 * 关闭给定连接
 	 * Actually close the given Connection, obtained from the given DataSource.
 	 * Same as {@link #releaseConnection}, but throwing the original SQLException.
 	 * <p>Directly accessed by {@link TransactionAwareDataSourceProxy}.

@@ -19,6 +19,7 @@ package org.springframework.aop.aspectj;
 import org.springframework.aop.PointcutAdvisor;
 
 /**
+ * 被@AspectJ 注解时使用
  * Interface to be implemented by Spring AOP Advisors wrapping AspectJ
  * aspects that may have a lazy initialization strategy. For example,
  * a perThis instantiation model would mean lazy initialization of the advice.

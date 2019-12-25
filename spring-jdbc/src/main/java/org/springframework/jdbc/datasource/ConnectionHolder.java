@@ -25,6 +25,9 @@ import org.springframework.transaction.support.ResourceHolderSupport;
 import org.springframework.util.Assert;
 
 /**
+ * JDBC {@link Connection} 的资源持有者，{@link DataSourceTransactionManager} 对
+ * 特定的{@link javax.sql.DataSource} 将该类的实例绑定到线程
+ *
  * Resource holder wrapping a JDBC {@link Connection}.
  * {@link DataSourceTransactionManager} binds instances of this class
  * to the thread, for a specific {@link javax.sql.DataSource}.
@@ -42,22 +45,26 @@ import org.springframework.util.Assert;
 public class ConnectionHolder extends ResourceHolderSupport {
 
 	/**
-	 * Prefix for savepoint names.
+	 * Prefix for savepoint names. 保存点名称前缀
 	 */
 	public static final String SAVEPOINT_NAME_PREFIX = "SAVEPOINT_";
 
-
+	/** 连接句柄 */
 	@Nullable
 	private ConnectionHandle connectionHandle;
 
+	/** 当前连接 */
 	@Nullable
 	private Connection currentConnection;
 
+	/** 该连接持有器是否有激活的事务（JDBC 管理的事务） */
 	private boolean transactionActive = false;
 
+	/** 是否支持保存点功能 */
 	@Nullable
 	private Boolean savepointsSupported;
 
+	/** 保存点计数器 */
 	private int savepointCounter = 0;
 
 
@@ -177,6 +184,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
+	 * 为当前连接创建保存点
 	 * Create a new JDBC 3.0 Savepoint for the current Connection,
 	 * using generated savepoint names that are unique for the Connection.
 	 * @return the new Savepoint

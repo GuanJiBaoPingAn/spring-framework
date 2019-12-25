@@ -25,6 +25,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * {@link TransactionAttributeSource} 驱动的通知器，用于引入{@link TransactionInterceptor}
+ *
  * Advisor driven by a {@link TransactionAttributeSource}, used to include
  * a {@link TransactionInterceptor} only for methods that are transactional.
  *

@@ -71,6 +71,7 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
+	 * 对给定BeanDefinition 生成BeanName
 	 * Generate a bean name for the given top-level bean definition,
 	 * unique within the given bean factory.
 	 * @param beanDefinition the bean definition to generate a bean name for
@@ -88,6 +89,8 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
+	 * 对给定BeanDefinition 生成BeanName，在给定BeanFactory 中保持唯一
+	 *
 	 * Generate a bean name for the given bean definition, unique within the
 	 * given bean factory.
 	 * @param definition the bean definition to generate a bean name for
@@ -152,6 +155,7 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
+	 * 在给定BeanDefinition 注册器中注册给定BeanDefinition
 	 * Register the given bean definition with the given bean factory.
 	 * @param definitionHolder the bean definition including name and aliases
 	 * @param registry the bean factory to register with

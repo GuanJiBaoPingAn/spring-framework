@@ -139,69 +139,93 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 */
 	public static final String INFER_METHOD = "(inferred)";
 
-
+	/** 可能是Bean 的类型，为String 类型时为类名  符号引用 -> 直接引用 */
 	@Nullable
 	private volatile Object beanClass;
 
+	/** 作用域 单例、原型 */
 	@Nullable
 	private String scope = SCOPE_DEFAULT;
 
+	/** 是否是抽象的（不能实例化） */
 	private boolean abstractFlag = false;
 
+	/** 是否是懒初始化的 */
 	@Nullable
 	private Boolean lazyInit;
 
+	/** 自动装配模式 */
 	private int autowireMode = AUTOWIRE_NO;
 
+	/** 依赖确认 */
 	private int dependencyCheck = DEPENDENCY_CHECK_NONE;
 
+	/** 该Bean 所依赖的BeanName，BeanFactory 会在该Bean 初始化之前初始化这些Bean */
 	@Nullable
 	private String[] dependsOn;
 
+	/** 是否是自动装配到其他Bean 的候选(设计用于基于类型的自动装配) */
 	private boolean autowireCandidate = true;
 
+	/** 在自动装配时是否是首要的 */
 	private boolean primary = false;
 
+	/** typeName -> qualifier */
 	private final Map<String, AutowireCandidateQualifier> qualifiers = new LinkedHashMap<>();
 
+	/** 创建Bean 实例时的回调 */
 	@Nullable
 	private Supplier<?> instanceSupplier;
 
+	/** 是否允许访问非public的方法 */
 	private boolean nonPublicAccessAllowed = true;
 
 	private boolean lenientConstructorResolution = true;
 
+	/** factoryBean 的名称 */
 	@Nullable
 	private String factoryBeanName;
 
+	/** 工厂方法名称 */
 	@Nullable
 	private String factoryMethodName;
 
+	/** 构造函数参数值 */
 	@Nullable
 	private ConstructorArgumentValues constructorArgumentValues;
 
+	/** 该Bean 的属性值 */
 	@Nullable
 	private MutablePropertyValues propertyValues;
 
+	/** 重写方法集合 */
 	private MethodOverrides methodOverrides = new MethodOverrides();
 
+	/** 初始化方法名称 */
 	@Nullable
 	private String initMethodName;
 
+	/** 销毁方法名称 */
 	@Nullable
 	private String destroyMethodName;
 
+	/** 配置的初始化方法是否是默认的 */
 	private boolean enforceInitMethod = true;
 
+	/** 配置的销毁方法是否是默认的 */
 	private boolean enforceDestroyMethod = true;
 
+	/** 是否是合成的Bean */
 	private boolean synthetic = false;
 
+	/** 该BeanDefinition 的角色 */
 	private int role = BeanDefinition.ROLE_APPLICATION;
 
+	/** 对该BeanDefinition 的描述 */
 	@Nullable
 	private String description;
 
+	/** BeanDefinition 的来源 */
 	@Nullable
 	private Resource resource;
 
@@ -389,6 +413,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 返回Bean 的类名称，无论{@link #beanClass} 是String 还是Class 都返回类名称
+	 *
 	 * Return the current bean class name of this bean definition.
 	 */
 	@Override
@@ -442,6 +468,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 使用给定类加载器加载该BeanDefinition 的Bean 类型，如果需要从类名解析为Class
+	 *
 	 * Determine the class of the wrapped bean, resolving it from a
 	 * specified class name if necessary. Will also reload a specified
 	 * Class from its name when called with the bean class already resolved.
@@ -495,6 +523,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 该BeanDefinition 是否是单例
 	 * Return whether this a <b>Singleton</b>, with a single shared instance
 	 * returned from all calls.
 	 * @see #SCOPE_SINGLETON
@@ -505,6 +534,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 该BeanDefinition 是否是原型
 	 * Return whether this a <b>Prototype</b>, with an independent instance
 	 * returned for each call.
 	 * @see #SCOPE_PROTOTYPE
@@ -525,6 +555,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 是否是抽象的（不能进行实例化）
 	 * Return whether this bean is "abstract", i.e. not meant to be instantiated
 	 * itself but rather just serving as parent for concrete child bean definitions.
 	 */
@@ -544,6 +575,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 是否是懒初始化的
 	 * Return whether this bean should be lazily initialized, i.e. not
 	 * eagerly instantiated on startup. Only applicable to a singleton bean.
 	 * @return whether to apply lazy-init semantics ({@code false} by default)
@@ -669,6 +701,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 该Bean 是否自动装配到其他Bean
 	 * Return whether this bean is a candidate for getting autowired into some other bean.
 	 */
 	@Override

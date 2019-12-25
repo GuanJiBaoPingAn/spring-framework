@@ -23,6 +23,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 多个{@link TransactionAttributeSource} 实现时的操作
  * Composite {@link TransactionAttributeSource} implementation that iterates
  * over a given array of {@link TransactionAttributeSource} instances.
  *

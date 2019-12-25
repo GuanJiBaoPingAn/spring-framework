@@ -28,6 +28,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * {@link javax.sql.DataSource} 的实现，将所有调用代理到给定的目标数据源，该类需要被继承
+ *
  * JDBC {@link javax.sql.DataSource} implementation that delegates all calls
  * to a given target {@link javax.sql.DataSource}.
  *

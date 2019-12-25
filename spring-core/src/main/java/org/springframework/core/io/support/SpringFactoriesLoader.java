@@ -62,6 +62,7 @@ import org.springframework.util.StringUtils;
 public final class SpringFactoriesLoader {
 
 	/**
+	 * 寻找工厂的位置
 	 * The location to look for factories.
 	 * <p>Can be present in multiple JAR files.
 	 */
@@ -70,6 +71,7 @@ public final class SpringFactoriesLoader {
 
 	private static final Log logger = LogFactory.getLog(SpringFactoriesLoader.class);
 
+	/** 类加载器 -> 加载类全限定名称 缓存 */
 	private static final Map<ClassLoader, MultiValueMap<String, String>> cache = new ConcurrentReferenceHashMap<>();
 
 
@@ -108,6 +110,7 @@ public final class SpringFactoriesLoader {
 	}
 
 	/**
+	 * 使用给定类加载器，从{@value #FACTORIES_RESOURCE_LOCATION} 中获取给定类型在工厂实现的全限定名称
 	 * Load the fully qualified class names of factory implementations of the
 	 * given type from {@value #FACTORIES_RESOURCE_LOCATION}, using the given
 	 * class loader.
@@ -122,6 +125,11 @@ public final class SpringFactoriesLoader {
 		return loadSpringFactories(classLoader).getOrDefault(factoryTypeName, Collections.emptyList());
 	}
 
+	/**
+	 * 从{@value #FACTORIES_RESOURCE_LOCATION} 中加载配置的类
+	 * @param classLoader
+	 * @return
+	 */
 	private static Map<String, List<String>> loadSpringFactories(@Nullable ClassLoader classLoader) {
 		MultiValueMap<String, String> result = cache.get(classLoader);
 		if (result != null) {

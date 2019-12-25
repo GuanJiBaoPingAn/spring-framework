@@ -18,6 +18,7 @@ package org.springframework.aop;
 
 /**
  * 切点通知器，所有通知器的父接口，基于pointcut 切点
+ * 包括了切点和通知（在切点执行什么）
  * Superinterface for all Advisors that are driven by a pointcut.
  * This covers nearly all advisors except introduction advisors,
  * for which method-level matching doesn't apply.

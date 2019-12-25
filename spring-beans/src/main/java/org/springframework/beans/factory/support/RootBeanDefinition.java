@@ -55,9 +55,11 @@ import org.springframework.util.Assert;
 @SuppressWarnings("serial")
 public class RootBeanDefinition extends AbstractBeanDefinition {
 
+	/** 该BeanDefinition 装饰的BeanDefinition */
 	@Nullable
 	private BeanDefinitionHolder decoratedDefinition;
 
+	/** 限定元素 */
 	@Nullable
 	private AnnotatedElement qualifiedElement;
 
@@ -66,8 +68,10 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 
 	boolean allowCaching = true;
 
+	/**  */
 	boolean isFactoryMethodUnique = false;
 
+	/** 目标类型（配置的） */
 	@Nullable
 	volatile ResolvableType targetType;
 
@@ -83,7 +87,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	@Nullable
 	volatile ResolvableType factoryMethodReturnType;
 
-	/** Package-visible field for caching a unique factory method candidate for introspection. */
+	/** Package-visible field for caching a unique factory method candidate for introspection. 工厂方法 */
 	@Nullable
 	volatile Method factoryMethodToIntrospect;
 
@@ -121,13 +125,15 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	@Nullable
 	volatile Boolean beforeInstantiationResolved;
 
+	/** 外部管理的配置成员，方法名的集合 */
 	@Nullable
 	private Set<Member> externallyManagedConfigMembers;
 
-	// 外部管理的初始化函数，方法名的集合
+	/** 外部管理的初始化函数，方法名的集合 */
 	@Nullable
 	private Set<String> externallyManagedInitMethods;
 
+	/** 外部管理的销毁函数，方法名的集合 */
 	@Nullable
 	private Set<String> externallyManagedDestroyMethods;
 
@@ -158,7 +164,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	 * Create a new RootBeanDefinition for a singleton bean, constructing each instance
 	 * through calling the given supplier (possibly a lambda or method reference).
 	 * @param beanClass the class of the bean to instantiate
-	 * @param instanceSupplier the supplier to construct a bean instance,
+	 * @param instanceSupplier the supplier to construct a beaAbstractApplicationContextn instance,
 	 * as an alternative to a declaratively specified factory method
 	 * @since 5.0
 	 * @see #setInstanceSupplier

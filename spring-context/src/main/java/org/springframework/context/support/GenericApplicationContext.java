@@ -41,7 +41,9 @@ import org.springframework.util.Assert;
 
 /**
  * 通用应用上下文实现，持有一个内部{@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
- *
+ * 有BeanDefinition 注册的功能，实现了{@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
+ * 典型的用于注册BeanDefinition，然后调用{@link #refresh()} 初始化Bean
+ * 与其他ApplicationContext 实现每次refresh 创建一个新的BeanFactory 实例不同的是，该实现{@link #refresh()} 只能调用一次
  *
  * Generic ApplicationContext implementation that holds a single internal
  * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
@@ -259,6 +261,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	//---------------------------------------------------------------------
 
 	/**
+	 * 不进行操作：仅持有一个BeanFactory，让调用者注册Bean
 	 * Do nothing: We hold a single internal BeanFactory and rely on callers
 	 * to register beans through our public methods (or the BeanFactory's).
 	 * @see #registerBeanDefinition

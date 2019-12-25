@@ -34,6 +34,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 通过扫描给定类上的注解创建BeanDefinition
  * Convenient adapter for programmatic registration of bean classes.
  *
  * <p>This is an alternative to {@link ClassPathBeanDefinitionScanner}, applying
@@ -234,6 +235,7 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
+	 * 通过给定类（扫描其上的注解）创建BeanDefinition
 	 * Register a bean from the given bean class, deriving its metadata from
 	 * class-declared annotations.
 	 * @param beanClass the class of the bean

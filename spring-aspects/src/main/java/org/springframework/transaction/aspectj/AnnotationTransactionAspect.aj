@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.AnnotationTransactionAttribute
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * 使用{@link org.springframework.transaction.annotation.Transactional} 创建切面
  * Concrete AspectJ transaction aspect using Spring's
  * {@link org.springframework.transaction.annotation.Transactional} annotation.
  *

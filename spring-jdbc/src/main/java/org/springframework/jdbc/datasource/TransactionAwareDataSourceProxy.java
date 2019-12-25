@@ -30,6 +30,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 /**
+ * 事务感知数据源代理，{@link javax.sql.DataSource} 的代理
  * Proxy for a target JDBC {@link javax.sql.DataSource}, adding awareness of
  * Spring-managed transactions. Similar to a transactional JNDI DataSource
  * as provided by a Java EE server.
@@ -123,6 +124,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	}
 
 	/**
+	 * 为新建的链接创建代理，将方法调用进行代理，但将{@code close()} 代理到DataSourceUtils
 	 * Wraps the given Connection with a proxy that delegates every method call to it
 	 * but delegates {@code close()} calls to DataSourceUtils.
 	 * @param targetDataSource the DataSource that the Connection came from
@@ -154,6 +156,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 
 
 	/**
+	 * 将JDBC 连接的close 调用代理给DataSourceUtils
 	 * Invocation handler that delegates close calls on JDBC Connections
 	 * to DataSourceUtils for being aware of thread-bound transactions.
 	 */

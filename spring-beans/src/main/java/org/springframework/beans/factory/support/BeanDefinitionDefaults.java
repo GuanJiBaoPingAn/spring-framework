@@ -20,6 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
+ * 持有{@code BeanDefinition} 中默认属性的类
  * A simple holder for {@code BeanDefinition} property defaults.
  *
  * @author Mark Fisher

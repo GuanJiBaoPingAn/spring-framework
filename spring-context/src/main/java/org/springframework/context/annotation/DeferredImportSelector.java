@@ -20,6 +20,8 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link ImportSelector} 的变种，在所有的{@code @Configuration} bean 处理完成后运行。当类型是
+ * {@code @Conditional} 时特别有用。
  * A variation of {@link ImportSelector} that runs after all {@code @Configuration} beans
  * have been processed. This type of selector can be particularly useful when the selected
  * imports are {@code @Conditional}.

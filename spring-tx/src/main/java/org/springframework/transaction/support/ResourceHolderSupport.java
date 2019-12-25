@@ -22,6 +22,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.TransactionTimedOutException;
 
 /**
+ * 资源持有者的基类
  * Convenient base class for resource holders.
  *
  * <p>Features rollback-only support for participating transactions.
@@ -35,13 +36,16 @@ import org.springframework.transaction.TransactionTimedOutException;
  */
 public abstract class ResourceHolderSupport implements ResourceHolder {
 
+	/** 资源和事务是否同步 */
 	private boolean synchronizedWithTransaction = false;
 
 	private boolean rollbackOnly = false;
 
+	/** 该对象的过期时间 */
 	@Nullable
 	private Date deadline;
 
+	/** 对该资源的引用计数 */
 	private int referenceCount = 0;
 
 	private boolean isVoid = false;

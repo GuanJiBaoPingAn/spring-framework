@@ -19,6 +19,7 @@ package org.springframework.ui.context;
 import org.springframework.lang.Nullable;
 
 /**
+ * 用于解析{@link Theme Themes} 的类需要实现
  * Interface to be implemented by objects that can resolve {@link Theme Themes}.
  * This enables parameterization and internationalization of messages
  * for a given 'theme'.

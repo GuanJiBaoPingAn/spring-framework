@@ -19,6 +19,7 @@ package org.springframework.ui.context;
 import org.springframework.context.MessageSource;
 
 /**
+ * 主题，用于解析主题特定的消息、文件路径（CSS、图片文件）等等
  * A Theme can resolve theme-specific messages, codes, file paths, etcetera
  * (e&#46;g&#46; CSS and image files in a web environment).
  * The exposed {@link org.springframework.context.MessageSource} supports
@@ -32,6 +33,7 @@ import org.springframework.context.MessageSource;
 public interface Theme {
 
 	/**
+	 * 该主题的名称
 	 * Return the name of the theme.
 	 * @return the name of the theme (never {@code null})
 	 */

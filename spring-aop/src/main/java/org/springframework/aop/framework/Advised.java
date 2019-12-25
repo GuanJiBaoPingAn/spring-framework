@@ -23,7 +23,7 @@ import org.springframework.aop.TargetClassAware;
 import org.springframework.aop.TargetSource;
 
 /**
- * AOP 代理有工厂配置的类需要实现该接口，配置内容包括
+ * 已被通知的对。AOP 代理有工厂配置的类需要实现该接口，配置内容包括
  * 拦截器、advice、advisor、代理接口
  * Interface to be implemented by classes that hold the configuration
  * of a factory of AOP proxies. This configuration includes the
@@ -51,18 +51,21 @@ public interface Advised extends TargetClassAware {
 	boolean isProxyTargetClass();
 
 	/**
+	 * 是否代理指定的类, 而不是一些 Interface
 	 * Return the interfaces proxied by the AOP proxy.
 	 * <p>Will not include the target class, which may also be proxied.
 	 */
 	Class<?>[] getProxiedInterfaces();
 
 	/**
+	 * 给定接口是否被代理了
 	 * Determine whether the given interface is proxied.
 	 * @param intf the interface to check
 	 */
 	boolean isInterfaceProxied(Class<?> intf);
 
 	/**
+	 * 设置代理的目标对象
 	 * Change the {@code TargetSource} used by this {@code Advised} object.
 	 * <p>Only works if the configuration isn't {@linkplain #isFrozen frozen}.
 	 * @param targetSource new TargetSource to use
@@ -70,11 +73,13 @@ public interface Advised extends TargetClassAware {
 	void setTargetSource(TargetSource targetSource);
 
 	/**
+	 * 获取代理的对象
 	 * Return the {@code TargetSource} used by this {@code Advised} object.
 	 */
 	TargetSource getTargetSource();
 
 	/**
+	 * 是否需要将代理的对象暴露到ThreadLocal 中, 而获取对应的代理对象则通过AopContext 获取
 	 * Set whether the proxy should be exposed by the AOP framework as a
 	 * {@link ThreadLocal} for retrieval via the {@link AopContext} class.
 	 * <p>It can be necessary to expose the proxy if an advised object needs
@@ -85,6 +90,7 @@ public interface Advised extends TargetClassAware {
 	void setExposeProxy(boolean exposeProxy);
 
 	/**
+	 * 是否应该暴露代理对象
 	 * Return whether the factory should expose the proxy as a {@link ThreadLocal}.
 	 * <p>It can be necessary to expose the proxy if an advised object needs
 	 * to invoke a method on itself with advice applied. Otherwise, if an
@@ -95,6 +101,7 @@ public interface Advised extends TargetClassAware {
 	boolean isExposeProxy();
 
 	/**
+	 * 设置Advisor 是否已经在前面过滤过，是否匹配Pointcut
 	 * Set whether this proxy configuration is pre-filtered so that it only
 	 * contains applicable advisors (matching this proxy's target class).
 	 * <p>Default is "false". Set this to "true" if the advisors have been
@@ -105,18 +112,21 @@ public interface Advised extends TargetClassAware {
 	void setPreFiltered(boolean preFiltered);
 
 	/**
+	 * Advisor 是否已经在前面过滤过，是否匹配Pointcut
 	 * Return whether this proxy configuration is pre-filtered so that it only
 	 * contains applicable advisors (matching this proxy's target class).
 	 */
 	boolean isPreFiltered();
 
 	/**
+	 * 获取该代理的所有通知器
 	 * Return the advisors applying to this proxy.
 	 * @return a list of Advisors applying to this proxy (never {@code null})
 	 */
 	Advisor[] getAdvisors();
 
 	/**
+	 * 添加通知器到通知器链尾
 	 * Add an advisor at the end of the advisor chain.
 	 * <p>The Advisor may be an {@link org.springframework.aop.IntroductionAdvisor},
 	 * in which new interfaces will be available when a proxy is next obtained
@@ -127,6 +137,7 @@ public interface Advised extends TargetClassAware {
 	void addAdvisor(Advisor advisor) throws AopConfigException;
 
 	/**
+	 * 添加通知器到链指定位置
 	 * Add an Advisor at the specified position in the chain.
 	 * @param advisor the advisor to add at the specified position in the chain
 	 * @param pos position in chain (0 is head). Must be valid.
@@ -135,6 +146,7 @@ public interface Advised extends TargetClassAware {
 	void addAdvisor(int pos, Advisor advisor) throws AopConfigException;
 
 	/**
+	 * 移除指定通知器
 	 * Remove the given advisor.
 	 * @param advisor the advisor to remove
 	 * @return {@code true} if the advisor was removed; {@code false}
@@ -143,6 +155,7 @@ public interface Advised extends TargetClassAware {
 	boolean removeAdvisor(Advisor advisor);
 
 	/**
+	 * 移除指定下标的通知器
 	 * Remove the advisor at the given index.
 	 * @param index index of advisor to remove
 	 * @throws AopConfigException if the index is invalid
@@ -150,6 +163,7 @@ public interface Advised extends TargetClassAware {
 	void removeAdvisor(int index) throws AopConfigException;
 
 	/**
+	 * 返回给定通知器的下标
 	 * Return the index (from 0) of the given advisor,
 	 * or -1 if no such advisor applies to this proxy.
 	 * <p>The return value of this method can be used to index into the advisors array.

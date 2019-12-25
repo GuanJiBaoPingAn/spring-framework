@@ -146,10 +146,10 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	@Nullable
 	private String serializationId;
 
-	/** Whether to allow re-registration of a different definition with the same name. */
+	/** Whether to allow re-registration of a different definition with the same name. 是否允许同样名称的bean 重载 */
 	private boolean allowBeanDefinitionOverriding = true;
 
-	/** Whether to allow eager class loading even for lazy-init beans. */
+	/** Whether to allow eager class loading even for lazy-init beans. 是否允许早期类加载，即使是懒加载的bean */
 	private boolean allowEagerClassLoading = true;
 
 	/** Optional OrderComparator for dependency Lists and arrays. */
@@ -159,29 +159,29 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	/** Resolver to use for checking if a bean definition is an autowire candidate. */
 	private AutowireCandidateResolver autowireCandidateResolver = new SimpleAutowireCandidateResolver();
 
-	/** Map from dependency type to corresponding autowired value. */
+	/** Map from dependency type to corresponding autowired value. 类 -> 对象 */
 	private final Map<Class<?>, Object> resolvableDependencies = new ConcurrentHashMap<>(16);
 
-	/** Map of bean definition objects, keyed by bean name. */
+	/** Map of bean definition objects, keyed by bean name. beanName -> BeanDefinition */
 	private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);
 
-	/** Map of singleton and non-singleton bean names, keyed by dependency type. */
+	/** Map of singleton and non-singleton bean names, keyed by dependency type. 类 -> 依赖它的beanName数组（单例和非单例） */
 	private final Map<Class<?>, String[]> allBeanNamesByType = new ConcurrentHashMap<>(64);
 
-	/** Map of singleton-only bean names, keyed by dependency type. */
+	/** Map of singleton-only bean names, keyed by dependency type. 类 -> 依赖它的beanName数组（单例） */
 	private final Map<Class<?>, String[]> singletonBeanNamesByType = new ConcurrentHashMap<>(64);
 
-	/** List of bean definition names, in registration order. */
+	/** List of bean definition names, in registration order. 以注册顺序排的BeanDefinition 名称 */
 	private volatile List<String> beanDefinitionNames = new ArrayList<>(256);
 
-	/** List of names of manually registered singletons, in registration order. */
+	/** List of names of manually registered singletons, in registration order. 手动注册单例名称，以注册顺序 */
 	private volatile Set<String> manualSingletonNames = new LinkedHashSet<>(16);
 
-	/** Cached array of bean definition names in case of frozen configuration. */
+	/** Cached array of bean definition names in case of frozen configuration. 被冻结的BeanDefinition 的名称 */
 	@Nullable
 	private volatile String[] frozenBeanDefinitionNames;
 
-	/** Whether bean definition metadata may be cached for all beans. */
+	/** Whether bean definition metadata may be cached for all beans. BeanDefinition 元数据能否被缓存 */
 	private volatile boolean configurationFrozen = false;
 
 
@@ -411,12 +411,23 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		};
 	}
 
+	/**
+	 * 1、从该BeanFactory 中找对应的实例
+	 * 2、不存在时找父工厂的实例
+	 *
+	 * @param requiredType
+	 * @param args
+	 * @param nonUniqueAsNull
+	 * @param <T>
+	 * @return
+	 */
 	@Nullable
 	private <T> T resolveBean(ResolvableType requiredType, @Nullable Object[] args, boolean nonUniqueAsNull) {
 		NamedBeanHolder<T> namedBean = resolveNamedBean(requiredType, args, nonUniqueAsNull);
 		if (namedBean != null) {
 			return namedBean.getBeanInstance();
 		}
+		/* namedBean == null */
 		BeanFactory parent = getParentBeanFactory();
 		if (parent instanceof DefaultListableBeanFactory) {
 			return ((DefaultListableBeanFactory) parent).resolveBean(requiredType, args, nonUniqueAsNull);
@@ -485,6 +496,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		return getBeanNamesForType(type, true, true);
 	}
 
+	/**
+	 * 根据类型获取BeanName，根据配置（能否进行缓存）进行相应操作，支持缓存则尝试从缓存取并在不存在后从已注册的BeanDefinition 中取并
+	 * 进行缓存，不支持缓存则直接从已注册的BeanDefinition 中取
+	 * @return
+	 */
 	@Override
 	public String[] getBeanNamesForType(@Nullable Class<?> type, boolean includeNonSingletons, boolean allowEagerInit) {
 		if (!isConfigurationFrozen() || type == null || !allowEagerInit) {
@@ -503,6 +519,13 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		return resolvedBeanNames;
 	}
 
+	/**
+	 * 根据给定类型，从以注册的BeanDefinition 中获取对应的名称数组
+	 * @param type
+	 * @param includeNonSingletons
+	 * @param allowEagerInit
+	 * @return
+	 */
 	private String[] doGetBeanNamesForType(ResolvableType type, boolean includeNonSingletons, boolean allowEagerInit) {
 		List<String> result = new ArrayList<>();
 
@@ -795,6 +818,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				new BeanDefinitionHolder(mbd, beanName, getAliases(beanDefinitionName)), descriptor);
 	}
 
+	/**
+	 * 根据beanName 获取对应的BeanDefinition
+	 * @param beanName name of the bean to find a definition for
+	 * @return
+	 * @throws NoSuchBeanDefinitionException
+	 */
 	@Override
 	public BeanDefinition getBeanDefinition(String beanName) throws NoSuchBeanDefinitionException {
 		BeanDefinition bd = this.beanDefinitionMap.get(beanName);
@@ -1130,6 +1159,19 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		throw new NoSuchBeanDefinitionException(requiredType);
 	}
 
+	/**
+	 * 根据给定类型解析出 BeanName 和实例，存在多个BeanName 时
+	 * 1、过滤出自动装配的BeanName
+	 * 2.获取最高优先级（@Primary）的BeanName
+	 * 3.Primary不存在时，根据最高Order
+	 * 4.还是不存在抛出异常
+	 * @param requiredType
+	 * @param args
+	 * @param nonUniqueAsNull
+	 * @param <T>
+	 * @return
+	 * @throws BeansException
+	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
 	private <T> NamedBeanHolder<T> resolveNamedBean(
@@ -1138,6 +1180,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		Assert.notNull(requiredType, "Required type must not be null");
 		String[] candidateNames = getBeanNamesForType(requiredType);
 
+		/* 当同一个类型有多个名称时，过滤下自动装配的Bean 对应的名称*/
 		if (candidateNames.length > 1) {
 			List<String> autowireCandidates = new ArrayList<>(candidateNames.length);
 			for (String beanName : candidateNames) {
@@ -1149,19 +1192,25 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				candidateNames = StringUtils.toStringArray(autowireCandidates);
 			}
 		}
-
+		/* 只有一个时直接返回 */
 		if (candidateNames.length == 1) {
 			String beanName = candidateNames[0];
 			return new NamedBeanHolder<>(beanName, (T) getBean(beanName, requiredType.toClass(), args));
 		}
+		/**
+		 * 过滤后仍然有多个候选的名称
+		 * 	1.获取最高优先级（@Primary）的BeanName
+		 * 	2.Primary不存在时，根据最高Order
+		 * 	3.还是不存在抛出异常
+		 */
 		else if (candidateNames.length > 1) {
+			/* BeanName -> 实例（单例时）、类型（非单例时） */
 			Map<String, Object> candidates = new LinkedHashMap<>(candidateNames.length);
 			for (String beanName : candidateNames) {
 				if (containsSingleton(beanName) && args == null) {
 					Object beanInstance = getBean(beanName);
 					candidates.put(beanName, (beanInstance instanceof NullBean ? null : beanInstance));
-				}
-				else {
+				} else {
 					candidates.put(beanName, getType(beanName));
 				}
 			}
@@ -1547,6 +1596,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	/**
+	 * 确定所有候选BeanName 中的首要候选BeanName，只会有一个，存在多个时抛出异常
+	 * 首要 -> {@link org.springframework.context.annotation.Primary}
+	 *
 	 * Determine the primary candidate in the given set of beans.
 	 * @param candidates a Map of candidate names and candidate instances
 	 * (or candidate classes if not created yet) that match the required type
@@ -1581,6 +1633,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	/**
+	 * 根据优先级{@link org.springframework.core.Ordered} 获取最高优先级的BeanName
+	 *
 	 * Determine the candidate with the highest priority in the given set of beans.
 	 * <p>Based on {@code @javax.annotation.Priority}. As defined by the related
 	 * {@link org.springframework.core.Ordered} interface, the lowest value has
@@ -1624,6 +1678,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	/**
+	 * 给定的BeanName 对应的BeanDefinition 是否是首要的
 	 * Return whether the bean definition for the given bean name has been
 	 * marked as a primary bean.
 	 * @param beanName the name of the bean

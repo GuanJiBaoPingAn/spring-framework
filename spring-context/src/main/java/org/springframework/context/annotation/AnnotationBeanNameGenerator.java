@@ -32,6 +32,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * {@link org.springframework.beans.factory.support.BeanNameGenerator} 的实现，用于对
+ * {@code @Component @Repository @Service @Controller @Named} 注解的Bean 生成BeanName，优先使用给定值，不存在时使用
+ * com.xyz.FooServiceImpl -> fooServiceImpl 的策略
+ *
  * {@link org.springframework.beans.factory.support.BeanNameGenerator}
  * implementation for bean classes annotated with the
  * {@link org.springframework.stereotype.Component @Component} annotation

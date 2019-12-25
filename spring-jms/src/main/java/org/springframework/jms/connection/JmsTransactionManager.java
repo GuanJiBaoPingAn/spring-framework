@@ -37,6 +37,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
+ * {@link javax.jms.ConnectionFactory} 连接的事务管理器实现
  * {@link org.springframework.transaction.PlatformTransactionManager} implementation
  * for a single JMS {@link javax.jms.ConnectionFactory}. Binds a JMS
  * Connection/Session pair from the specified ConnectionFactory to the thread,

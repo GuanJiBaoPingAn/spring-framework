@@ -25,6 +25,7 @@ import org.springframework.aop.Advisor;
 import org.springframework.aop.MethodBeforeAdvice;
 
 /**
+ * 适配方法执行前通知{@link org.springframework.aop.MethodBeforeAdvice}
  * Adapter to enable {@link org.springframework.aop.MethodBeforeAdvice}
  * to be used in the Spring AOP framework.
  *

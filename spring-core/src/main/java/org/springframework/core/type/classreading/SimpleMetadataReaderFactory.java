@@ -26,6 +26,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
+ * {@link MetadataReaderFactory} 的简单实现，每次请求时创建一个新的{@link org.springframework.asm.ClassReader}
  * Simple implementation of the {@link MetadataReaderFactory} interface,
  * creating a new ASM {@link org.springframework.asm.ClassReader} for every request.
  *

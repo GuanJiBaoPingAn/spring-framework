@@ -19,6 +19,7 @@ package org.springframework.jdbc.datasource;
 import java.sql.Connection;
 
 /**
+ * JDBC 连接句柄
  * Simple interface to be implemented by handles for a JDBC Connection.
  * Used by JpaDialect, for example.
  *

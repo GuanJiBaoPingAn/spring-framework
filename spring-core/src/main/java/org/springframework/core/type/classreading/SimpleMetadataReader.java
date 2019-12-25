@@ -28,7 +28,9 @@ import org.springframework.core.type.ClassMetadata;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link MetadataReader} 的实现，基于ASM 的{@link org.springframework.asm.ClassReader}
  * {@link MetadataReader} implementation based on an ASM
+ *
  * {@link org.springframework.asm.ClassReader}.
  *
  * @author Juergen Hoeller

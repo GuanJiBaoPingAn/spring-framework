@@ -35,6 +35,9 @@ import org.springframework.transaction.support.TransactionSynchronizationUtils;
 import org.springframework.util.Assert;
 
 /**
+ * {@link org.springframework.transaction.PlatformTransactionManager} 对
+ * {@link javax.sql.DataSource} 的实现。该类用于使用JDBC 的环境
+ *
  * {@link org.springframework.transaction.PlatformTransactionManager}
  * implementation for a single JDBC {@link javax.sql.DataSource}. This class is
  * capable of working in any environment with any JDBC driver, as long as the setup
@@ -419,6 +422,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 
 
 	/**
+	 * 数据源事务对象，被DataSourceTransactionManager 当做事务对象使用
 	 * DataSource transaction object, representing a ConnectionHolder.
 	 * Used as transaction object by DataSourceTransactionManager.
 	 */

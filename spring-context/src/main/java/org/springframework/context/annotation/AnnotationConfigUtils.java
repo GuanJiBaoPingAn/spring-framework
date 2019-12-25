@@ -130,6 +130,7 @@ public abstract class AnnotationConfigUtils {
 
 
 	/**
+	 * 在给定注册器中注册相关的注解后处理器
 	 * Register all relevant annotation post processors in the given registry.
 	 * @param registry the registry to operate on
 	 */
@@ -138,6 +139,13 @@ public abstract class AnnotationConfigUtils {
 	}
 
 	/**
+	 * 在给定注册器中注册相关的注解后处理器
+	 * {@link ConfigurationClassPostProcessor}
+	 * {@link AutowiredAnnotationBeanPostProcessor}
+	 * {@link CommonAnnotationBeanPostProcessor}
+	 * {@link EventListenerMethodProcessor}
+	 * {@link DefaultEventListenerFactory}
+	 *
 	 * Register all relevant annotation post processors in the given registry.
 	 * @param registry the registry to operate on
 	 * @param source the configuration source element (already extracted)

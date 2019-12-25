@@ -24,6 +24,7 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.transaction.interceptor.TransactionAttributeSource;
 
 /**
+ * 抽象事务切面
  * Abstract superaspect for AspectJ transaction aspects. Concrete
  * subaspects will implement the {@code transactionalMethodExecution()}
  * pointcut using a strategy such as Java 5 annotations.

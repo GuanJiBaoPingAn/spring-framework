@@ -19,6 +19,9 @@ package org.springframework.transaction.support;
 import org.springframework.transaction.PlatformTransactionManager;
 
 /**
+ * {@link org.springframework.transaction.PlatformTransactionManager} 的拓展接口，表名事务
+ * 管理器有目标资源
+ *
  * Extension of the {@link org.springframework.transaction.PlatformTransactionManager}
  * interface, indicating a native resource transaction manager, operating on a single
  * target resource. Such transaction managers differ from JTA transaction managers in

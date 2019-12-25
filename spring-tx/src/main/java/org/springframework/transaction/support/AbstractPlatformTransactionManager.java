@@ -358,6 +358,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	//---------------------------------------------------------------------
 
 	/**
+	 * 该实现处理了事务传播。其它操作代理给{@code doGetTransaction}、{@code isExistingTransaction}、{@code doBegin}
 	 * This implementation handles propagation behavior. Delegates to
 	 * {@code doGetTransaction}, {@code isExistingTransaction}
 	 * and {@code doBegin}.

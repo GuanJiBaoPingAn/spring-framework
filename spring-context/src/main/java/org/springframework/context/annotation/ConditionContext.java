@@ -23,6 +23,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.lang.Nullable;
 
 /**
+ * {@link Condition Conditions} 的上下文
  * Context information for use by {@link Condition Conditions}.
  *
  * @author Phillip Webb

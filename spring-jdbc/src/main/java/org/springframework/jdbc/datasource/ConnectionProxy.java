@@ -19,6 +19,7 @@ package org.springframework.jdbc.datasource;
 import java.sql.Connection;
 
 /**
+ * {@link java.sql.Connection} 的代理
  * Subinterface of {@link java.sql.Connection} to be implemented by
  * Connection proxies. Allows access to the underlying target Connection.
  *

@@ -21,6 +21,7 @@ import org.springframework.ui.context.Theme;
 import org.springframework.util.Assert;
 
 /**
+ * {@link Theme} 的默认实现
  * Default {@link Theme} implementation, wrapping a name and an
  * underlying {@link org.springframework.context.MessageSource}.
  *

@@ -17,7 +17,7 @@
 package org.aopalliance.aop;
 
 /**
- * Advice 的标记接口
+ * 通知，标记接口。表明在切点附近（前、后、围绕、异常）需要执行的
  * Tag interface for Advice. Implementations can be any type
  * of advice, such as Interceptors.
  *

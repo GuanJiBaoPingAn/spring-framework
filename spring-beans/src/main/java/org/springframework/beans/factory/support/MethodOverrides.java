@@ -23,6 +23,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import org.springframework.lang.Nullable;
 
 /**
+ * 重写方法的集合，IoC 容器在运行时重写的方法
  * Set of method overrides, determining which, if any, methods on a
  * managed object the Spring IoC container will override at runtime.
  *

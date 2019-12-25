@@ -17,6 +17,7 @@
 package org.springframework.context.annotation;
 
 /**
+ * 作用域代理模式
  * Enumerates the various scoped-proxy options.
  *
  * <p>For a more complete discussion of exactly what a scoped proxy is, see the
@@ -36,6 +37,7 @@ public enum ScopedProxyMode {
 	DEFAULT,
 
 	/**
+	 * 不创建作用域代理
 	 * Do not create a scoped proxy.
 	 * <p>This proxy-mode is not typically useful when used with a
 	 * non-singleton scoped instance, which should favor the use of the
@@ -45,12 +47,14 @@ public enum ScopedProxyMode {
 	NO,
 
 	/**
+	 * 使用JDK 动态代理创建
 	 * Create a JDK dynamic proxy implementing <i>all</i> interfaces exposed by
 	 * the class of the target object.
 	 */
 	INTERFACES,
 
 	/**
+	 * 实用类代理创建(CGLIB)
 	 * Create a class-based proxy (uses CGLIB).
 	 */
 	TARGET_CLASS;
